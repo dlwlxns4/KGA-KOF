@@ -2,7 +2,11 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< HEAD:Main/x64/Debug/210830_WinMain.exe.recipe
       <FullPath>C:\Users\ChangMin\WinApi\WinAPI\0918\x64\Debug\210830_WinMain.exe</FullPath>
+=======
+      <FullPath>C:\Users\dltng\OneDrive\Desktop\KOF-Project\KGA-KOF\Hello\Debug\Hello.exe</FullPath>
+>>>>>>> 37cb34da0b2e9adbef51e9fedd218a6ebc821281:Hello/Hello/Debug/Hello.exe.recipe
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

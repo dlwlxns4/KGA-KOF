@@ -1,2 +1,7 @@
+<<<<<<< HEAD:Main/x64/Debug/210830_WinMain.tlog/210830_WinMain.lastbuildstate
 PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.28.29910:TargetPlatformVersion=10.0.19041.0:
 Debug|x64|C:\Users\ChangMin\WinApi\WinAPI\0918\|
+=======
+PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.29.30037:TargetPlatformVersion=10.0.19041.0:
+Debug|Win32|C:\Users\dltng\OneDrive\Desktop\KOF-Project\KGA-KOF\Hello\|
+>>>>>>> 37cb34da0b2e9adbef51e9fedd218a6ebc821281:Hello/Hello/Debug/Hello.tlog/Hello.lastbuildstate
