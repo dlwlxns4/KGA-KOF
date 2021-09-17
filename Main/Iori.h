@@ -6,23 +6,31 @@
 class Image;					// 포함관계
 class Iori : public GameObject  // 상속관계
 {
+
 private:
 	Image* img;
+	Image* idle;
+	Image* weakLeg;
+	Image* weakPunch;
+	Image* strongPunch;
+
+
 	int frameX, frameY;
 	int elpasedCount;
-	
+	bool isAttack;
 	MoveDir moveDir;
+
+	
 
 public:
 	RECT rect;
-
+	State state;
 
 
 public:
 	void Init();
 	void Init(int posX, int posY, bool isMoveRight);
 	void Update();
-	void Update2();
 	void Render(HDC hdc);
 	void Release();
 	MoveDir GetMoveDir() { return moveDir; };

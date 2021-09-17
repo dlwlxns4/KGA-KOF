@@ -43,7 +43,8 @@ void MainGame::Init()
 
 
 
-
+	iori = new Iori;
+	iori->Init();
 
 
 }
@@ -53,7 +54,7 @@ void MainGame::Update()
 
 
 
-
+	iori->Update();
 
 	InvalidateRect(g_hWnd, NULL, false);
 }
@@ -70,7 +71,7 @@ void MainGame::Render(HDC hdc)
 
 	backGround->Render(hBackBufferDC);
 
-
+	iori->Render(hBackBufferDC);
 	backBuffer->Render(hdc);
 }
 

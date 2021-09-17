@@ -34,5 +34,8 @@ public:
 	bool IsOnceKeyDown(int key);	// 키가 첫번째로 눌렸는지 판단
 	bool IsOnceKeyUp(int key);		// 키가 첫번째로 눌렸다가 떨어졌는지 판단
 	bool IsStayKeyDown(int key);	// 키가 눌려져 있는지 판단
+	bool IsOnceKeyDown(char key);	// 키가 첫번째로 눌렸는지 판단
+	bool IsOnceKeyUp(char key);		// 키가 첫번째로 눌렸다가 떨어졌는지 판단
+	bool IsStayKeyDown(char key);	// 키가 눌려져 있는지 판단
 };
 

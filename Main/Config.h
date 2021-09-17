@@ -20,5 +20,7 @@ using namespace std;
 enum MoveDir { Left, Right, Up, Down };
 enum TankType { Player, Enemy };
 
+enum State { IDLE, LegWeak, LegStrong, PunchWeak, PunchStrong, Walk };
+
 extern HWND g_hWnd;
 extern HINSTANCE g_hInstance;

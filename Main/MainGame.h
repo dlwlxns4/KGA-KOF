@@ -29,6 +29,8 @@ private:
 	// 배경 이미지
 	Image* backGround;
 
+	Iori* iori;
+
 public:
 	void Init();
 	void Update();
