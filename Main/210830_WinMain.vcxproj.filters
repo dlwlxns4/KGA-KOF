@@ -51,6 +51,15 @@
     <ClCompile Include="Iori.cpp">
       <Filter>2D Framework\KOF_Player</Filter>
     </ClCompile>
+    <ClCompile Include="CharacterSelect.cpp">
+      <Filter>2D Framework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>2D Framework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Kim.cpp">
+      <Filter>2D Framework\KOF_Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config.h">
@@ -81,6 +90,15 @@
       <Filter>2D Framework</Filter>
     </ClInclude>
     <ClInclude Include="Iori.h">
+      <Filter>2D Framework\KOF_Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSelect.h">
+      <Filter>2D Framework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>2D Framework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Kim.h">
       <Filter>2D Framework\KOF_Player</Filter>
     </ClInclude>
   </ItemGroup>
