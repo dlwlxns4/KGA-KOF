@@ -7,6 +7,9 @@
 
 class Image;
 class Iori;
+class Kim;
+class BackGround;
+class CharacterSelect;
 // 우리가 구성할 게임 월드
 class MainGame : public GameEntity
 {
@@ -22,15 +25,14 @@ private:
 	int clickedMousePosX;
 	int clickedMousePosY;
 
-
 	// 백버퍼
 	Image* backBuffer;
-
+	BackGround* backGround;
+	CharacterSelect* characterSelect;
 	// 배경 이미지
-	Image* backGround;
-
 	Iori* iori;
-
+	Kim* kim;
+	
 public:
 	void Init();
 	void Update();

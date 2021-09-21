@@ -5,15 +5,15 @@
 void Iori::Init()
 {
 	img = new Image;
-	img->Init("Image/Iori_walk.bmp", 612, 104, 9, 1, true, RGB(255,0,255));
+	img->Init("Image/Character/Iori/Iori_walk.bmp", 612, 104, 9, 1, true, RGB(255,0,255));
 	idle = new Image;
-	idle->Init("Image/Iori_Idle.bmp", 664, 109, 8, 1, true, RGB(255, 0, 255));
+	idle->Init("Image/Character/Iori/Iori_Idle.bmp", 664, 109, 8, 1, true, RGB(255, 0, 255));
 	weakLeg = new Image;
-	weakLeg->Init("Image/Iori_WeakLeg.bmp", 768, 109, 8, 1, true, RGB(255, 0, 255));
+	weakLeg->Init("Image/Character/Iori/Iori_WeakLeg.bmp", 768, 109, 8, 1, true, RGB(255, 0, 255));
 	weakPunch = new Image;
-	weakPunch->Init("Image/lori_WeakPunch.bmp", 600, 112, 5, 1, true, RGB(255, 0, 255));
+	weakPunch->Init("Image/Character/Iori/lori_WeakPunch.bmp", 600, 112, 5, 1, true, RGB(255, 0, 255));
 	strongPunch = new Image;
-	strongPunch->Init("Image/Iori_StrongPunch.bmp", 777, 129, 7, 1, true, RGB(255, 0, 255));
+	strongPunch->Init("Image/Character/Iori/Iori_StrongPunch.bmp", 777, 129, 7, 1, true, RGB(255, 0, 255));
 
 	moveDir = MoveDir::Right;
 
@@ -30,18 +30,16 @@ void Iori::Init()
 
 void Iori::Init(int posX, int posY, bool isMoveRight)
 {
-	this->pos.x = posX, this->pos.y = posY;
+	//this->pos.x = posX, this->pos.y = posY;
 
-	img = new Image;
-	img->Init("Image/Iori_walk.bmp", 612, 104, 9, 1, true, RGB(255, 0, 255));
+	//img = new Image;
+	//img->Init("Image/Iori_walk.bmp", 612, 104, 9, 1, true, RGB(255, 0, 255));
 
-	frameX = frameY = 0;
-	elpasedCount = 0;
-	moveSpeed = 10.0f;
+	//frameX = frameY = 0;
+	//elpasedCount = 0;
+	//moveSpeed = 10.0f;
 
-	isMoveRight ? moveDir = MoveDir::Right : moveDir = MoveDir::Left;
-
-
+	//isMoveRight ? moveDir = MoveDir::Right : moveDir = MoveDir::Left;
 }
 
 void Iori::Update()
@@ -66,15 +64,12 @@ void Iori::Update()
 		moveDir = MoveDir::Left;
 		isAttack = false;
 	}
-
 	if (state == State::IDLE) 
 	{
 		isAttack = false;
 		state = State::IDLE;
 	}
 
-
-	
 	if (KeyManager::GetSingleton()->IsOnceKeyDown('A') && !isAttack) // A누르고 공격중이 아닐때만 가능
 	{
 		frameX = 0;
@@ -172,27 +167,34 @@ void Iori::Render(HDC hdc)
 			break;
 		case State::Walk:
 			img->Render(hdc, pos.x, pos.y, frameX, frameY);
-			img->Render(hdc, pos.x, pos.y, frameX, frameY);
 			elpasedCount++;
-			if(moveDir == MoveDir::Right)
-				pos.x += moveSpeed/3;
-			else
-				pos.x -= moveSpeed/3;
-
-
-			if (elpasedCount == 5)
-			{
-				elpasedCount = 0;
-				frameX++;
+			if (moveDir == MoveDir::Right) {
+				if (elpasedCount == 5)
+				{
+					elpasedCount = 0;
+					frameX++;
+				}
+				if (frameX >= 8)
+				{
+					frameX = 0;
+				}
+				pos.x += moveSpeed / 3;
 			}
-			if (frameX == 8)
-			{
-				frameX = 0;
+			else {
+				if (elpasedCount == 5)
+				{
+					elpasedCount = 0;
+					frameX--;
+				}
+				if (frameX <= 0)
+				{
+					frameX = 8;
+				}
+				pos.x -= moveSpeed / 3;
+
 			}
 			break;
 		}
-
-
 	}
 }
 

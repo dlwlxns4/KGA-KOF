@@ -17,10 +17,6 @@ HRESULT Image::Init(int width, int height)
 
 	ReleaseDC(g_hWnd, hdc);
 
-	//if (SUCCEEDED(E_FAIL))
-	//{
-
-	//}
 
 	if (imageInfo->hBitmap == NULL)	// 비트맵 생성에 실패했을 때
 	{
@@ -147,7 +143,7 @@ void Image::Render(HDC hdc, int destX, int destY, int frameX, int frameY)
 		);
 	}
 	else {
-		BitBlt(hdc,				// 복사 목적지 DC
+			BitBlt(hdc,				// 복사 목적지 DC
 			destX - (imageInfo->width / 2),				// 복사될 비트맵의 시작 위치 x
 			destY - (imageInfo->height / 2),				// 복사될 비트맵의 시작 위치 y
 			imageInfo->width,	// 원본 복사할 가로 크기

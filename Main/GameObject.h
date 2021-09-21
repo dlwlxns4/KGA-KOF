@@ -25,6 +25,8 @@ protected:	// 상속된 클래스에 노출시킨다.
 	float moveSpeed;
 	int bodySize;
 
+	enum MoveDir { Left, Right, Up, Down };
+	enum class State { IDLE, LegWeak, LegStrong, PunchWeak, PunchStrong, Walk };
 public:
 	void Move();
 

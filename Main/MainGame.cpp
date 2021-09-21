@@ -4,74 +4,55 @@
 #include "SceneManager.h"
 #include "Image.h"
 #include "Iori.h"
-
+#include "Kim.h"
+#include "BackGround.h"
+#include "CharacterSelect.h"
 void MainGame::Init()
 {
-	//Singleton<int> singleton1;
-	//singleton1.ProcessInputKey();
-	//Singleton<KeyManager>::GetSingleton()->Init();
-
-	//KeyManager keyMgr;
 	KeyManager::GetSingleton()->Init();
-	SceneManager::GetSingleton();
-
+	SceneManager::GetSingleton()->Init();
 
 	// 타이머 셋팅
-	hTimer = (HANDLE)SetTimer(g_hWnd, 0, 10, NULL);
+	hTimer = (HANDLE)SetTimer(g_hWnd, 0, FPS, NULL);
 
 	mousePosX = 0;
 	mousePosY = 0;
-	//clickedMousePosX = 0; 
 	clickedMousePosY = 0; 
-
-
-	//playerTank.ammoPack[0].SetTarget(&enemyTank);
-	//playerTank.ammo[1].SetTarget(&enemyTank);
-	//playerTank.ammo[2].SetTarget(&enemyTank);
 
 	// 백버퍼
 	backBuffer = new Image;
 	backBuffer->Init(WIN_SIZE_X, WIN_SIZE_Y);
 
-	// 원빈 이미지
-	backGround = new Image;
-	if (!SUCCEEDED(backGround->Init("Image/mapImage.bmp", 1400, 933)))
-	{
-		cout << "Image/bin.bmp 파일 로드에 실패했다." << endl;
-	}
-
-
-
-
+	// 배경
+	backGround = new BackGround;
+	backGround->Init();
+	characterSelect = new CharacterSelect;
+	characterSelect->Init();
+	
+	// 플레이어
 	iori = new Iori;
 	iori->Init();
-
-
+	kim = new Kim;
+	kim->Init();
 }
 
 void MainGame::Update()
 {
-
-
-
-	iori->Update();
-
+	//iori->Update();
+	//kim->Update();
+	characterSelect->Update();
 	InvalidateRect(g_hWnd, NULL, false);
 }
 
 void MainGame::Render(HDC hdc)
 {
 	HDC hBackBufferDC = backBuffer->GetMemDC();
+	//backGround->Render(hBackBufferDC);
+	//iori->Render(hBackBufferDC);
+	//kim->Render(hBackBufferDC);
 
-	wsprintf(text, "MousePosX : %d", mousePosX);
-	TextOut(hBackBufferDC, 200, 10, text, strlen(text));
+	characterSelect->Render(hBackBufferDC);
 
-	wsprintf(text, "MousePosY : %d", mousePosY);
-	TextOut(hBackBufferDC, 200, 40, text, strlen(text));
-
-	backGround->Render(hBackBufferDC);
-
-	iori->Render(hBackBufferDC);
 	backBuffer->Render(hdc);
 }
 

@@ -14,13 +14,10 @@ private:
 	Image* weakPunch;
 	Image* strongPunch;
 
-
 	int frameX, frameY;
 	int elpasedCount;
 	bool isAttack;
 	MoveDir moveDir;
-
-	
 
 public:
 	RECT rect;
