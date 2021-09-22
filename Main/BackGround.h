@@ -17,6 +17,8 @@ protected:
 	Image* street[16];
 	Image* underBridge[16];
 
+	Image* ui;
+
 	int elpasedCount;
 	int frame;
 

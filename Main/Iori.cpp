@@ -13,7 +13,7 @@ void Iori::Init()
 	weakPunch = new Image;
 	weakPunch->Init("Image/Character/Iori/lori_WeakPunch.bmp", 600, 112, 5, 1, true, RGB(255, 0, 255));
 	strongPunch = new Image;
-	strongPunch->Init("Image/Character/Iori/Iori_StrongPunch.bmp", 777, 121, 7, 1, true, RGB(255, 0, 255));
+	strongPunch->Init("Image/Character/Iori/Iori_StrongPunch2.bmp", 777, 121, 7, 1, true, RGB(255, 0, 255));
 
 	moveDir = MoveDir::Right;
 
@@ -51,6 +51,7 @@ void Iori::Update()
 		state = State::Walk;
 		moveDir = MoveDir::Right;
 		isAttack = false;
+		elpasedCount = 0;
 
 	}
 	else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_LEFT_KEY) && state == State::IDLE)
@@ -59,36 +60,42 @@ void Iori::Update()
 		state = State::Walk;
 		moveDir = MoveDir::Left;
 		isAttack = false;
+		elpasedCount = 0;
 	}
 	if (state == State::IDLE) 
 	{
 		isAttack = false;
 		state = State::IDLE;
+		elpasedCount = 0;
 	}
 
 	if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
 	{
 		frameX = 0;
 		isAttack = true;
-		state = State::LegWeak;	
+		state = State::LegWeak;
+		elpasedCount = 0;
 	}
 	else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
 	{
 		frameX = 0;
 		isAttack = true;
 		state = State::PunchWeak;
+		elpasedCount = 0;
 	}
 	else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
 	{
 		frameX = 0;
 		isAttack = true;
 		state = State::PunchStrong;
+		elpasedCount = 0;
 	}
 
-	if (KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY) )
+	if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY)) && !isAttack)
 	{
 		frameX = 0;
 		state = State::IDLE;
+		elpasedCount = 0;
 	}
 
 }
@@ -119,7 +126,7 @@ void Iori::Render(HDC hdc)
 		case State::LegWeak:
 			weakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
 			elpasedCount++;
-			if (elpasedCount == 5) 
+			if (elpasedCount == 4) 
 			{
 				elpasedCount = 0;
 				frameX++;
@@ -134,7 +141,7 @@ void Iori::Render(HDC hdc)
 		case State::PunchWeak:
 			weakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			elpasedCount++;
-			if (elpasedCount == 5)
+			if (elpasedCount == 4)
 			{
 				elpasedCount = 0;
 				frameX++;
@@ -149,7 +156,7 @@ void Iori::Render(HDC hdc)
 		case State::PunchStrong:
 			strongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			elpasedCount++;
-			if (elpasedCount == 5)
+			if (elpasedCount == 4)
 			{
 				elpasedCount = 0;
 				frameX++;

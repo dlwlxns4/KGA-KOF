@@ -17,9 +17,6 @@ void MainGame::Init()
 	// 타이머 셋팅
 	hTimer = (HANDLE)SetTimer(g_hWnd, 0, FPS, NULL);
 
-	mousePosX = 0;
-	mousePosY = 0;
-	clickedMousePosY = 0; 
 
 	// 백버퍼
 	backBuffer = new Image;
@@ -145,16 +142,12 @@ LRESULT MainGame::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		break;
 
 	case WM_LBUTTONDOWN:
-		clickedMousePosX = LOWORD(lParam);
-		clickedMousePosY = HIWORD(lParam);
 		break;
 	case WM_LBUTTONUP:
 		break;
 	case WM_RBUTTONDOWN:
 		break;
 	case WM_MOUSEMOVE:
-		mousePosX = LOWORD(lParam);
-		mousePosY = HIWORD(lParam);
 		break;
 	}
 	return DefWindowProc(hWnd, iMessage, wParam, lParam);

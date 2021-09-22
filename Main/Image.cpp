@@ -157,7 +157,6 @@ void Image::Render(HDC hdc, int destX, int destY, int frameX, int frameY)
 
 void Image::Render(HDC hdc, int destX, int destY)
 {
-	COLORREF color = RGB(255, 0, 255);
 
 	if (isTransparent) {
 		GdiTransparentBlt(hdc,

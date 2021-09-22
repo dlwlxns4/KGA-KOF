@@ -113,6 +113,13 @@ void BackGround::Init()
 		underBridge[i]->Init(cha, 752, 224, 1, 1, false, RGB(255, 0, 255));
 	}
 	// 다리밑 이미지 초기화
+
+	ui = new Image;
+	char cha[100];
+	string str = "Image/UI";
+	str += ".bmp";
+	strcpy_s(cha, str.c_str());
+	ui->Init(cha, 640/2, 114/1.5, 1, 1, false, RGB(255, 0, 255));
 }
 
 void BackGround::Update()
@@ -126,6 +133,7 @@ void BackGround::Render(HDC hdc)
 	case IsBackGround::BulGukSa:
 		bulGukSa[frame]->Render(hdc, 0, 120, 0, 0);
 		elpasedCount++;
+
 		if (elpasedCount == 5)
 		{
 			elpasedCount = 0;
@@ -214,6 +222,9 @@ void BackGround::Render(HDC hdc)
 		}
 		break;
 	}
+
+
+	//ui->Render(hdc, WIN_SIZE_X / 2, 0);
 }
 
 
