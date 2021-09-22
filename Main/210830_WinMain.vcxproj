@@ -149,6 +149,7 @@
     <ClCompile Include="Kim.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="MainTitle.cpp" />
     <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +164,7 @@
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="Kim.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="MainTitle.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Singleton.h" />
   </ItemGroup>

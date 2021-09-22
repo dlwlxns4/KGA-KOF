@@ -5,6 +5,7 @@
 #include "Ammo.h"
 #include <vector>
 
+class MainTitle;
 class Image;
 class Iori;
 class Kim;
@@ -29,6 +30,7 @@ private:
 	Image* backBuffer;
 	BackGround* backGround;
 	CharacterSelect* characterSelect;
+	MainTitle* mainTitle;
 	// 배경 이미지
 	Iori* iori;
 	Kim* kim;

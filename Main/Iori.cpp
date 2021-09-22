@@ -13,7 +13,7 @@ void Iori::Init()
 	weakPunch = new Image;
 	weakPunch->Init("Image/Character/Iori/lori_WeakPunch.bmp", 600, 112, 5, 1, true, RGB(255, 0, 255));
 	strongPunch = new Image;
-	strongPunch->Init("Image/Character/Iori/Iori_StrongPunch.bmp", 777, 129, 7, 1, true, RGB(255, 0, 255));
+	strongPunch->Init("Image/Character/Iori/Iori_StrongPunch.bmp", 777, 121, 7, 1, true, RGB(255, 0, 255));
 
 	moveDir = MoveDir::Right;
 
@@ -44,11 +44,7 @@ void Iori::Init(int posX, int posY, bool isMoveRight)
 
 void Iori::Update()
 {
-	
-	// 실습1. 뒤로 움직이기 
-	// 과제. 팀작업 때 쓸 리소스 찾아보기 (제자리 서있기, 앞으로 이동, 뒤로 이동, 작은 손/발, 큰 손/발, 피격(맞 았을 때)
-
-	if (KeyManager::GetSingleton()->IsStayKeyDown(VK_RIGHT) && state == State::IDLE)
+	if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_RIGHT_KEY) && state == State::IDLE)
 	{
 		frameX = 0;
 		pos.x += moveSpeed;
@@ -57,7 +53,7 @@ void Iori::Update()
 		isAttack = false;
 
 	}
-	else if (KeyManager::GetSingleton()->IsStayKeyDown(VK_LEFT) && state == State::IDLE)
+	else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_LEFT_KEY) && state == State::IDLE)
 	{
 		frameX = 0;
 		state = State::Walk;
@@ -70,26 +66,26 @@ void Iori::Update()
 		state = State::IDLE;
 	}
 
-	if (KeyManager::GetSingleton()->IsOnceKeyDown('A') && !isAttack) // A누르고 공격중이 아닐때만 가능
+	if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
 	{
 		frameX = 0;
 		isAttack = true;
 		state = State::LegWeak;	
 	}
-	else if (KeyManager::GetSingleton()->IsOnceKeyDown('Z') && !isAttack) // A누르고 공격중이 아닐때만 가능
+	else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
 	{
 		frameX = 0;
 		isAttack = true;
 		state = State::PunchWeak;
 	}
-	else if (KeyManager::GetSingleton()->IsOnceKeyDown('X') && !isAttack) // A누르고 공격중이 아닐때만 가능
+	else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
 	{
 		frameX = 0;
 		isAttack = true;
 		state = State::PunchStrong;
 	}
 
-	if (KeyManager::GetSingleton()->IsOnceKeyUp(VK_RIGHT) || KeyManager::GetSingleton()->IsOnceKeyUp(VK_LEFT) )
+	if (KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY) )
 	{
 		frameX = 0;
 		state = State::IDLE;

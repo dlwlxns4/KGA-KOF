@@ -25,6 +25,9 @@
     <Filter Include="2D Framework\KOF_Player">
       <UniqueIdentifier>{a352efd9-982b-43e6-ada0-f5be735eca9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2D Framework\Scence">
+      <UniqueIdentifier>{51b2382a-0530-4695-b0d6-6097341d8b78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -39,9 +42,6 @@
     <ClCompile Include="KeyManager.cpp">
       <Filter>2D Framework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>2D Framework\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="MainGame.cpp">
       <Filter>MainGame</Filter>
     </ClCompile>
@@ -54,11 +54,17 @@
     <ClCompile Include="CharacterSelect.cpp">
       <Filter>2D Framework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="BackGround.cpp">
-      <Filter>2D Framework\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="Kim.cpp">
       <Filter>2D Framework\KOF_Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>2D Framework\Scence</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>2D Framework\Scence</Filter>
+    </ClCompile>
+    <ClCompile Include="MainTitle.cpp">
+      <Filter>2D Framework\Scence</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,9 +83,6 @@
     <ClInclude Include="KeyManager.h">
       <Filter>2D Framework\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>2D Framework\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>2D Framework\Manager</Filter>
     </ClInclude>
@@ -95,11 +98,17 @@
     <ClInclude Include="CharacterSelect.h">
       <Filter>2D Framework\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="BackGround.h">
-      <Filter>2D Framework\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="Kim.h">
       <Filter>2D Framework\KOF_Player</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>2D Framework\Scence</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>2D Framework\Scence</Filter>
+    </ClInclude>
+    <ClInclude Include="MainTitle.h">
+      <Filter>2D Framework\Scence</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

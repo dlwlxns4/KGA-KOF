@@ -51,7 +51,7 @@ void Kim::Init()
 
 void Kim::Update()
 {
-	if (KeyManager::GetSingleton()->IsStayKeyDown(VK_RIGHT) && state == State::IDLE)
+	if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_RIGHT_KEY) && state == State::IDLE)
 	{
 		frameX = 0;
 		pos.x += moveSpeed;
@@ -60,7 +60,7 @@ void Kim::Update()
 		isAttack = false;
 
 	}
-	else if (KeyManager::GetSingleton()->IsStayKeyDown(VK_LEFT) && state == State::IDLE)
+	else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_LEFT_KEY) && state == State::IDLE)
 	{
 		frameX = 0;
 		state = State::Walk;
@@ -73,27 +73,26 @@ void Kim::Update()
 		state = State::IDLE;
 	}
 
-	if (KeyManager::GetSingleton()->IsOnceKeyDown('A') && !isAttack) // A누르고 공격중이 아닐때만 가능
+	if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
 	{
 		frameX = 0;
 		isAttack = true;
 		state = State::PunchWeak;
 	}
-	else if (KeyManager::GetSingleton()->IsOnceKeyDown('Z') && !isAttack) // A누르고 공격중이 아닐때만 가능
+	else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
 	{
 		frameX = 0;
 		isAttack = true;
 		state = State::LegWeak;
 	}
-	else if (KeyManager::GetSingleton()->IsOnceKeyDown('X') && !isAttack) // A누르고 공격중이 아닐때만 가능
+	else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
 	{
 		frameX = 0;
 		isAttack = true;
 		state = State::LegStrong;
 	}
 
-	if ((KeyManager::GetSingleton()->IsOnceKeyUp(VK_RIGHT) && state == State::Walk)||
-		(KeyManager::GetSingleton()->IsOnceKeyUp(VK_LEFT)) && state == State::Walk)
+	if (KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY))
 	{
 		frameX = 0;
 		state = State::IDLE;

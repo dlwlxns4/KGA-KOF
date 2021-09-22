@@ -1,16 +1,18 @@
 #pragma once
 #include<string>
 #include "Config.h"
-#include"KeyManager.h"
+#include "KeyManager.h"
+#include "SceneManager.h"
 
+using namespace std;
 class Image;
 class CharacterSelect
 {
 private:
-	POINTFLOAT backGroundPos;	// ¹è°æÁÂÇ¥
+	POINTFLOAT backGroundPos;		// ¹è°æÁÂÇ¥
 	POINTFLOAT selectPos1[2];		// ÇÃ·¹ÀÌ¾î1 ¼±ÅÃÁÂÇ¥
 	POINTFLOAT selectPos2[2];		// ÇÃ·¹ÀÌ¾î2 ¼±ÅÃÁÂÇ¥
-	
+
 	Image* backGround[14];
 	Image* playerSelect1;
 	Image* playerSelect2;
@@ -22,8 +24,10 @@ private:
 	Image* playerKyo2;
 	Image* playerKim1;
 	Image* playerKim2;
+	
 	int elpasedCount;
 	int frame;
+	bool Twinkle;
 protected:
 
 public:

@@ -7,6 +7,8 @@
 #include "Kim.h"
 #include "BackGround.h"
 #include "CharacterSelect.h"
+#include "MainTitle.h"
+
 void MainGame::Init()
 {
 	KeyManager::GetSingleton()->Init();
@@ -26,6 +28,8 @@ void MainGame::Init()
 	// ¹è°æ
 	backGround = new BackGround;
 	backGround->Init();
+	mainTitle = new MainTitle;
+	mainTitle->Init();
 	characterSelect = new CharacterSelect;
 	characterSelect->Init();
 	
@@ -38,21 +42,75 @@ void MainGame::Init()
 
 void MainGame::Update()
 {
-	//iori->Update();
-	//kim->Update();
-	characterSelect->Update();
+
+	if (SceneManager::GetSingleton()->GetIsSceneState() == "MainTitle") {
+		mainTitle->Update();
+	}else if (SceneManager::GetSingleton()->GetIsSceneState() == "Loading") {
+		mainTitle->Update();
+	}else if (SceneManager::GetSingleton()->GetIsSceneState() == "CharacterSelect") {
+		characterSelect->Update();
+	}else if (SceneManager::GetSingleton()->GetIsSceneState() == "Battle") {
+		backGround->Update();
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
+			kim->Update();
+		}
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
+			iori->Update();
+		}
+	}
+
+	//if (!SceneManager::GetSingleton()->selectCheck1 ||
+	//	!SceneManager::GetSingleton()->selectCheck2) {
+	//	characterSelect->Update();
+	//} else {
+	//	if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
+	//		kim->Update();
+	//	}
+	//	if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
+	//		iori->Update();
+	//	}
+	//}
+	
 	InvalidateRect(g_hWnd, NULL, false);
 }
 
 void MainGame::Render(HDC hdc)
 {
 	HDC hBackBufferDC = backBuffer->GetMemDC();
-	//backGround->Render(hBackBufferDC);
-	//iori->Render(hBackBufferDC);
-	//kim->Render(hBackBufferDC);
+	if (SceneManager::GetSingleton()->GetIsSceneState() == "MainTitle") {
+		mainTitle->Render(hBackBufferDC);
+	}
+	else if (SceneManager::GetSingleton()->GetIsSceneState() == "Loading") {
+		mainTitle->Render(hBackBufferDC);
+	}
+	else if (SceneManager::GetSingleton()->GetIsSceneState() == "CharacterSelect") {
+		characterSelect->Render(hBackBufferDC);
+	}
+	else if (SceneManager::GetSingleton()->GetIsSceneState() == "Battle") {
+		backGround->Render(hBackBufferDC);
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
+			kim->Render(hBackBufferDC);
+		}
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
+			iori->Render(hBackBufferDC);
+		}
+	}
 
-	characterSelect->Render(hBackBufferDC);
+	//if (!SceneManager::GetSingleton()->selectCheck1 ||
+	//	!SceneManager::GetSingleton()->selectCheck2) {
+	//	characterSelect->Render(hBackBufferDC);
+	//}
+	//else {
+	//	backGround->Render(hBackBufferDC);
+	//	if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
+	//		kim->Render(hBackBufferDC);
 
+	//	}
+	//	if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
+	//		iori->Render(hBackBufferDC);
+
+	//	}
+	//}
 	backBuffer->Render(hdc);
 }
 
@@ -74,19 +132,14 @@ LRESULT MainGame::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		switch (wParam)
 		{
 		case VK_SPACE:
-			//playerTank.Fire();
 			break;
 		case VK_UP:
-			//playerTank.Move(MoveDir::Up);
 			break;
 		case VK_DOWN:
-			//playerTank.Move(MoveDir::Down);
 			break;
 		case VK_LEFT:
-			//playerTank.Move(MoveDir::Left);
 			break;
 		case VK_RIGHT:
-			//playerTank.Move(MoveDir::Right);
 			break;
 		}
 		break;
