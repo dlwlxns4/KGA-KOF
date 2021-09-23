@@ -9,6 +9,7 @@
 #include "CharacterSelect.h"
 #include "MainTitle.h"
 #include "Kyo.h"
+#include "MayLee.h"
 
 
 void MainGame::Init()
@@ -39,6 +40,8 @@ void MainGame::Init()
 	kim->Init();
 	kyo = new Kyo;
 	kyo->Init();
+	may = new MayLee;
+	may->Init();
 }
 
 void MainGame::Update()
@@ -60,6 +63,9 @@ void MainGame::Update()
 		}
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
 			kyo->Update();
+		}
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") {
+			may->Update();
 		}
 	}
 
@@ -100,6 +106,9 @@ void MainGame::Render(HDC hdc)
 		}
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
 			kyo->Render(hBackBufferDC);
+		}
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") {
+			may->Render(hBackBufferDC);
 		}
 	}
 

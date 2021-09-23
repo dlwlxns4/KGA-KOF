@@ -10,6 +10,7 @@ class Image;
 class Iori;
 class Kim;
 class Kyo;
+class MayLee;
 class BackGround;
 class CharacterSelect;
 // 우리가 구성할 게임 월드
@@ -28,6 +29,7 @@ private:
 	Iori* iori;
 	Kim* kim;
 	Kyo* kyo;
+	MayLee* may;
 	
 public:
 	void Init();

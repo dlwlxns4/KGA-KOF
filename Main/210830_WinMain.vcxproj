@@ -151,6 +151,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="MainTitle.cpp" />
+    <ClCompile Include="MayLee.cpp" />
     <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +168,7 @@
     <ClInclude Include="Kyo.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MainTitle.h" />
+    <ClInclude Include="MayLee.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Singleton.h" />
   </ItemGroup>
