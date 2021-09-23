@@ -10,6 +10,7 @@
 #include "MainTitle.h"
 #include "Kyo.h"
 #include "MayLee.h"
+#include "BattleManager.h"
 
 
 void MainGame::Init()
@@ -67,11 +68,11 @@ void MainGame::Update()
 		backGround->Update();
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
 			kim->Update();
-			
-			
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
 			iori->Update();
+			iori->GetPos();
+			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(true), iori->GetPos() );
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
 			kyo->Update();
@@ -86,6 +87,7 @@ void MainGame::Update()
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
 			iori2->Update();
+			BattleManager::GetSingleton()->Init2(SceneManager::GetSingleton()->GetPlayerChar(true), iori2->GetPos());
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
 			kyo2->Update();
@@ -125,6 +127,7 @@ void MainGame::Render(HDC hdc)
 	}
 	else if (SceneManager::GetSingleton()->GetIsSceneState() == "Battle") {
 		backGround->Render(hBackBufferDC);
+		BattleManager::GetSingleton()->Render(hBackBufferDC);
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
 			kim->Render(hBackBufferDC);
 		}
@@ -152,6 +155,8 @@ void MainGame::Render(HDC hdc)
 		}
 	}
 
+	
+	
 	//if (!SceneManager::GetSingleton()->selectCheck1 ||
 	//	!SceneManager::GetSingleton()->selectCheck2) {
 	//	characterSelect->Render(hBackBufferDC);

@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="BattleManager.cpp" />
     <ClCompile Include="CharacterSelect.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="GameEntity.cpp" />
@@ -153,11 +154,11 @@
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="MainTitle.cpp" />
     <ClCompile Include="MayLee.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="BattleManager.h" />
     <ClInclude Include="CharacterSelect.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CommonFunction.h" />
@@ -172,7 +173,6 @@
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MainTitle.h" />
     <ClInclude Include="MayLee.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Singleton.h" />
   </ItemGroup>

@@ -6,6 +6,7 @@ class Collider
 public:
 	RECT collider;
 	int damage;
+	bool isAttack=false;
 
 public:
 	void init();

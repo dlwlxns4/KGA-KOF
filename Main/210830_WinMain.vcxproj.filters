@@ -75,8 +75,8 @@
     <ClCompile Include="Collider.cpp">
       <Filter>2D Framework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>2D Framework\KOF_Player</Filter>
+    <ClCompile Include="BattleManager.cpp">
+      <Filter>2D Framework\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -131,8 +131,8 @@
     <ClInclude Include="Collider.h">
       <Filter>2D Framework\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>2D Framework\KOF_Player</Filter>
+    <ClInclude Include="BattleManager.h">
+      <Filter>2D Framework\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

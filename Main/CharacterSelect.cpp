@@ -1,5 +1,6 @@
 #include "CharacterSelect.h"
 #include "Image.h"
+#include "BattleManager.h"
 
 void CharacterSelect::Init()
 {
@@ -98,6 +99,7 @@ void CharacterSelect::Update()
 			if (selectPos1[0].x == 5 && selectPos1[0].y == 2) {
 				SceneManager::GetSingleton()->SetPlayerChar("May", true);
 			}
+
 		}
 	}
 	

@@ -4,6 +4,7 @@
 #include "Tank.h"
 #include "Ammo.h"
 #include <vector>
+#include "Singleton.h"
 
 class MainTitle;
 class Image;

@@ -1,6 +1,7 @@
 #include "Iori.h"
 #include "Image.h"
 #include "KeyManager.h"
+#include "BattleManager.h"
 
 void Iori::Init(bool isPlayer1)
 {
@@ -14,6 +15,9 @@ void Iori::Init(bool isPlayer1)
 	weakPunch->Init("Image/Character/Iori/lori_WeakPunch.bmp", 600, 112, 5, 1, true, RGB(255, 0, 255));
 	strongPunch = new Image;
 	strongPunch->Init("Image/Character/Iori/Iori_StrongPunch2.bmp", 777, 121, 7, 1, true, RGB(255, 0, 255));
+	damaged = new Image;
+	damaged->Init("Image/Character/Iori/Iori_Damaged.bmp", 462, 115, 6, 1, true, RGB(255, 0, 255));
+
 
 	moveDir = MoveDir::Right;
 
@@ -44,6 +48,7 @@ void Iori::Init(bool isPlayer1)
 	damagedCollider[0].init(pos.x - 25, pos.x + 25, pos.y - 40, pos.y + 50);
 
 	this->isPlayer1 = isPlayer1;
+	isHit = false;
 }
 
 void Iori::Init(int posX, int posY, bool isMoveRight)
@@ -120,7 +125,6 @@ void Iori::Update()
 			elpasedCount = 0;
 		}
 	}
-
 	else
 	{
 		if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_RIGHT_KEY) && state == State::IDLE)
@@ -135,7 +139,6 @@ void Iori::Update()
 		}
 		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_LEFT_KEY) && state == State::IDLE)
 		{
-			cout << 1;
 			frameX = 0;
 			state = State::Walk;
 			moveDir = MoveDir::Left;
@@ -188,45 +191,71 @@ void Iori::Update()
 	}
 	else if (isAttack && state==State::PunchWeak)
 	{
-		if (frameX > 2)
+		if (frameX > 1 && frameX<3)
 		{
-			attackCollider[0].setColliderPos(pos.x + 20, pos.x + 70, pos.y + 10, pos.y - 20);
+			if (this->isPlayer1) 
+			{
+				BattleManager::GetSingleton()->attackCollider[0].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[0].collider, true) && !isHit)
+				{
+					isHit = true;
+					elpasedCount = -3; // Hit했을 때 경직도
+				}
+
+			}
+			else
+			{
+				BattleManager::GetSingleton()->attackCollider2[0].isAttack = true;
+				BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, false);
+
+			}
 		}
-		else
+		else if( frameX>3)
 		{
-			attackCollider[0].setColliderPos(0, 0, 0, 0);
+			if (this->isPlayer1)
+				BattleManager::GetSingleton()->attackCollider[0].isAttack = false;
+			else
+				BattleManager::GetSingleton()->attackCollider2[0].isAttack = false;
 		}
 	}
 	else if (isAttack && state == State::PunchStrong)
 	{
 		if (frameX > 2 && frameX < 5)
 		{
-			attackCollider[1].setColliderPos(pos.x + 20, pos.x + 70, pos.y + 10, pos.y - 50);
+			if (this->isPlayer1)
+				BattleManager::GetSingleton()->attackCollider[1].isAttack = true;
+			else
+				BattleManager::GetSingleton()->attackCollider2[1].isAttack = true;
 		}
 		else 
 		{
-			attackCollider[1].setColliderPos(0,0,0,0);
+			if (this->isPlayer1)
+				BattleManager::GetSingleton()->attackCollider[1].isAttack = false;
+			else
+				BattleManager::GetSingleton()->attackCollider2[1].isAttack = false;
 		}
 	}
 	else if (isAttack && state == State::LegWeak)
 	{
 		if (frameX > 2 && frameX <5 )
 		{
-			attackCollider[2].setColliderPos(pos.x + 20, pos.x + 70, pos.y + 50, pos.y - 20);
+			if (this->isPlayer1)
+				BattleManager::GetSingleton()->attackCollider[2].isAttack = true;
+			else
+				BattleManager::GetSingleton()->attackCollider2[2].isAttack = true;
 		}
 		else 
 		{
-			attackCollider[2].setColliderPos(0, 0, 0, 0);
+			if (this->isPlayer1)
+				BattleManager::GetSingleton()->attackCollider[2].isAttack = false;
+			else
+				BattleManager::GetSingleton()->attackCollider2[2].isAttack = false;
 		}
 	}
 	
-	if (!isAttack)
+	if (BattleManager::GetSingleton()->CheckDamaged(isPlayer1) ) 
 	{
-		for (int i = 0; i < 4; i++)
-		{
-			attackCollider[i].setColliderPos(0, 0, 0, 0);
-			damagedCollider[i+2].setColliderPos(0, 0, 0, 0);
-		}
+		state = State::Damaged;
 	}
 
 }
@@ -238,20 +267,6 @@ void Iori::Render(HDC hdc)
 
 	if (img) 
 	{
-		//콜라이더 출력
-		for (int i = 0; i < 6; i++) 
-		{
-			damagedCollider[i].Render(hdc);
-		}
-		HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
-		for (int i = 0; i < 4; i++)
-		{
-			
-			attackCollider[i].Render(hdc);
-		}
-		SelectObject(hdc, oldBrush);
-		DeleteObject(myBrush);
 		switch (state) 
 		{
 		case State::IDLE:
@@ -294,6 +309,7 @@ void Iori::Render(HDC hdc)
 			{
 				isAttack = false;
 				state = State::IDLE;
+				isHit = false;
 				frameX = 0;
 			}
 			break;
@@ -306,6 +322,21 @@ void Iori::Render(HDC hdc)
 				frameX++;
 			}
 			if (frameX == 7)
+			{
+				isAttack = false;
+				state = State::IDLE;
+				frameX = 0;
+			}
+			break;
+		case State::Damaged:
+			damaged->Render(hdc, pos.x, pos.y, frameX, frameY);
+			elpasedCount++;
+			if (elpasedCount == 3)
+			{
+				elpasedCount = 0;
+				frameX++;
+			}
+			if (frameX == 6)
 			{
 				isAttack = false;
 				state = State::IDLE;

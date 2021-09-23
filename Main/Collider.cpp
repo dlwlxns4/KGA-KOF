@@ -11,7 +11,7 @@ void Collider::init(int left, int right, int bottom, int top)
 	collider.left = left, collider.right = right, collider.bottom = bottom, collider.top = top;
 }
 
-void Collider::setColliderPos(int left, int right, int bottom, int top)
+void Collider::setColliderPos(int left, int top, int right, int bottom)
 {
 	collider.left = left, collider.right = right, collider.bottom = bottom, collider.top = top;
 }

@@ -16,10 +16,12 @@ private:
 	Image* weakLeg;
 	Image* weakPunch;
 	Image* strongPunch;
+	Image* damaged;
 
 	int frameX, frameY;
 	int elpasedCount;
 	bool isAttack;
+	bool isHit;
 	MoveDir moveDir;
 
 public:
