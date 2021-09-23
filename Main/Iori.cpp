@@ -24,9 +24,18 @@ void Iori::Init(bool isPlayer1)
 	frameX = frameY = 0;
 	elpasedCount = 0;
 	moveSpeed = 10.0f;
-	this->pos.x = WIN_SIZE_X / 4;
-	this->pos.y = WIN_SIZE_Y / 1.3;
- 
+
+
+	if (isPlayer1) {
+		this->pos.x = WIN_SIZE_X / 4;
+		this->pos.y = WIN_SIZE_Y / 1.3;
+	}
+	else {
+		this->pos.x = WIN_SIZE_X - WIN_SIZE_X / 4;
+		this->pos.y = WIN_SIZE_Y / 1.3;
+	}
+
+
 	for (int i = 0; i < 4; i++)
 	{
 		attackCollider[i].init();

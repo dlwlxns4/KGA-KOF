@@ -42,6 +42,7 @@ public:
 	//void Render();			// 오버라이딩 : 상속 관계에서 부모클래스의 함수를 재정의
 	void Render(HDC hdc);	// 오버로딩
 	void Release();
+	void setEnemy();
 
 	LRESULT MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
 };

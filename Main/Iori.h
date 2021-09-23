@@ -30,7 +30,6 @@ public:
 	bool isPlayer1;
 
 
-
 public:
 	void Init(bool isPlayer1);
 	void Init(int posX, int posY, bool isMoveRight);

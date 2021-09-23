@@ -67,6 +67,8 @@ void MainGame::Update()
 		backGround->Update();
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
 			kim->Update();
+			
+			
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
 			iori->Update();
@@ -176,6 +178,11 @@ void MainGame::Release()
 
 	// 타이머 객체 삭제
 	KillTimer(g_hWnd, 0);
+}
+
+void MainGame::setEnemy()
+{
+
 }
 
 LRESULT MainGame::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)

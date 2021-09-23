@@ -12,6 +12,7 @@ private:
 	Image* weakLeg;
 	Image* strongLeg;
 	Image* weakPunch;
+	Image* strongPunch;
 
 	int frameX, frameY;
 	int elpasedCount;

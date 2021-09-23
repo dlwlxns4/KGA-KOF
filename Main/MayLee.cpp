@@ -30,10 +30,12 @@ void MayLee::Init()
 	backWalk->Init("Image/Character/may_lee/MayLee_Back_5F.bmp", 270, 112, 5, 1, true, RGB(108, 156, 114));
 	weakPunch = new Image;	// 약주먹
 	weakPunch->Init("Image/Character/may_lee/MayLee_WeakPunchNormal_4F.bmp", 400, 103, 4, 1, true, RGB(108, 156, 114));
+	strongPunch = new Image;	// 강주먹
+	strongPunch->Init("Image/Character/may_lee/MayLee_StrongPunchNormal_8F.bmp", 1200, 119, 8, 1, true, RGB(108, 156, 114));
 	weakLeg = new Image;	// 약발차기
-	weakLeg->Init("Image/Character/may_lee/MayLee_WeakKickNormal_10F.bmp", 1100, 107, 10, 1, true, RGB(108, 156, 114));
+	weakLeg->Init("Image/Character/may_lee/MayLee_WeakKickNormal_10F.bmp", 1500, 107, 10, 1, true, RGB(108, 156, 114));
 	strongLeg = new Image;	// 강발차기
-	strongLeg->Init("Image/Character/may_lee/MayLee_StrongKickNormal_13F.bmp", 1400, 120, 13, 1, true, RGB(108, 156, 114));
+	strongLeg->Init("Image/Character/may_lee/MayLee_StrongKickNormal_13F.bmp", 1800, 120, 13, 1, true, RGB(108, 156, 114));
 
 	moveDir = MoveDir::Right;
 
@@ -79,6 +81,12 @@ void MayLee::Update()
 		isAttack = true;
 		state = State::PunchWeak;
 	}
+	else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
+	{
+		frameX = 0;
+		isAttack = true;
+		state = State::PunchStrong;
+	}
 	else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
 	{
 		frameX = 0;
@@ -92,7 +100,7 @@ void MayLee::Update()
 		state = State::LegStrong;
 	}
 
-	if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY)) && !isAttack)
+	if (KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY))
 	{
 		frameX = 0;
 		state = State::IDLE;
@@ -110,19 +118,19 @@ void MayLee::Render(HDC hdc)
 		case State::IDLE:
 			idle->Render(hdc, pos.x, pos.y, frameX, frameY);
 			ElpasedCount(fps, frameX, true);
-			if (frameX >= 11) frameX = 0;
+			if (frameX >= 8) frameX = 0;
 			break;
 		case State::Walk:
 			if (moveDir == MoveDir::Right) {
 				frontWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 				ElpasedCount(fps, frameX, true);
-				if (frameX >= 6) frameX = 0;
+				if (frameX >= 5) frameX = 0;
 				pos.x += moveSpeed / 3;
 			}
 			else {
 				backWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 				ElpasedCount(fps, frameX, true);
-				if (frameX >= 6) frameX = 0;
+				if (frameX >= 5) frameX = 0;
 				pos.x -= moveSpeed / 3;
 			}
 			break;
@@ -131,10 +139,27 @@ void MayLee::Render(HDC hdc)
 				originCheck = true;
 				originPos = pos.x;
 			}
-			if (frameX == 0 && elpasedCount == 0)pos.x += 25;
+			if (frameX == 0 && elpasedCount == 0)pos.x += 0;
 			weakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			elpasedCount = ElpasedCount(fps, frameX, true);
-			if (frameX >= 5)
+			if (frameX >= 4)
+			{
+				originCheck = false;
+				pos.x = originPos;
+				isAttack = false;
+				state = State::IDLE;
+				frameX = 0;
+			}
+			break;
+		case State::PunchStrong:
+			if (!originCheck) {
+				originCheck = true;
+				originPos = pos.x;
+			}
+			if (frameX == 0 && elpasedCount == 0)pos.x += 15;
+			strongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
+			elpasedCount = ElpasedCount(fps, frameX, true);
+			if (frameX >= 8)
 			{
 				originCheck = false;
 				pos.x = originPos;
@@ -151,7 +176,7 @@ void MayLee::Render(HDC hdc)
 			if (frameX == 0 && elpasedCount == 0)pos.x += 25;
 			weakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
 			elpasedCount = ElpasedCount(fps, frameX, true);
-			if (frameX >= 9)
+			if (frameX >= 10)
 			{
 				originCheck = false;
 				pos.x = originPos;
@@ -165,18 +190,13 @@ void MayLee::Render(HDC hdc)
 				originCheck = true;
 				originPos = pos.x;
 			}
-			if (frameX == 0 && elpasedCount == 0)pos.x += 25;
+			if (frameX == 0 && elpasedCount == 0)pos.x += 40;
 			if (frameX == 1 && elpasedCount == 0)pos.x -= 15;
-			if (frameX == 3 && elpasedCount == 0)pos.x += 10;
+			if (frameX == 3 && elpasedCount == 0)pos.x -= 10;
 			strongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
 			elpasedCount = ElpasedCount(fps, frameX, true);
-			if (frameX >= 11)
-			{
-				isAttack = false;
-				state = State::IDLE;
-				frameX = 0;
-			}
-			if (frameX >= 9)
+			
+			if (frameX >= 13)
 			{
 				originCheck = false;
 				pos.x = originPos;
@@ -194,6 +214,7 @@ void MayLee::Release()
 	if (idle) delete idle;
 	if (frontWalk) delete frontWalk;
 	if (backWalk) delete backWalk;
+	if (strongPunch) delete strongPunch;
 	if (weakLeg) delete weakLeg;
 	if (strongLeg) delete strongLeg;
 	if (weakPunch) delete weakPunch;
