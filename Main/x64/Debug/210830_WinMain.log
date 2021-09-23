@@ -1,9 +1,13 @@
-﻿  BackGround.cpp
-C:\Users\ChangMin\kga\a\Main\BackGround.cpp(17,41): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\ChangMin\kga\a\Main\BackGround.cpp(17,30): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\ChangMin\kga\a\Main\BackGround.cpp(29,39): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\ChangMin\kga\a\Main\BackGround.cpp(29,28): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\ChangMin\kga\a\Main\BackGround.cpp(122,26): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Image.cpp
-  코드를 생성하고 있습니다...
+﻿  Kyo.cpp
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(32,32): warning C4305: '=': 'double'에서 'FLOAT'(으)로 잘립니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(109,32): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(109,25): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(122,35): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(122,28): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(137,37): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(137,30): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(152,39): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(152,32): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(167,32): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(167,25): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   210830_WinMain.vcxproj -> C:\Users\ChangMin\kga\a\Main\x64\Debug\210830_WinMain.exe

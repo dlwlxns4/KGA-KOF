@@ -66,6 +66,9 @@
     <ClCompile Include="CharacterSelect.cpp">
       <Filter>2D Framework\Scence</Filter>
     </ClCompile>
+    <ClCompile Include="Kyo.cpp">
+      <Filter>2D Framework\KOF_Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config.h">
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="CharacterSelect.h">
       <Filter>2D Framework\Scence</Filter>
+    </ClInclude>
+    <ClInclude Include="Kyo.h">
+      <Filter>2D Framework\KOF_Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,6 +8,8 @@
 #include "BackGround.h"
 #include "CharacterSelect.h"
 #include "MainTitle.h"
+#include "Kyo.h"
+
 
 void MainGame::Init()
 {
@@ -35,6 +37,8 @@ void MainGame::Init()
 	iori->Init();
 	kim = new Kim;
 	kim->Init();
+	kyo = new Kyo;
+	kyo->Init();
 }
 
 void MainGame::Update()
@@ -53,6 +57,9 @@ void MainGame::Update()
 		}
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
 			iori->Update();
+		}
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
+			kyo->Update();
 		}
 	}
 
@@ -90,6 +97,9 @@ void MainGame::Render(HDC hdc)
 		}
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
 			iori->Render(hBackBufferDC);
+		}
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
+			kyo->Render(hBackBufferDC);
 		}
 	}
 
