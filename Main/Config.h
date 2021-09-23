@@ -41,3 +41,4 @@ using namespace std;
 enum TankType { Player, Enemy };
 extern HWND g_hWnd;
 extern HINSTANCE g_hInstance;
+extern HPEN pen, oPen;

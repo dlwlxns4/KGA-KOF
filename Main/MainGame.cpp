@@ -35,13 +35,23 @@ void MainGame::Init()
 	
 	// 플레이어
 	iori = new Iori;
-	iori->Init();
+	iori->Init(true);
 	kim = new Kim;
 	kim->Init();
 	kyo = new Kyo;
 	kyo->Init();
 	may = new MayLee;
 	may->Init();
+
+	// 플레이어2
+	iori2 = new Iori;
+	iori2->Init(false);
+	kim2 = new Kim;
+	kim2->Init();
+	kyo2 = new Kyo;
+	kyo2->Init();
+	may2 = new MayLee;
+	may2->Init();
 }
 
 void MainGame::Update()
@@ -58,14 +68,28 @@ void MainGame::Update()
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
 			kim->Update();
 		}
-		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
 			iori->Update();
 		}
-		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
 			kyo->Update();
 		}
-		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") {
 			may->Update();
+		}
+
+		//플레이어 2
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
+			kim2->Update();
+		}
+		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
+			iori2->Update();
+		}
+		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
+			kyo2->Update();
+		}
+		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") {
+			may2->Update();
 		}
 	}
 
@@ -86,6 +110,7 @@ void MainGame::Update()
 
 void MainGame::Render(HDC hdc)
 {
+
 	HDC hBackBufferDC = backBuffer->GetMemDC();
 	if (SceneManager::GetSingleton()->GetIsSceneState() == "MainTitle") {
 		mainTitle->Render(hBackBufferDC);
@@ -101,14 +126,27 @@ void MainGame::Render(HDC hdc)
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
 			kim->Render(hBackBufferDC);
 		}
-		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
 			iori->Render(hBackBufferDC);
 		}
-		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
 			kyo->Render(hBackBufferDC);
 		}
-		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") {
 			may->Render(hBackBufferDC);
+		}
+
+		if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kim") {
+			kim2->Render(hBackBufferDC);
+		}
+		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Iori") {
+			iori2->Render(hBackBufferDC);
+		}
+		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kyo") {
+			kyo2->Render(hBackBufferDC);
+		}
+		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "May") {
+			may2->Render(hBackBufferDC);
 		}
 	}
 

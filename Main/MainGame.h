@@ -30,6 +30,11 @@ private:
 	Kim* kim;
 	Kyo* kyo;
 	MayLee* may;
+
+	Iori* iori2;
+	Kim* kim2;
+	Kyo* kyo2;
+	MayLee* may2;
 	
 public:
 	void Init();

@@ -2,7 +2,7 @@
 #include "Image.h"
 #include "KeyManager.h"
 
-void Iori::Init()
+void Iori::Init(bool isPlayer1)
 {
 	img = new Image;
 	img->Init("Image/Character/Iori/Iori_walk.bmp", 612, 104, 9, 1, true, RGB(255,0,255));
@@ -24,8 +24,17 @@ void Iori::Init()
 	frameX = frameY = 0;
 	elpasedCount = 0;
 	moveSpeed = 10.0f;
-	this->pos.x = WIN_SIZE_X / 3;
+	this->pos.x = WIN_SIZE_X / 4;
 	this->pos.y = WIN_SIZE_Y / 1.3;
+ 
+	for (int i = 0; i < 4; i++)
+	{
+		attackCollider[i].init();
+	}
+
+	damagedCollider[0].init(pos.x - 25, pos.x + 25, pos.y - 40, pos.y + 50);
+
+	this->isPlayer1 = isPlayer1;
 }
 
 void Iori::Init(int posX, int posY, bool isMoveRight)
@@ -44,58 +53,171 @@ void Iori::Init(int posX, int posY, bool isMoveRight)
 
 void Iori::Update()
 {
-	if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_RIGHT_KEY) && state == State::IDLE)
-	{
-		frameX = 0;
-		pos.x += moveSpeed;
-		state = State::Walk;
-		moveDir = MoveDir::Right;
-		isAttack = false;
-		elpasedCount = 0;
 
-	}
-	else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_LEFT_KEY) && state == State::IDLE)
-	{
-		frameX = 0;
-		state = State::Walk;
-		moveDir = MoveDir::Left;
-		isAttack = false;
-		elpasedCount = 0;
-	}
-	if (state == State::IDLE) 
-	{
-		isAttack = false;
-		state = State::IDLE;
-		elpasedCount = 0;
+
+	if (isPlayer1) {
+		if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_RIGHT_KEY) && state == State::IDLE)
+		{
+			frameX = 0;
+			pos.x += moveSpeed;
+			state = State::Walk;
+			moveDir = MoveDir::Right;
+			isAttack = false;
+			elpasedCount = 0;
+
+		}
+		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_LEFT_KEY) && state == State::IDLE)
+		{
+
+			frameX = 0;
+			state = State::Walk;
+			moveDir = MoveDir::Left;
+			isAttack = false;
+			elpasedCount = 0;
+		}
+		if (state == State::IDLE)
+		{
+			isAttack = false;
+			state = State::IDLE;
+			elpasedCount = 0;
+		}
+
+		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
+		{
+			frameX = 0;
+			isAttack = true;
+			state = State::LegWeak;
+			elpasedCount = 0;
+		}
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
+		{
+			frameX = 0;
+			isAttack = true;
+			state = State::PunchWeak;
+			elpasedCount = 0;
+		}
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
+		{
+			frameX = 0;
+			isAttack = true;
+			state = State::PunchStrong;
+			elpasedCount = 0;
+		}
+
+		if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY)) && !isAttack)
+		{
+			frameX = 0;
+			state = State::IDLE;
+			elpasedCount = 0;
+		}
 	}
 
-	if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
+	else
 	{
-		frameX = 0;
-		isAttack = true;
-		state = State::LegWeak;
-		elpasedCount = 0;
-	}
-	else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
-	{
-		frameX = 0;
-		isAttack = true;
-		state = State::PunchWeak;
-		elpasedCount = 0;
-	}
-	else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
-	{
-		frameX = 0;
-		isAttack = true;
-		state = State::PunchStrong;
-		elpasedCount = 0;
+		if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_RIGHT_KEY) && state == State::IDLE)
+		{
+			frameX = 0;
+			pos.x += moveSpeed;
+			state = State::Walk;
+			moveDir = MoveDir::Right;
+			isAttack = false;
+			elpasedCount = 0;
+
+		}
+		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_LEFT_KEY) && state == State::IDLE)
+		{
+			cout << 1;
+			frameX = 0;
+			state = State::Walk;
+			moveDir = MoveDir::Left;
+			isAttack = false;
+			elpasedCount = 0;
+		}
+
+		if (state == State::IDLE)
+		{
+			isAttack = false;
+			state = State::IDLE;
+			elpasedCount = 0;
+		}
+
+		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
+		{
+			frameX = 0;
+			isAttack = true;
+			state = State::LegWeak;
+			elpasedCount = 0;
+		}
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
+		{
+			frameX = 0;
+			isAttack = true;
+			state = State::PunchWeak;
+			elpasedCount = 0;
+		}
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
+		{
+			frameX = 0;
+			isAttack = true;
+			state = State::PunchStrong;
+			elpasedCount = 0;
+		}
+
+		if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY)) && !isAttack)
+		{
+			frameX = 0;
+			state = State::IDLE;
+			elpasedCount = 0;
+		}
 	}
 
-	if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY)) && !isAttack)
+
+	//Collider 관리 파트 
+	if (state == State::Walk)
 	{
-		frameX = 0;
-		state = State::IDLE;
-		elpasedCount = 0;
+		damagedCollider->setColliderPos(pos.x - 25, pos.x + 25, pos.y - 40, pos.y + 50);
+	}
+	else if (isAttack && state==State::PunchWeak)
+	{
+		if (frameX > 2)
+		{
+			attackCollider[0].setColliderPos(pos.x + 20, pos.x + 70, pos.y + 10, pos.y - 20);
+		}
+		else
+		{
+			attackCollider[0].setColliderPos(0, 0, 0, 0);
+		}
+	}
+	else if (isAttack && state == State::PunchStrong)
+	{
+		if (frameX > 2 && frameX < 5)
+		{
+			attackCollider[1].setColliderPos(pos.x + 20, pos.x + 70, pos.y + 10, pos.y - 50);
+		}
+		else 
+		{
+			attackCollider[1].setColliderPos(0,0,0,0);
+		}
+	}
+	else if (isAttack && state == State::LegWeak)
+	{
+		if (frameX > 2 && frameX <5 )
+		{
+			attackCollider[2].setColliderPos(pos.x + 20, pos.x + 70, pos.y + 50, pos.y - 20);
+		}
+		else 
+		{
+			attackCollider[2].setColliderPos(0, 0, 0, 0);
+		}
+	}
+	
+	if (!isAttack)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			attackCollider[i].setColliderPos(0, 0, 0, 0);
+			damagedCollider[i+2].setColliderPos(0, 0, 0, 0);
+		}
 	}
 
 }
@@ -104,10 +226,23 @@ void Iori::Update()
 
 void Iori::Render(HDC hdc)
 {
+
 	if (img) 
 	{
-		Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
-		
+		//콜라이더 출력
+		for (int i = 0; i < 6; i++) 
+		{
+			damagedCollider[i].Render(hdc);
+		}
+		HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
+		for (int i = 0; i < 4; i++)
+		{
+			
+			attackCollider[i].Render(hdc);
+		}
+		SelectObject(hdc, oldBrush);
+		DeleteObject(myBrush);
 		switch (state) 
 		{
 		case State::IDLE:
@@ -126,7 +261,7 @@ void Iori::Render(HDC hdc)
 		case State::LegWeak:
 			weakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
 			elpasedCount++;
-			if (elpasedCount == 4) 
+			if (elpasedCount == 3) 
 			{
 				elpasedCount = 0;
 				frameX++;
@@ -141,7 +276,7 @@ void Iori::Render(HDC hdc)
 		case State::PunchWeak:
 			weakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			elpasedCount++;
-			if (elpasedCount == 4)
+			if (elpasedCount == 3)
 			{
 				elpasedCount = 0;
 				frameX++;
@@ -156,7 +291,7 @@ void Iori::Render(HDC hdc)
 		case State::PunchStrong:
 			strongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			elpasedCount++;
-			if (elpasedCount == 4)
+			if (elpasedCount == 3)
 			{
 				elpasedCount = 0;
 				frameX++;
@@ -174,6 +309,7 @@ void Iori::Render(HDC hdc)
 			if (moveDir == MoveDir::Right) {
 				if (elpasedCount == 5)
 				{
+
 					elpasedCount = 0;
 					frameX++;
 				}
@@ -186,6 +322,7 @@ void Iori::Render(HDC hdc)
 			else {
 				if (elpasedCount == 5)
 				{
+
 					elpasedCount = 0;
 					frameX--;
 				}

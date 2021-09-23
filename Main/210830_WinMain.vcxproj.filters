@@ -72,6 +72,9 @@
     <ClCompile Include="MayLee.cpp">
       <Filter>2D Framework\KOF_Player</Filter>
     </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>2D Framework\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config.h">
@@ -121,6 +124,9 @@
     </ClInclude>
     <ClInclude Include="MayLee.h">
       <Filter>2D Framework\KOF_Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>2D Framework\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

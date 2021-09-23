@@ -12,6 +12,8 @@ HINSTANCE	g_hInstance;
 HWND		g_hWnd;
 LPSTR		g_lpszClass = (LPSTR)TEXT("윈메인의 시작");
 MainGame	g_mainGame;
+HPEN pen, oPen;
+
 
 void SetWindowSize(int startX, int startY, int sizeX, int sizeY);
 
