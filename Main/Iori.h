@@ -38,8 +38,5 @@ public:
 	void Update();
 	void Render(HDC hdc);
 	void Release();
-	MoveDir GetMoveDir() { return moveDir; };
-	void SetMoveDir(MoveDir moveDir) { this->moveDir = moveDir; };
-	void IsCollision();
 };
 

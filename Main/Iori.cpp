@@ -433,8 +433,3 @@ void Iori::Release()
 	}
 }
 
-void Iori::IsCollision()
-{
-}
-
-

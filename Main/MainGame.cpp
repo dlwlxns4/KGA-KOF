@@ -71,7 +71,6 @@ void MainGame::Update()
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
 			iori->Update();
-			iori->GetPos();
 			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(true), true, iori->GetPos() );
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
