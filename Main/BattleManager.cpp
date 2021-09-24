@@ -1,25 +1,26 @@
 #include "BattleManager.h"
 
-void BattleManager::Init(string player1,   POINTFLOAT pos)
+void BattleManager::Init(string player, bool isPlayer1, POINTFLOAT pos)
 {
-	if (player1._Equal("Iori")) {
-		damagedCollider[0].setColliderPos(pos.x-25, pos.y - 40, pos.x + 25, pos.y + 50);
-		attackCollider[0].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 60, pos.y);
-		attackCollider[1].setColliderPos(pos.x + 10, pos.y - 50, pos.x + 60, pos.y+10);
-		attackCollider[2].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 50, pos.y + 50);
+	if (isPlayer1)
+	{
+		if (player._Equal("Iori")) {
+			damagedCollider[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
+			attackCollider[0].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 60, pos.y);
+			attackCollider[1].setColliderPos(pos.x + 10, pos.y - 50, pos.x + 60, pos.y + 10);
+			attackCollider[2].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 50, pos.y + 50);
+		}
+	}
+	else
+	{
+		if (player._Equal("Iori")) {
+			damagedCollider2[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
+			attackCollider2[0].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 60, pos.y);
+			attackCollider2[1].setColliderPos(pos.x + 10, pos.y - 50, pos.x + 60, pos.y + 10);
+			attackCollider2[2].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 50, pos.y + 50);
+		}
 	}
 }
-
-void BattleManager::Init2(string player2, POINTFLOAT pos)
-{
-	if (player2._Equal("Iori")) {
-		damagedCollider2[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
-		attackCollider2[0].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 60, pos.y);
-		attackCollider2[1].setColliderPos(pos.x + 10, pos.y - 50, pos.x + 60, pos.y + 10);
-		attackCollider2[2].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 50, pos.y + 50);
-	}
-}
-
 
 void BattleManager::Render(HDC hdc)
 {

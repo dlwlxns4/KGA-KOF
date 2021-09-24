@@ -72,7 +72,7 @@ void MainGame::Update()
 		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
 			iori->Update();
 			iori->GetPos();
-			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(true), iori->GetPos() );
+			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(true), true, iori->GetPos() );
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
 			kyo->Update();
@@ -87,7 +87,7 @@ void MainGame::Update()
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
 			iori2->Update();
-			BattleManager::GetSingleton()->Init2(SceneManager::GetSingleton()->GetPlayerChar(true), iori2->GetPos());
+			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(true), false, iori2->GetPos());
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
 			kyo2->Update();

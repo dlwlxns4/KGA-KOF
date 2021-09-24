@@ -12,7 +12,8 @@ public:
 
 	Collider attackCollider2[4];
 	Collider damagedCollider2[6];
-	void Init(string player1, POINTFLOAT pos);
+
+	void Init(string player, bool isPlayer1, POINTFLOAT pos);
 	void Init2(string player1, POINTFLOAT pos);
 	void Render(HDC hdc);
 	bool CheckCollision(RECT* rect, bool isPlayer1);

@@ -67,8 +67,6 @@ void Iori::Init(int posX, int posY, bool isMoveRight)
 
 void Iori::Update()
 {
-
-
 	if (isPlayer1) {
 		if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_RIGHT_KEY) && state == State::IDLE)
 		{
@@ -175,7 +173,7 @@ void Iori::Update()
 			elpasedCount = 0;
 		}
 
-		if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY)) && !isAttack)
+		if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_LEFT_KEY)) && !isAttack)
 		{
 			frameX = 0;
 			state = State::IDLE;
@@ -185,11 +183,7 @@ void Iori::Update()
 
 
 	//Collider 관리 파트 
-	if (state == State::Walk)
-	{
-		damagedCollider->setColliderPos(pos.x - 25, pos.x + 25, pos.y - 40, pos.y + 50);
-	}
-	else if (isAttack && state==State::PunchWeak)
+	if (isAttack && state==State::PunchWeak)
 	{
 		if (frameX > 1 && frameX<3)
 		{
@@ -206,6 +200,11 @@ void Iori::Update()
 			else
 			{
 				BattleManager::GetSingleton()->attackCollider2[0].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, true) && !isHit)
+				{
+					isHit = true;
+					elpasedCount = -3; // Hit했을 때 경직도
+				}
 				BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, false);
 
 			}
@@ -223,9 +222,19 @@ void Iori::Update()
 		if (frameX > 2 && frameX < 5)
 		{
 			if (this->isPlayer1)
+			{
 				BattleManager::GetSingleton()->attackCollider[1].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[1].collider, true) && !isHit)
+				{
+					isHit = true;
+					elpasedCount = -3; // Hit했을 때 경직도
+				}
+			}
 			else
+			{
 				BattleManager::GetSingleton()->attackCollider2[1].isAttack = true;
+				BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[1].collider, false);
+			}
 		}
 		else 
 		{
