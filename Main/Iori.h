@@ -38,5 +38,6 @@ public:
 	void Update();
 	void Render(HDC hdc);
 	void Release();
+	void ColliderManager();
 };
 
