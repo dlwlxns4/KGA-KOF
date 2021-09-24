@@ -189,10 +189,10 @@ void Image::Render(HDC hdc, int destX, int destY, int x)
 		GdiTransparentBlt(hdc,
 			destX - (imageInfo->width / 2),				// 복사될 비트맵의 시작 위치 x
 			destY - (imageInfo->height / 2),				// 복사될 비트맵의 시작 위치 y
-			imageInfo->width, imageInfo->height,
+			imageInfo->width-20,imageInfo->height,
 			imageInfo->hMemDc,
 			0, 0,
-			imageInfo->width, imageInfo->height,
+			(imageInfo->width), imageInfo->height,
 			transColor
 			);
 	}

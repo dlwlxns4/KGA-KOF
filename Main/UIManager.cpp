@@ -7,7 +7,7 @@ void UIManager::Init()
 	backGroundUI = new Image;
 	backGroundUI->Init("Image/UI/BackGroundUI.bmp", 680 / 2.1, 492 / 2, true, RGB(255, 0, 255));
 	playerHP1 = new Image;
-	playerHP1->Init("Image/UI/1HP.bmp", 680 / 2.1, 492 / 2, true, RGB(255, 0, 255));
+	playerHP1->Init("Image/UI/1HP.bmp", 106, 7, true, RGB(255, 0, 255));
 	playerHP2 = new Image;
 	playerHP2->Init("Image/UI/2HP.bmp", 680 / 2.1, 492 / 2, true, RGB(255, 0, 255));
 }
@@ -58,7 +58,7 @@ void UIManager::Render(HDC hdc)
 	backGroundUI->Render(hdc, WIN_SIZE_Y / 1.5 , WIN_SIZE_Y / 2);
 	player1->Render(hdc, WIN_SIZE_Y / 1.5, WIN_SIZE_Y / 2);
 	player2->Render(hdc, WIN_SIZE_Y / 1.5, WIN_SIZE_Y / 2);
-	playerHP1->Render(hdc, WIN_SIZE_Y / 1.5, WIN_SIZE_Y / 2,1);
+	playerHP1->Render(hdc, 90, 23, 1);
 	playerHP2->Render(hdc, WIN_SIZE_Y / 1.5, WIN_SIZE_Y / 2);
 
 	cout << 1;
