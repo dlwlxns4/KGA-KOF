@@ -5,19 +5,19 @@
 void Kyo::Init()
 {
 	idle = new Image;
-	idle->Init("Image/Character/Kyo/Kyo_idle.bmp", 750, 119, 10, 1, true, RGB(240, 0, 240));
+	idle->Init("Image/Character/Kyo/Kyo_idle.bmp", 1120, 116, 10, 1, true, RGB(240, 0, 240));
 	walk = new Image;
-	walk->Init("Image/Character/Kyo/Kyo_walk.bmp", 747, 130, 11, 1, true, RGB(240, 0, 240));
+	walk->Init("Image/Character/Kyo/Kyo_walk.bmp", 1344, 116, 12, 1, true, RGB(240, 0, 240));
 	weakPunch = new Image;
-	weakPunch->Init("Image/Character/Kyo/Kyo_smallPunch.bmp", 257, 117, 3, 1, true, RGB(240, 0, 240));
+	weakPunch->Init("Image/Character/Kyo/Kyo_smallPunch.bmp", 336, 116, 3, 1, true, RGB(240, 0, 240));
 	strongPunch = new Image;
-	strongPunch->Init("Image/Character/Kyo/Kyo_strongPunch.bmp", 1146, 120, 15, 1, true, RGB(240, 0, 240));
+	strongPunch->Init("Image/Character/Kyo/Kyo_strongPunch.bmp", 2016, 116, 18, 1, true, RGB(240, 0, 240));
 	weakLeg = new Image;
-	weakLeg->Init("Image/Character/Kyo/Kyo_weakLeg.bmp", 913, 117, 10, 1, true, RGB(240, 0, 240));
+	weakLeg->Init("Image/Character/Kyo/Kyo_weakLeg.bmp", 1008, 116, 9, 1, true, RGB(240, 0, 240));
 	strongLeg = new Image;
-	strongLeg->Init("Image/Character/Kyo/Kyo_strongLeg.bmp", 1199, 131, 13, 1, true, RGB(240, 0, 240));
+	strongLeg->Init("Image/Character/Kyo/Kyo_strongLeg.bmp", 1680, 116, 15, 1, true, RGB(240, 0, 240));
 	attacked = new Image;
-	attacked->Init("Image/Character/Kyo/Kyo_attacked.bmp", 470, 113, 6, 1, true, RGB(240, 0, 240));
+	attacked->Init("Image/Character/Kyo/Kyo_attacked.bmp", 560, 116, 5, 1, true, RGB(240, 0, 240));
 
 	moveDir = MoveDir::Right;
 
@@ -69,7 +69,7 @@ void Kyo::Update()
 		state = State::LegWeak;
 	}
 	// A누르고 공격중이 아닐때만 가능
-	if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack)
+	if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_KICK) && !isAttack)
 	{
 		frameX = 0;
 		isAttack = true;
@@ -90,7 +90,7 @@ void Kyo::Update()
 		state = State::PunchStrong;
 	}
 
-	if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY)) && !isAttack)
+	if (KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY))
 	{
 		frameX = 0;
 		state = State::IDLE;
@@ -126,7 +126,22 @@ void Kyo::Render(HDC hdc)
 				elapsedCount = 0;
 				frameX++;
 			}
-			if (frameX == 10)
+			if (frameX == 9)
+			{
+				isAttack = false;
+				state = State::IDLE;
+				frameX = 0;
+			}
+			break;
+		case State::LegStrong:
+			strongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
+			elapsedCount++;
+			if (elapsedCount == 5)
+			{
+				elapsedCount = 0;
+				frameX++;
+			}
+			if (frameX == 15)
 			{
 				isAttack = false;
 				state = State::IDLE;
@@ -156,7 +171,7 @@ void Kyo::Render(HDC hdc)
 				elapsedCount = 0;
 				frameX++;
 			}
-			if (frameX == 15)
+			if (frameX == 18)
 			{
 				isAttack = false;
 				state = State::IDLE;
@@ -173,7 +188,7 @@ void Kyo::Render(HDC hdc)
 					elapsedCount = 0;
 					frameX++;
 				}
-				if (frameX >= 10)
+				if (frameX >= 12)
 				{
 					frameX = 0;
 				}
@@ -188,7 +203,7 @@ void Kyo::Render(HDC hdc)
 				}
 				if (frameX <= 0)
 				{
-					frameX = 10;
+					frameX = 12;
 				}
 				pos.x -= moveSpeed / 3;
 			}
