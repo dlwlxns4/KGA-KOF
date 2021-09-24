@@ -193,28 +193,33 @@ void Iori::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[0].collider, true) && !isHit)
 				{
 					isHit = true;
-					elpasedCount = -3; // Hit했을 때 경직도
+					elpasedCount = -5; // Hit했을 때 경직도
 				}
 
 			}
 			else
 			{
 				BattleManager::GetSingleton()->attackCollider2[0].isAttack = true;
-				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, true) && !isHit)
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, false) && !isHit)
 				{
 					isHit = true;
-					elpasedCount = -3; // Hit했을 때 경직도
+					elpasedCount = -5; // Hit했을 때 경직도
 				}
-				BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, false);
 
 			}
 		}
 		else if( frameX>3)
 		{
 			if (this->isPlayer1)
+			{
 				BattleManager::GetSingleton()->attackCollider[0].isAttack = false;
-			else
+				BattleManager::GetSingleton()->isPlayer2Damaged = false;
+			}
+			else 
+			{
 				BattleManager::GetSingleton()->attackCollider2[0].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer1Damaged = false;
+			}
 		}
 	}
 	else if (isAttack && state == State::PunchStrong)
@@ -233,15 +238,26 @@ void Iori::Update()
 			else
 			{
 				BattleManager::GetSingleton()->attackCollider2[1].isAttack = true;
-				BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[1].collider, false);
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[1].collider, false) && !isHit)
+				{
+					cout << "attackCollider2 : " << BattleManager::GetSingleton()->attackCollider2[1].isAttack << endl;
+					isHit = true;
+					elpasedCount = -3; // Hit했을 때 경직도
+				}
 			}
 		}
 		else 
 		{
 			if (this->isPlayer1)
+			{
 				BattleManager::GetSingleton()->attackCollider[1].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer2Damaged = false;
+			}
 			else
+			{
 				BattleManager::GetSingleton()->attackCollider2[1].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer1Damaged = false;
+			}
 		}
 	}
 	else if (isAttack && state == State::LegWeak)
@@ -249,16 +265,36 @@ void Iori::Update()
 		if (frameX > 2 && frameX <5 )
 		{
 			if (this->isPlayer1)
+			{
 				BattleManager::GetSingleton()->attackCollider[2].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[2].collider, true) && !isHit)
+				{
+					isHit = true;
+					elpasedCount = -3; // Hit했을 때 경직도
+				}
+			}
 			else
+			{
 				BattleManager::GetSingleton()->attackCollider2[2].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[2].collider, false) && !isHit)
+				{
+					isHit = true;
+					elpasedCount = -3; // Hit했을 때 경직도
+				}
+			}
 		}
 		else 
 		{
-			if (this->isPlayer1)
+			if (this->isPlayer1) 
+			{
 				BattleManager::GetSingleton()->attackCollider[2].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer2Damaged = false;
+			}
 			else
+			{
 				BattleManager::GetSingleton()->attackCollider2[2].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer1Damaged = false;
+			}
 		}
 	}
 	
@@ -303,6 +339,7 @@ void Iori::Render(HDC hdc)
 			{
 				isAttack = false;
 				state = State::IDLE;
+				isHit = false;
 				frameX = 0;
 			}
 			break;
@@ -334,6 +371,7 @@ void Iori::Render(HDC hdc)
 			{
 				isAttack = false;
 				state = State::IDLE;
+				isHit = false;
 				frameX = 0;
 			}
 			break;

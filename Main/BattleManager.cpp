@@ -2,22 +2,22 @@
 
 void BattleManager::Init(string player, bool isPlayer1, POINTFLOAT pos)
 {
-	if (isPlayer1)
+	if (isPlayer1) //플레이어 1일 때
 	{
 		if (player._Equal("Iori")) {
 			damagedCollider[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
-			attackCollider[0].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 60, pos.y);
-			attackCollider[1].setColliderPos(pos.x + 10, pos.y - 50, pos.x + 60, pos.y + 10);
-			attackCollider[2].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 50, pos.y + 50);
+			attackCollider[0].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 60, pos.y); attackCollider[0].damage = 5;
+			attackCollider[1].setColliderPos(pos.x + 10, pos.y - 50, pos.x + 60, pos.y + 10); attackCollider[1].damage = 10;
+			attackCollider[2].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 50, pos.y + 50); attackCollider[2].damage = 8;
 		}
 	}
-	else
+	else // 플레이어 2일 때
 	{
 		if (player._Equal("Iori")) {
 			damagedCollider2[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
-			attackCollider2[0].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 60, pos.y);
-			attackCollider2[1].setColliderPos(pos.x + 10, pos.y - 50, pos.x + 60, pos.y + 10);
-			attackCollider2[2].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 50, pos.y + 50);
+			attackCollider2[0].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 60, pos.y);  attackCollider2[0].damage = 5;
+			attackCollider2[1].setColliderPos(pos.x + 10, pos.y - 50, pos.x + 60, pos.y + 10); attackCollider2[1].damage = 10;
+			attackCollider2[2].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 50, pos.y + 50); attackCollider2[2].damage = 8;
 		}
 	}
 }
@@ -71,8 +71,10 @@ bool BattleManager::CheckDamaged(bool isPlayer1)
 		{
 			for (int i = 0; i < 3; i++)
 			{
-				if (IntersectRect(&a, &damagedCollider[j].collider, &attackCollider2[i].collider) && attackCollider2[j].isAttack) { // 해당콜라이더가 공격 상태인 경우
-
+				if (IntersectRect(&a, &damagedCollider[j].collider, &attackCollider2[i].collider) && attackCollider2[i].isAttack && !isPlayer1Damaged) { // 해당콜라이더가 공격 상태인 경우
+					player1Hp -= attackCollider2[i].damage;
+					isPlayer1Damaged = true;
+					cout << "player1Hp : " << player1Hp << endl;
 					return true;
 				}
 			}
@@ -84,7 +86,10 @@ bool BattleManager::CheckDamaged(bool isPlayer1)
 		{
 			for (int i = 0; i < 3; i++)
 			{
-				if (IntersectRect(&a, &damagedCollider2[j].collider, &attackCollider[i].collider) && attackCollider[j].isAttack) {
+				if (IntersectRect(&a, &damagedCollider2[j].collider, &attackCollider[i].collider) && attackCollider[i].isAttack && !isPlayer2Damaged) {
+					player2Hp -= attackCollider[i].damage;
+					isPlayer2Damaged = true;
+					cout << "player2Hp : " << player2Hp << endl;
 					return true;
 				}
 			}

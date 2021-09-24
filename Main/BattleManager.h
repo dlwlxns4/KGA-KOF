@@ -13,6 +13,12 @@ public:
 	Collider attackCollider2[4];
 	Collider damagedCollider2[6];
 
+	int player1Hp = 100;
+	int player2Hp = 100;
+
+	bool isPlayer1Damaged=false;
+	bool isPlayer2Damaged = false;
+
 	void Init(string player, bool isPlayer1, POINTFLOAT pos);
 	void Init2(string player1, POINTFLOAT pos);
 	void Render(HDC hdc);
