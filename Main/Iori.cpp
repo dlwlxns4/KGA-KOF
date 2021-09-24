@@ -186,13 +186,6 @@ void Iori::Update()
 	}
 	//충돌 검사
 	ColliderManager();
-	if (state == State::Damaged) {
-		cout << 1 << endl;
-		cout << "frameX : " << frameX << endl;
-		cout << "elpased : " << elpasedCount << endl;
-		
-	}
-	
 
 }
 

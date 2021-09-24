@@ -1,6 +1,7 @@
 #include "UIManager.h"
 #include "Image.h"
 #include "SceneManager.h"
+#include "BattleManager.h"
 
 void UIManager::Init()
 {
@@ -9,7 +10,7 @@ void UIManager::Init()
 	playerHP1 = new Image;
 	playerHP1->Init("Image/UI/1HP.bmp", 106, 7, true, RGB(255, 0, 255));
 	playerHP2 = new Image;
-	playerHP2->Init("Image/UI/2HP.bmp", 680 / 2.1, 492 / 2, true, RGB(255, 0, 255));
+	playerHP2->Init("Image/UI/1HP.bmp", 107, 7,  true, RGB(255, 0, 255));
 }
 void UIManager::SetPlayerImage()
 {
@@ -58,10 +59,10 @@ void UIManager::Render(HDC hdc)
 	backGroundUI->Render(hdc, WIN_SIZE_Y / 1.5 , WIN_SIZE_Y / 2);
 	player1->Render(hdc, WIN_SIZE_Y / 1.5, WIN_SIZE_Y / 2);
 	player2->Render(hdc, WIN_SIZE_Y / 1.5, WIN_SIZE_Y / 2);
-	playerHP1->Render(hdc, 90, 23, 1);
-	playerHP2->Render(hdc, WIN_SIZE_Y / 1.5, WIN_SIZE_Y / 2);
+	playerHP1->Render(hdc, 90, 23, BattleManager::GetSingleton()->player1Hp, true);
+	cout << BattleManager::GetSingleton()->player1Hp << "!!!" << endl;
+	playerHP2->Render(hdc, WIN_SIZE_X-89, 23, BattleManager::GetSingleton()->player2Hp, false);
 
-	cout << 1;
 }
 
 void UIManager::Update()
