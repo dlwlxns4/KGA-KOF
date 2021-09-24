@@ -1,6 +1,7 @@
 #include "CharacterSelect.h"
 #include "Image.h"
 #include "BattleManager.h"
+#include "UIManager.h"
 
 void CharacterSelect::Init()
 {
@@ -144,6 +145,7 @@ void CharacterSelect::Update()
 	}
 	if ((SceneManager::GetSingleton()->GetPlayerChar(true) != "Empty") && (SceneManager::GetSingleton()->GetPlayerChar(false) != "Empty")) 
 	{
+		UIManager::GetSingleton()->SetPlayerImage();
 		SceneManager::GetSingleton()->SetIsSceneState("Battle");
 	}
 	

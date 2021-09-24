@@ -155,6 +155,7 @@
     <ClCompile Include="MainTitle.cpp" />
     <ClCompile Include="MayLee.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="MayLee.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="UIManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

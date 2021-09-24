@@ -11,6 +11,7 @@
 #include "Kyo.h"
 #include "MayLee.h"
 #include "BattleManager.h"
+#include "UIManager.h"
 
 
 void MainGame::Init()
@@ -53,6 +54,8 @@ void MainGame::Init()
 	kyo2->Init();
 	may2 = new MayLee;
 	may2->Init();
+
+	UIManager::GetSingleton()->Init();
 }
 
 void MainGame::Update()
@@ -127,6 +130,8 @@ void MainGame::Render(HDC hdc)
 	else if (SceneManager::GetSingleton()->GetIsSceneState() == "Battle") {
 		backGround->Render(hBackBufferDC);
 		BattleManager::GetSingleton()->Render(hBackBufferDC);
+
+		UIManager::GetSingleton()->Render(hBackBufferDC);
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
 			kim->Render(hBackBufferDC);
 		}
