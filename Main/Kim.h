@@ -13,6 +13,13 @@ private:
 	Image* strongLeg;
 	Image* weakPunch;
 
+	Image* mirroringIdle;
+	Image* mirroringFrontWalk;
+	Image* mirroringBackWalk;
+	Image* mirroringWeakLeg;
+	Image* mirroringStrongLeg;
+	Image* mirroringWeakPunch;
+
 	int frameX, frameY;
 	int elpasedCount;
 	int fps;
@@ -23,8 +30,11 @@ private:
 protected:
 	RECT rect;
 	State state;
+
+	bool isPlayer1;
+
 public:
-	void Init();
+	void Init(bool isPlayer1);
 	void Update();
 	void Render(HDC hdc);
 	void Release();

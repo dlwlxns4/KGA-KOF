@@ -18,6 +18,13 @@ private:
 	Image* strongPunch;
 	Image* damaged;
 
+	Image* MirroringImg;
+	Image* MirroringIdle;
+	Image* MirroringWeakLeg;
+	Image* MirroringWeakPunch;
+	Image* MirroringStrongPunch;
+	Image* MirroringDamaged;
+	
 	int frameX, frameY;
 	int elpasedCount;
 	bool isAttack;
@@ -38,6 +45,5 @@ public:
 	void Update();
 	void Render(HDC hdc);
 	void Release();
-	void ColliderManager();
 };
 

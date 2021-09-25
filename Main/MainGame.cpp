@@ -35,27 +35,25 @@ void MainGame::Init()
 	characterSelect = new CharacterSelect;
 	characterSelect->Init();
 	
-	// 플레이어
+	// 플레이어1
 	iori = new Iori;
 	iori->Init(true);
 	kim = new Kim;
-	kim->Init();
+	kim->Init(true);
 	kyo = new Kyo;
-	kyo->Init();
+	kyo->Init(true);
 	may = new MayLee;
-	may->Init();
+	may->Init(true);
 
 	// 플레이어2
 	iori2 = new Iori;
 	iori2->Init(false);
 	kim2 = new Kim;
-	kim2->Init();
+	kim2->Init(false);
 	kyo2 = new Kyo;
-	kyo2->Init();
+	kyo2->Init(false);
 	may2 = new MayLee;
-	may2->Init();
-
-	UIManager::GetSingleton()->Init();
+	may2->Init(false);
 }
 
 void MainGame::Update()
@@ -72,29 +70,29 @@ void MainGame::Update()
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
 			kim->Update();
 		}
-		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
 			iori->Update();
 			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(true), true, iori->GetPos() );
 		}
-		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
 			kyo->Update();
 		}
-		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") {
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") {
 			may->Update();
 		}
 
 		//플레이어 2
-		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
+		if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kim") {
 			kim2->Update();
 		}
-		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Iori") {
 			iori2->Update();
-			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(true), false, iori2->GetPos());
+			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(false), false, iori2->GetPos());
 		}
-		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kyo") {
 			kyo2->Update();
 		}
-		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "May") {
 			may2->Update();
 		}
 	}
@@ -130,8 +128,8 @@ void MainGame::Render(HDC hdc)
 	else if (SceneManager::GetSingleton()->GetIsSceneState() == "Battle") {
 		backGround->Render(hBackBufferDC);
 		BattleManager::GetSingleton()->Render(hBackBufferDC);
-
 		UIManager::GetSingleton()->Render(hBackBufferDC);
+
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
 			kim->Render(hBackBufferDC);
 		}

@@ -66,6 +66,9 @@
     <ClCompile Include="CharacterSelect.cpp">
       <Filter>2D Framework\Scence</Filter>
     </ClCompile>
+    <ClCompile Include="Kyo.cpp">
+      <Filter>2D Framework\KOF_Player</Filter>
+    </ClCompile>
     <ClCompile Include="MayLee.cpp">
       <Filter>2D Framework\KOF_Player</Filter>
     </ClCompile>
@@ -77,9 +80,6 @@
     </ClCompile>
     <ClCompile Include="UIManager.cpp">
       <Filter>2D Framework\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Kyo.cpp">
-      <Filter>2D Framework\KOF_Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +125,9 @@
     <ClInclude Include="CharacterSelect.h">
       <Filter>2D Framework\Scence</Filter>
     </ClInclude>
+    <ClInclude Include="Kyo.h">
+      <Filter>2D Framework\KOF_Player</Filter>
+    </ClInclude>
     <ClInclude Include="MayLee.h">
       <Filter>2D Framework\KOF_Player</Filter>
     </ClInclude>
@@ -136,9 +139,6 @@
     </ClInclude>
     <ClInclude Include="UIManager.h">
       <Filter>2D Framework\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Kyo.h">
-      <Filter>2D Framework\KOF_Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

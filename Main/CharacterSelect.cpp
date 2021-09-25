@@ -145,6 +145,7 @@ void CharacterSelect::Update()
 	}
 	if ((SceneManager::GetSingleton()->GetPlayerChar(true) != "Empty") && (SceneManager::GetSingleton()->GetPlayerChar(false) != "Empty")) 
 	{
+		UIManager::GetSingleton()->Init();
 		UIManager::GetSingleton()->SetPlayerImage();
 		SceneManager::GetSingleton()->SetIsSceneState("Battle");
 	}

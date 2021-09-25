@@ -14,6 +14,14 @@ private:
 	Image* weakPunch;
 	Image* strongPunch;
 
+	Image* mirroringIdle;
+	Image* mirroringFrontWalk;
+	Image* mirroringBackWalk;
+	Image* mirroringWeakLeg;
+	Image* mirroringstrongLeg;
+	Image* mirroringWeakPunch;
+	Image* mirroringStrongPunch;
+
 	int frameX, frameY;
 	int elpasedCount;
 	int fps;
@@ -21,11 +29,15 @@ private:
 	bool originCheck;
 	bool isAttack;
 	MoveDir moveDir;
+
 protected:
 	RECT rect;
 	State state;
+
+	bool isPlayer1;
+
 public:
-	void Init();
+	void Init(bool isPlayer1);
 	void Update();
 	void Render(HDC hdc);
 	void Release();

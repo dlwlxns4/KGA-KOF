@@ -1,5 +1,4 @@
 #include "BattleManager.h"
-#include "UIManager.h"
 
 void BattleManager::Init(string player, bool isPlayer1, POINTFLOAT pos)
 {
@@ -76,7 +75,6 @@ bool BattleManager::CheckDamaged(bool isPlayer1)
 					player1Hp -= attackCollider2[i].damage;
 					isPlayer1Damaged = true;
 					cout << "player1Hp : " << player1Hp << endl;
-					//UIManager::GetSingleton()->ReduceHP(true, 10);
 					return true;
 				}
 			}

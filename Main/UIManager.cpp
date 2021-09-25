@@ -60,7 +60,6 @@ void UIManager::Render(HDC hdc)
 	player1->Render(hdc, WIN_SIZE_Y / 1.5, WIN_SIZE_Y / 2);
 	player2->Render(hdc, WIN_SIZE_Y / 1.5, WIN_SIZE_Y / 2);
 	playerHP1->Render(hdc, 90, 23, BattleManager::GetSingleton()->player1Hp, true);
-	cout << BattleManager::GetSingleton()->player1Hp << "!!!" << endl;
 	playerHP2->Render(hdc, WIN_SIZE_X-89, 23, BattleManager::GetSingleton()->player2Hp, false);
 
 }

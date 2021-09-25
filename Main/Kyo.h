@@ -15,6 +15,14 @@ private:
 	Image* strongLeg;
 	Image* attacked;
 
+	Image* MirroringIdle;
+	Image* MirroringWalk;
+	Image* MirroringWeakPunch;
+	Image* MirroringStrongPunch;
+	Image* MirroringWeakLeg;
+	Image* MirroringStrongLeg;
+	Image* MirroringAttacked;
+
 	int frameX, frameY;
 	int elapsedCount;
 	bool isAttack;
@@ -24,9 +32,11 @@ public:
 	RECT rect;
 	State state;
 
+	bool isPlayer1;
+
 
 public:
-	void Init();
+	void Init(bool isPlayer1);
 	void Init(int posX, int posY, bool isMoveRight);
 	void Update();
 	void Render(HDC hdc);

@@ -20,20 +20,39 @@ int ElpasedCount(int fps, int& frameX, bool check) {
 }
 
 
-void Kim::Init()
+void Kim::Init(bool isPlayer1)
 {
-	idle = new Image;	// 대기
-	idle->Init("Image/Character/kim/kim_Idle.bmp", 682, 120, 11, 1, true, RGB(255, 0, 255));
-	frontWalk = new Image;	// 앞으로
-	frontWalk->Init("Image/Character/kim/kim_FrontWalk.bmp", 372, 120, 6, 1, true, RGB(255, 0, 255));
-	backWalk = new Image;	// 뒤로
-	backWalk->Init("Image/Character/kim/kim_BackWalk.bmp", 348, 120, 6, 1, true, RGB(255, 0, 255));
-	weakPunch = new Image;	// 약주먹
-	weakPunch->Init("Image/Character/kim/kim_WeakPunch.bmp", 590, 120, 5, 1, true, RGB(255, 0, 255));
-	weakLeg = new Image;	// 약발차기
-	weakLeg->Init("Image/Character/kim/kim_WeakKick.bmp", 909, 120, 9, 1, true, RGB(255, 0, 255));
-	strongLeg = new Image;	// 강발차기
-	strongLeg->Init("Image/Character/kim/kim_StrongKick.bmp", 1287, 120, 11, 1, true, RGB(255, 0, 255));
+	if (isPlayer1)
+	{
+		idle = new Image;	// 대기
+		idle->Init("Image/Character/kim/kim_Idle.bmp", 682, 120, 11, 1, true, RGB(255, 0, 255));
+		frontWalk = new Image;	// 앞으로
+		frontWalk->Init("Image/Character/kim/kim_FrontWalk.bmp", 372, 120, 6, 1, true, RGB(255, 0, 255));
+		backWalk = new Image;	// 뒤로
+		backWalk->Init("Image/Character/kim/kim_BackWalk.bmp", 348, 120, 6, 1, true, RGB(255, 0, 255));
+		weakPunch = new Image;	// 약주먹
+		weakPunch->Init("Image/Character/kim/kim_WeakPunch.bmp", 590, 120, 5, 1, true, RGB(255, 0, 255));
+		weakLeg = new Image;	// 약발차기
+		weakLeg->Init("Image/Character/kim/kim_WeakKick.bmp", 909, 120, 9, 1, true, RGB(255, 0, 255));
+		strongLeg = new Image;	// 강발차기
+		strongLeg->Init("Image/Character/kim/kim_StrongKick.bmp", 1287, 120, 11, 1, true, RGB(255, 0, 255));
+	}
+	else
+	{
+		mirroringIdle = new Image;	// 대기
+		mirroringIdle->Init("Image/Character/kim/kim_Idle_mirroring.bmp", 682, 120, 11, 1, true, RGB(255, 0, 255));
+		mirroringFrontWalk = new Image;	// 앞으로
+		mirroringFrontWalk->Init("Image/Character/kim/kim_FrontWalk_mirroring.bmp", 372, 120, 6, 1, true, RGB(255, 0, 255));
+		mirroringBackWalk = new Image;	// 뒤로
+		mirroringBackWalk->Init("Image/Character/kim/kim_BackWalk_mirroring.bmp", 348, 120, 6, 1, true, RGB(255, 0, 255));
+		mirroringWeakPunch = new Image;	// 약주먹
+		mirroringWeakPunch->Init("Image/Character/kim/kim_WeakPunch_mirroring.bmp", 590, 120, 5, 1, true, RGB(255, 0, 255));
+		mirroringWeakLeg = new Image;	// 약발차기
+		mirroringWeakLeg->Init("Image/Character/kim/kim_WeakKick_mirroring.bmp", 909, 120, 9, 1, true, RGB(255, 0, 255));
+		mirroringStrongLeg = new Image;	// 강발차기
+		mirroringStrongLeg->Init("Image/Character/kim/kim_StrongKick_mirroring.bmp", 1287, 120, 11, 1, true, RGB(255, 0, 255));
+	}
+
 
 	moveDir = MoveDir::Right;
 
@@ -45,146 +64,299 @@ void Kim::Init()
 	frameX = frameY = 0;
 	elpasedCount = 0;
 	moveSpeed = 10.0f;
-	this->pos.x = WIN_SIZE_X / 3;
-	this->pos.y = WIN_SIZE_Y / 1.4;
+
+	if (isPlayer1) {
+		this->pos.x = WIN_SIZE_X / 4;
+		this->pos.y = WIN_SIZE_Y / 1.3;
+	}
+	else {
+		this->pos.x = WIN_SIZE_X - WIN_SIZE_X / 4;
+		this->pos.y = WIN_SIZE_Y / 1.3;
+	}
+
+	this->isPlayer1 = isPlayer1;
 }
 
 void Kim::Update()
 {
-	if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_RIGHT_KEY) && state == State::IDLE)
+	if (isPlayer1)
 	{
-		frameX = 0;
-		pos.x += moveSpeed;
-		state = State::Walk;
-		moveDir = MoveDir::Right;
-		isAttack = false;
+		if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_RIGHT_KEY) && state == State::IDLE)
+		{
+			frameX = 0;
+			pos.x += moveSpeed;
+			state = State::Walk;
+			moveDir = MoveDir::Right;
+			isAttack = false;
 
-	}
-	else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_LEFT_KEY) && state == State::IDLE)
-	{
-		frameX = 0;
-		state = State::Walk;
-		moveDir = MoveDir::Left;
-		isAttack = false;
-	}
-	if (state == State::IDLE)
-	{
-		isAttack = false;
-		state = State::IDLE;
-	}
+		}
+		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_LEFT_KEY) && state == State::IDLE)
+		{
+			frameX = 0;
+			state = State::Walk;
+			moveDir = MoveDir::Left;
+			isAttack = false;
+		}
+		if (state == State::IDLE)
+		{
+			isAttack = false;
+			state = State::IDLE;
+		}
 
-	if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
-	{
-		frameX = 0;
-		isAttack = true;
-		state = State::PunchWeak;
-	}
-	else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
-	{
-		frameX = 0;
-		isAttack = true;
-		state = State::LegWeak;
-	}
-	else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
-	{
-		frameX = 0;
-		isAttack = true;
-		state = State::LegStrong;
-	}
+		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
+		{
+			frameX = 0;
+			isAttack = true;
+			state = State::PunchWeak;
+		}
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
+		{
+			frameX = 0;
+			isAttack = true;
+			state = State::LegWeak;
+		}
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
+		{
+			frameX = 0;
+			isAttack = true;
+			state = State::LegStrong;
+		}
 
-	if ( (KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY)) && !isAttack)
+		if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY)) && !isAttack)
+		{
+			frameX = 0;
+			state = State::IDLE;
+		}
+	}
+	else
 	{
-		frameX = 0;
-		state = State::IDLE;
+		if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_RIGHT_KEY) && state == State::IDLE)
+		{
+			frameX = 0;
+			pos.x += moveSpeed;
+			state = State::Walk;
+			moveDir = MoveDir::Right;
+			isAttack = false;
+
+		}
+		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_LEFT_KEY) && state == State::IDLE)
+		{
+			frameX = 0;
+			state = State::Walk;
+			moveDir = MoveDir::Left;
+			isAttack = false;
+		}
+		if (state == State::IDLE)
+		{
+			isAttack = false;
+			state = State::IDLE;
+		}
+
+		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
+		{
+			frameX = 0;
+			isAttack = true;
+			state = State::PunchWeak;
+		}
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
+		{
+			frameX = 0;
+			isAttack = true;
+			state = State::LegWeak;
+		}
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
+		{
+			frameX = 0;
+			isAttack = true;
+			state = State::LegStrong;
+		}
+
+		if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_LEFT_KEY)) && !isAttack)
+		{
+			frameX = 0;
+			state = State::IDLE;
+		}
 	}
 }
 
 void Kim::Render(HDC hdc)
 {
-	if (idle)
+	if (isPlayer1)
 	{
-		Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
-
-		switch (state)
+		if (idle)
 		{
-		case State::IDLE:
-			idle->Render(hdc, pos.x, pos.y, frameX, frameY);
-			ElpasedCount(fps, frameX,true);
-			if (frameX >= 11) frameX = 0;
-			break;
-		case State::Walk:
-			if (moveDir == MoveDir::Right) {
-				frontWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
+			Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
+
+			switch (state)
+			{
+			case State::IDLE:
+				idle->Render(hdc, pos.x, pos.y, frameX, frameY);
 				ElpasedCount(fps, frameX, true);
-				if (frameX >= 6) frameX = 0;
-				pos.x += moveSpeed / 3;
+				if (frameX >= 11) frameX = 0;
+				break;
+			case State::Walk:
+				if (moveDir == MoveDir::Right) {
+					frontWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
+					ElpasedCount(fps, frameX, true);
+					if (frameX >= 6) frameX = 0;
+					pos.x += moveSpeed / 3;
+				}
+				else {
+					backWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
+					ElpasedCount(fps, frameX, true);
+					if (frameX >= 6) frameX = 0;
+					pos.x -= moveSpeed / 3;
+				}
+				break;
+			case State::PunchWeak:
+				if (!originCheck) {
+					originCheck = true;
+					originPos = pos.x;
+				}
+				if (frameX == 0 && elpasedCount == 0)pos.x += 25;
+				weakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elpasedCount = ElpasedCount(fps, frameX, true);
+				if (frameX >= 5)
+				{
+					originCheck = false;
+					pos.x = originPos;
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				break;
+			case State::LegWeak:
+				if (!originCheck) {
+					originCheck = true;
+					originPos = pos.x;
+				}
+				if (frameX == 0 && elpasedCount == 0)pos.x += 25;
+				weakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elpasedCount = ElpasedCount(fps, frameX, true);
+				if (frameX >= 9)
+				{
+					originCheck = false;
+					pos.x = originPos;
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				break;
+			case State::LegStrong:
+				if (!originCheck) {
+					originCheck = true;
+					originPos = pos.x;
+				}
+				if (frameX == 0 && elpasedCount == 0)pos.x += 25;
+				if (frameX == 1 && elpasedCount == 0)pos.x -= 15;
+				if (frameX == 3 && elpasedCount == 0)pos.x += 10;
+				strongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elpasedCount = ElpasedCount(fps, frameX, true);
+				if (frameX >= 11)
+				{
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				if (frameX >= 9)
+				{
+					originCheck = false;
+					pos.x = originPos;
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				break;
 			}
-			else {
-				backWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
+		}
+	}
+	else
+	{
+		if (mirroringIdle)
+		{
+			Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
+
+			switch (state)
+			{
+			case State::IDLE:
+				mirroringIdle->Render(hdc, pos.x, pos.y, frameX, frameY);
 				ElpasedCount(fps, frameX, true);
-				if (frameX >= 6) frameX = 0;
-				pos.x -= moveSpeed / 3;
+				if (frameX >= 11) frameX = 0;
+				break;
+			case State::Walk:
+				if (moveDir == MoveDir::Right) {
+					mirroringFrontWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
+					ElpasedCount(fps, frameX, true);
+					if (frameX >= 6) frameX = 0;
+					pos.x += moveSpeed / 3;
+				}
+				else {
+					mirroringBackWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
+					ElpasedCount(fps, frameX, true);
+					if (frameX >= 6) frameX = 0;
+					pos.x -= moveSpeed / 3;
+				}
+				break;
+			case State::PunchWeak:
+				if (!originCheck) {
+					originCheck = true;
+					originPos = pos.x;
+				}
+				if (frameX == 0 && elpasedCount == 0)pos.x += 25;
+				mirroringWeakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elpasedCount = ElpasedCount(fps, frameX, true);
+				if (frameX >= 5)
+				{
+					originCheck = false;
+					pos.x = originPos;
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				break;
+			case State::LegWeak:
+				if (!originCheck) {
+					originCheck = true;
+					originPos = pos.x;
+				}
+				if (frameX == 0 && elpasedCount == 0)pos.x += 25;
+				mirroringWeakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elpasedCount = ElpasedCount(fps, frameX, true);
+				if (frameX >= 9)
+				{
+					originCheck = false;
+					pos.x = originPos;
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				break;
+			case State::LegStrong:
+				if (!originCheck) {
+					originCheck = true;
+					originPos = pos.x;
+				}
+				if (frameX == 0 && elpasedCount == 0)pos.x += 25;
+				if (frameX == 1 && elpasedCount == 0)pos.x -= 15;
+				if (frameX == 3 && elpasedCount == 0)pos.x += 10;
+				mirroringStrongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elpasedCount = ElpasedCount(fps, frameX, true);
+				if (frameX >= 11)
+				{
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				if (frameX >= 9)
+				{
+					originCheck = false;
+					pos.x = originPos;
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				break;
 			}
-			break;
-		case State::PunchWeak:
-			if (!originCheck) {
-				originCheck = true;
-				originPos = pos.x;
-			}
-			if (frameX == 0 && elpasedCount == 0)pos.x += 25;
-			weakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
-			elpasedCount = ElpasedCount(fps, frameX, true);
-			if (frameX >= 5) 
-			{
-				originCheck = false;
-				pos.x = originPos;
-				isAttack = false;
-				state = State::IDLE;
-				frameX = 0;
-			}
-			break;
-		case State::LegWeak:
-			if (!originCheck) {
-				originCheck = true;
-				originPos = pos.x;
-			}
-			if (frameX == 0 && elpasedCount == 0)pos.x += 25;
-			weakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
-			elpasedCount = ElpasedCount(fps, frameX, true);
-			if (frameX >= 9)
-			{
-				originCheck = false;
-				pos.x = originPos;
-				isAttack = false;
-				state = State::IDLE;
-				frameX = 0;
-			}
-			break;
-		case State::LegStrong:
-			if (!originCheck) {
-				originCheck = true;
-				originPos = pos.x;
-			}
-			if (frameX == 0 && elpasedCount == 0)pos.x += 25;
-			if (frameX == 1 && elpasedCount == 0)pos.x -= 15;
-			if (frameX == 3 && elpasedCount == 0)pos.x += 10;
-			strongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
-			elpasedCount = ElpasedCount(fps, frameX, true);
-			if (frameX >= 11)
-			{
-				isAttack = false;
-				state = State::IDLE;
-				frameX = 0;
-			}
-			if (frameX >= 9)
-			{
-				originCheck = false;
-				pos.x = originPos;
-				isAttack = false;
-				state = State::IDLE;
-				frameX = 0;
-			}
-			break;
 		}
 	}
 }

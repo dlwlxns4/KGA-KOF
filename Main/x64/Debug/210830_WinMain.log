@@ -1,2 +1,236 @@
-﻿  Image.cpp
+﻿  BackGround.cpp
+C:\Users\ChangMin\kga\a\Main\BackGround.cpp(17,41): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BackGround.cpp(17,30): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BackGround.cpp(29,39): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BackGround.cpp(29,28): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BackGround.cpp(122,26): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  BattleManager.cpp
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(8,80): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(8,68): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(8,56): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(8,44): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(9,76): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(9,67): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(9,55): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(9,43): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(10,79): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(10,67): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(10,55): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(10,43): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(11,79): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(11,67): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(11,55): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(11,43): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(17,81): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(17,69): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(17,57): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(17,45): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(18,77): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(18,68): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(18,56): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(18,44): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(19,80): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(19,68): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(19,56): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(19,44): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(20,80): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(20,68): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(20,56): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\BattleManager.cpp(20,44): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CharacterSelect.cpp
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(16,43): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(16,32): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(25,84): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(25,73): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(27,84): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(27,73): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(31,82): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(31,71): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(33,82): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(33,71): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(37,82): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(37,71): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(39,82): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(39,71): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(43,82): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(43,71): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(45,82): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(45,71): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(169,63): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(169,46): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(171,60): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(171,43): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(172,60): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(172,43): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(175,60): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(175,43): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(176,60): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(176,43): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(181,57): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(181,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(184,58): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(184,41): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(187,57): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(187,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(190,57): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(190,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(194,57): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(194,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(197,58): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(197,41): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(200,57): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(200,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(203,57): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(203,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(217,19): warning C4156: 'delete' 배열 형식을 사용하지 않고 배열 식을 삭제했습니다. 배열 형식이 대체됩니다.
+C:\Users\ChangMin\kga\a\Main\CharacterSelect.cpp(217,19): warning C4154: 배열 식을 삭제했습니다. 포인터로 변환이 제공됩니다.
+  Collider.cpp
+  GameEntity.cpp
+  GameObject.cpp
+  Image.cpp
+  Iori.cpp
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(53,33): warning C4305: '=': 'double'에서 'FLOAT'(으)로 잘립니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(57,33): warning C4305: '=': 'double'에서 'FLOAT'(으)로 잘립니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(66,68): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(66,56): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(66,44): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(66,32): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(337,33): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(337,26): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(350,36): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(350,29): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(366,38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(366,31): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(382,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(382,33): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(398,36): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(398,29): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(413,32): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(413,25): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(453,41): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(453,34): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(466,44): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(466,37): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(482,46): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(482,39): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(498,48): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(498,41): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(514,44): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(514,37): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(529,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Iori.cpp(529,33): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  KeyManager.cpp
+  Kim.cpp
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(70,33): warning C4305: '=': 'double'에서 'FLOAT'(으)로 잘립니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(74,33): warning C4305: '=': 'double'에서 'FLOAT'(으)로 잘립니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(193,33): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(193,26): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(199,39): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(199,32): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(205,38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(205,31): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(217,38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(217,31): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(234,36): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(234,29): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(253,38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(253,31): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(282,42): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(282,35): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(288,48): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(288,41): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(294,47): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(294,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(306,47): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(306,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(323,45): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(323,38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(342,47): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kim.cpp(342,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Kyo.cpp
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(59,33): warning C4305: '=': 'double'에서 'FLOAT'(으)로 잘립니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(63,33): warning C4305: '=': 'double'에서 'FLOAT'(으)로 잘립니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(210,33): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(210,26): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(223,36): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(223,29): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(238,38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(238,31): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(253,38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(253,31): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(268,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(268,33): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(283,33): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(283,26): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(324,42): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(324,35): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(337,45): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(337,38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(352,47): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(352,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(367,47): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(367,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(382,49): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(382,42): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(397,42): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\Kyo.cpp(397,35): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  main.cpp
+C:\Users\ChangMin\kga\a\Main\main.cpp(68,16): warning C4244: 'return': 'WPARAM'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  MainGame.cpp
+  MainTitle.cpp
+C:\Users\ChangMin\kga\a\Main\MainTitle.cpp(16,42): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MainTitle.cpp(16,31): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MainTitle.cpp(27,40): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MainTitle.cpp(27,29): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MainTitle.cpp(65,63): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MainTitle.cpp(65,46): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MainTitle.cpp(68,64): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MainTitle.cpp(68,44): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  MayLee.cpp
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(73,33): warning C4305: '=': 'double'에서 'FLOAT'(으)로 잘립니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(77,33): warning C4305: '=': 'double'에서 'FLOAT'(으)로 잘립니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(208,33): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(208,26): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(214,39): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(214,32): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(220,38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(220,31): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(232,38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(232,31): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(249,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(249,33): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(266,36): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(266,29): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(285,38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(285,31): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(309,42): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(309,35): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(315,48): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(315,41): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(321,47): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(321,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(333,47): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(333,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(350,49): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(350,42): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(367,45): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(367,38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(386,47): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\MayLee.cpp(386,40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SceneManager.cpp
+  UIManager.cpp
+C:\Users\ChangMin\kga\a\Main\UIManager.cpp(9,54): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\UIManager.cpp(22,53): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\UIManager.cpp(26,52): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\UIManager.cpp(30,52): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\UIManager.cpp(34,52): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\UIManager.cpp(39,53): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\UIManager.cpp(43,52): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\UIManager.cpp(47,52): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\UIManager.cpp(51,52): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\UIManager.cpp(59,39): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\UIManager.cpp(60,34): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\ChangMin\kga\a\Main\UIManager.cpp(61,34): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+C:\Users\ChangMin\kga\a\Main\Image.h(80): warning C4715: 'Image::GetMemDC': 모든 제어 경로에서 값을 반환하지는 않습니다.
   210830_WinMain.vcxproj -> C:\Users\ChangMin\kga\a\Main\x64\Debug\210830_WinMain.exe

@@ -182,19 +182,19 @@ void Image::Render(HDC hdc, int destX, int destY)
 	}
 }
 
-void Image::Render(HDC hdc, int destX, int destY, int hp , bool isPlayer1)
+void Image::Render(HDC hdc, int destX, int destY, int hp, bool isPlayer1)
 {
 
 	if (isPlayer1) {
 		GdiTransparentBlt(hdc,
 			destX - (imageInfo->width / 2),				// 복사될 비트맵의 시작 위치 x
 			destY - (imageInfo->height / 2),				// 복사될 비트맵의 시작 위치 y
-			imageInfo->width - ((106 * (100 - hp) / 100)),imageInfo->height,
+			imageInfo->width - ((106 * (100 - hp) / 100)), imageInfo->height,
 			imageInfo->hMemDc,
 			0, 0,
 			(imageInfo->width), imageInfo->height,
 			transColor
-			);
+		);
 
 
 	}
@@ -205,11 +205,11 @@ void Image::Render(HDC hdc, int destX, int destY, int hp , bool isPlayer1)
 			imageInfo->width - ((106 * (100 - hp) / 100)), imageInfo->height,
 			imageInfo->hMemDc,
 			0, 0,
-			(imageInfo->width) , imageInfo->height,
+			(imageInfo->width), imageInfo->height,
 			transColor
 		);
-		cout << " : " << imageInfo->width - ((106 * (100 - hp) / 100)) << endl;
-		cout << " : " << ((106 * (100 - hp) / 100)) << endl;
 
 	}
 }
+
+
