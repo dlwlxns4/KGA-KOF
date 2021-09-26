@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObject.h"
 #include "Config.h"
+#include <vector>
+#include "Collider.h"
 
 class Image;
 class Kim : public GameObject
@@ -26,16 +28,20 @@ private:
 	float originPos;
 	bool originCheck;
 	bool isAttack;
+	bool isHit;
 	MoveDir moveDir;
 protected:
 	RECT rect;
 	State state;
-
 	bool isPlayer1;
 
 public:
+	Collider attackCollider[4];
+	Collider damagedCollider[6];
 	void Init(bool isPlayer1);
 	void Update();
+	int ElpasedCount(int fps, int& frameX, bool check);
+	void Collision(int frameX, int frameMin, int frameMax, int colliderNum, int& elpasedCount, bool& isHit);
 	void Render(HDC hdc);
 	void Release();
 };

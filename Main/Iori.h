@@ -32,7 +32,7 @@ private:
 	MoveDir moveDir;
 
 public:
-	RECT collider[3]; 
+	//RECT collider[3]; 
 	State state;
 	Collider attackCollider[4];
 	Collider damagedCollider[6];

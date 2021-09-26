@@ -69,10 +69,11 @@ void MainGame::Update()
 		backGround->Update();
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
 			kim->Update();
+			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(true), true, kim->GetPos());
 		}
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
 			iori->Update();
-			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(true), true, iori->GetPos() );
+			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(true), true, iori->GetPos());
 		}
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
 			kyo->Update();
@@ -84,6 +85,7 @@ void MainGame::Update()
 		//플레이어 2
 		if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kim") {
 			kim2->Update();
+			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(false), false, kim2->GetPos());
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Iori") {
 			iori2->Update();

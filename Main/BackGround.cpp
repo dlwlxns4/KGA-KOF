@@ -2,7 +2,6 @@
 #include "Image.h"
 void BackGround::Init()
 {
-	isBackGround = IsBackGround::BulGukSa;
 	elpasedCount = 0;
 	frame = 0;
 
@@ -50,7 +49,7 @@ void BackGround::Init()
 		str += to_string(i + 1);
 		str += ".bmp";
 		strcpy_s(cha, str.c_str());
-		harbor1[i]->Init(cha, 750, 224, 1, 1, false, RGB(255, 0, 255));
+		harbor1[i]->Init(cha, 750 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
 	// 항구1 이미지 초기화
 
@@ -62,7 +61,7 @@ void BackGround::Init()
 		str += to_string(i + 1);
 		str += ".bmp";
 		strcpy_s(cha, str.c_str());
-		harbor2[i]->Init(cha, 750, 224, 1, 1, false, RGB(255, 0, 255));
+		harbor2[i]->Init(cha, 750 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
 	// 항구2 이미지 초기화
 
@@ -74,7 +73,7 @@ void BackGround::Init()
 		str += to_string(i + 1);
 		str += ".bmp";
 		strcpy_s(cha, str.c_str());
-		hwaHongMun[i]->Init(cha, 752, 224, 1, 1, false, RGB(255, 0, 255));
+		hwaHongMun[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
 	// 화홍문 이미지 초기화
 
@@ -86,7 +85,7 @@ void BackGround::Init()
 		str += to_string(i + 1);
 		str += ".bmp";
 		strcpy_s(cha, str.c_str());
-		racing[i]->Init(cha, 752, 224, 1, 1, false, RGB(255, 0, 255));
+		racing[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
 	// 레이싱 이미지 초기화
 
@@ -98,7 +97,7 @@ void BackGround::Init()
 		str += to_string(i + 1);
 		str += ".bmp";
 		strcpy_s(cha, str.c_str());
-		street[i]->Init(cha, 752, 224, 1, 1, false, RGB(255, 0, 255));
+		street[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
 	// 거리 이미지 초기화
 
@@ -110,7 +109,7 @@ void BackGround::Init()
 		str += to_string(i + 1);
 		str += ".bmp";
 		strcpy_s(cha, str.c_str());
-		underBridge[i]->Init(cha, 752, 224, 1, 1, false, RGB(255, 0, 255));
+		underBridge[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
 	// 다리밑 이미지 초기화
 
@@ -120,6 +119,40 @@ void BackGround::Init()
 	str += ".bmp";
 	strcpy_s(cha, str.c_str());
 	ui->Init(cha, 640/2, 114/1.5, 1, 1, false, RGB(255, 0, 255));
+
+	srand(time(NULL));
+	switch (rand() % 9) {
+	case 0:
+		isBackGround = IsBackGround::BulGukSa;
+		break;
+	case 1:
+		isBackGround = IsBackGround::Desert;
+		break;
+	case 2:
+		isBackGround = IsBackGround::Garden;
+		break;
+	case 3:
+		isBackGround = IsBackGround::Harbor1;
+		break;
+	case 4:
+		isBackGround = IsBackGround::Harbor2;
+		break;
+	case 5:
+		isBackGround = IsBackGround::HwaHongMun;
+		break;
+	case 6:
+		isBackGround = IsBackGround::Racing;
+		break;
+	case 7:
+		isBackGround = IsBackGround::Street;
+		break;
+	case 8:
+		isBackGround = IsBackGround::UnderBridge;
+		break;
+
+	}
+	// 배경 랜덤설정
+
 }
 
 void BackGround::Update()
