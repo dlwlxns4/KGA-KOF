@@ -577,9 +577,10 @@ void Iori::Render(HDC hdc)
 
 void Iori::Release()
 {
-	if (img) 
-	{
-		delete img;
-	}
+	if (img) {delete img;}
+	if (idle) { delete idle; }
+	if (strongPunch) { delete strongPunch; }
+	if (weakLeg) { delete weakLeg; }
+	if (weakPunch) { delete weakPunch; }
 }
 

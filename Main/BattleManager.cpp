@@ -92,6 +92,10 @@ bool BattleManager::CheckDamaged(bool isPlayer1)
 					player1Hp -= attackCollider2[i].damage;
 					isPlayer1Damaged = true;
 					cout << "player1Hp : " << player1Hp << endl;
+					if (player1Hp <= 0)
+					{
+						// 게임종료 로직
+					}
 					return true;
 				}
 			}
@@ -107,6 +111,10 @@ bool BattleManager::CheckDamaged(bool isPlayer1)
 					player2Hp -= attackCollider[i].damage;
 					isPlayer2Damaged = true;
 					cout << "player2Hp : " << player2Hp << endl;
+					if (player2Hp <= 0)
+					{
+						// 게임종료 로직
+					}
 					return true;
 				}
 			}
