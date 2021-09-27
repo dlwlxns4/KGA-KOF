@@ -93,20 +93,32 @@ void MayLee::Init(bool isPlayer1)
 	damagedCollider[0].init(pos.x - 25, pos.x + 25, pos.y - 40, pos.y + 50);
 	this->isPlayer1 = isPlayer1;
 	isHit = false;
+	isMeet = false;
+
 }
 
 void MayLee::Update()
 {
+	if (BattleManager::GetSingleton()->CheckMeet())
+	{
+		isMeet = true;
+	}
+	else
+	{
+		isMeet = false;
+	}
 	if(isPlayer1)
 	{
 		if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_RIGHT_KEY) && state == State::IDLE)
 		{
-			frameX = 0;
-			pos.x += moveSpeed;
-			state = State::Walk;
-			moveDir = MoveDir::Right;
-			isAttack = false;
-
+			if (!isMeet)
+			{
+				frameX = 0;
+				pos.x += moveSpeed;
+				state = State::Walk;
+				moveDir = MoveDir::Right;
+				isAttack = false;
+			}
 		}
 		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_LEFT_KEY) && state == State::IDLE)
 		{
@@ -156,19 +168,24 @@ void MayLee::Update()
 	{
 		if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_RIGHT_KEY) && state == State::IDLE)
 		{
+			
 			frameX = 0;
 			pos.x += moveSpeed;
 			state = State::Walk;
 			moveDir = MoveDir::Right;
 			isAttack = false;
+			
 
 		}
 		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_LEFT_KEY) && state == State::IDLE)
 		{
-			frameX = 0;
-			state = State::Walk;
-			moveDir = MoveDir::Left;
-			isAttack = false;
+			if (!isMeet)
+			{
+				frameX = 0;
+				state = State::Walk;
+				moveDir = MoveDir::Left;
+				isAttack = false;
+			}
 		}
 		if (state == State::IDLE)
 		{
@@ -381,6 +398,34 @@ void MayLee::Update()
 			state = State::Damaged;
 		}
 	}
+
+	// 배경 카메라 움직임 관련
+	if (isPlayer1) {
+		if (BattleManager::GetSingleton()->player2MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
+			&& BattleManager::GetSingleton()->playerPos2.x <= 40) {
+			if (!(pos.x >= 280)) {
+				pos.x += moveSpeed / 3;
+			}
+		}
+		if (BattleManager::GetSingleton()->player2MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
+			&& BattleManager::GetSingleton()->playerPos2.x >= 280) {
+			if (!(pos.x <= 40)) {
+				pos.x -= moveSpeed / 3;
+			}
+		}
+	}
+	else {
+		if (BattleManager::GetSingleton()->player1MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
+			&& BattleManager::GetSingleton()->playerPos1.x <= 40) {
+			if (!(pos.x >= 280)) {
+				pos.x += moveSpeed / 3;
+			}
+		}
+		if (BattleManager::GetSingleton()->player1MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
+			&& BattleManager::GetSingleton()->playerPos1.x >= 280) {
+			if (!(pos.x <= 40)) pos.x -= moveSpeed / 3;
+		}
+	}
 }
 
 void MayLee::Render(HDC hdc)
@@ -403,13 +448,17 @@ void MayLee::Render(HDC hdc)
 					frontWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 					ElpasedCount(fps, frameX, true);
 					if (frameX >= 5) frameX = 0;
-					pos.x += moveSpeed / 3;
+					if (!isMeet) {
+						BattleManager::GetSingleton()->player1MoveCheck = 2;
+						if (pos.x <= 281) pos.x += moveSpeed / 3;
+					}
 				}
 				else {
 					backWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 					ElpasedCount(fps, frameX, true);
 					if (frameX >= 5) frameX = 0;
-					pos.x -= moveSpeed / 3;
+					BattleManager::GetSingleton()->player1MoveCheck = 1;
+					if (pos.x >= 40)pos.x -= moveSpeed / 3;
 				}
 				break;
 			case State::PunchWeak:
@@ -555,13 +604,17 @@ void MayLee::Render(HDC hdc)
 					mirroringFrontWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 					ElpasedCount(fps, frameX, true);
 					if (frameX >= 5) frameX = 0;
-					pos.x += moveSpeed / 3;
+					BattleManager::GetSingleton()->player2MoveCheck = 2;
+					if (pos.x <= 281) pos.x += moveSpeed / 3;
 				}
 				else {
 					mirroringBackWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 					ElpasedCount(fps, frameX, true);
 					if (frameX >= 5) frameX = 0;
-					pos.x -= moveSpeed / 3;
+					if (!isMeet) {
+						BattleManager::GetSingleton()->player2MoveCheck = 1;
+						if (pos.x >= 40)pos.x -= moveSpeed / 3;
+					}
 				}
 				break;
 			case State::PunchWeak:

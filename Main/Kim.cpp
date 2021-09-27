@@ -299,12 +299,16 @@ void Kim::Update()
 			&& BattleManager::GetSingleton()->playerPos1.x <= 40) {
 			if (!(pos.x >= 280)) {
 				pos.x += moveSpeed / 3;
-				cout << "Aa";
+				originPos += moveSpeed / 3;
 			}
 		}
 		if (BattleManager::GetSingleton()->player1MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
 			&& BattleManager::GetSingleton()->playerPos1.x >= 280) {
-			if (!(pos.x <= 40)) pos.x -= moveSpeed / 3;
+			if (!(pos.x <= 40)) {
+				pos.x -= moveSpeed / 3;
+				originPos -= moveSpeed / 3;
+			}
+				
 		}
 	}
 
