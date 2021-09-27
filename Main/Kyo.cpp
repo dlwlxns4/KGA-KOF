@@ -22,7 +22,6 @@ void Kyo::Init(bool isPlayer1)
 		attacked = new Image;
 		attacked->Init("Image/Character/Kyo/Kyo_attacked.bmp", 560, 116, 5, 1, true, RGB(240, 0, 240));
 
-		frameX = frameY = 0;
 	}
 	else
 	{
@@ -41,9 +40,9 @@ void Kyo::Init(bool isPlayer1)
 		MirroringAttacked = new Image;
 		MirroringAttacked->Init("Image/Character/Kyo/Kyo_attacked_mirroring.bmp", 560, 116, 5, 1, true, RGB(240, 0, 240));
 
-		frameX = 9;
-		frameY = 0;
 	}
+
+	frameX = frameY = 0;
 
 	moveDir = MoveDir::Right;
 
@@ -90,6 +89,7 @@ void Kyo::Update()
 			state = State::Walk;
 			moveDir = MoveDir::Right;
 			isAttack = false;
+			elapsedCount = 0;
 
 		}
 		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_LEFT_KEY) && state == State::IDLE)
@@ -98,6 +98,8 @@ void Kyo::Update()
 			state = State::Walk;
 			moveDir = MoveDir::Left;
 			isAttack = false;
+			elapsedCount = 0;
+			frameX = 0;
 		}
 
 		if (state == State::IDLE)
@@ -112,6 +114,7 @@ void Kyo::Update()
 			frameX = 0;
 			isAttack = true;
 			state = State::LegWeak;
+			elapsedCount = 0;
 		}
 		// A누르고 공격중이 아닐때만 가능
 		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_KICK) && !isAttack)
@@ -119,6 +122,7 @@ void Kyo::Update()
 			frameX = 0;
 			isAttack = true;
 			state = State::LegStrong;
+			elapsedCount = 0;
 		}
 		// A누르고 공격중이 아닐때만 가능
 		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack)
@@ -126,6 +130,7 @@ void Kyo::Update()
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchWeak;
+			elapsedCount = 0;
 		}
 		// A누르고 공격중이 아닐때만 가능
 		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack)
@@ -133,12 +138,14 @@ void Kyo::Update()
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchStrong;
+			elapsedCount = 0;
 		}
 
-		if (KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY))
+		if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY)) && !isAttack)
 		{
 			frameX = 0;
 			state = State::IDLE;
+			elapsedCount = 0;
 		}
 	}
 	else
@@ -150,6 +157,7 @@ void Kyo::Update()
 			state = State::Walk;
 			moveDir = MoveDir::Right;
 			isAttack = false;
+			elapsedCount = 0;
 
 		}
 		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_LEFT_KEY) && state == State::IDLE)
@@ -158,6 +166,7 @@ void Kyo::Update()
 			state = State::Walk;
 			moveDir = MoveDir::Left;
 			isAttack = false;
+			elapsedCount = 0;
 		}
 
 		if (state == State::IDLE)
@@ -172,6 +181,7 @@ void Kyo::Update()
 			frameX = 0;
 			isAttack = true;
 			state = State::LegWeak;
+			elapsedCount = 0;
 		}
 		// A누르고 공격중이 아닐때만 가능
 		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_KICK) && !isAttack)
@@ -179,6 +189,7 @@ void Kyo::Update()
 			frameX = 0;
 			isAttack = true;
 			state = State::LegStrong;
+			elapsedCount = 0;
 		}
 		// A누르고 공격중이 아닐때만 가능
 		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_PUNCH) && !isAttack)
@@ -186,6 +197,7 @@ void Kyo::Update()
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchWeak;
+			elapsedCount = 0;
 		}
 		// A누르고 공격중이 아닐때만 가능
 		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_PUNCH) && !isAttack)
@@ -193,12 +205,14 @@ void Kyo::Update()
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchStrong;
+			elapsedCount = 0;
 		}
 
-		if (KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_LEFT_KEY))
+		if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_LEFT_KEY)) && !isAttack)
 		{
 			frameX = 0;
 			state = State::IDLE;
+			elapsedCount = 0;
 		}
 	}
 
@@ -358,9 +372,11 @@ void Kyo::Update()
 
 	if (BattleManager::GetSingleton()->CheckDamaged(isPlayer1))
 	{
+		frameX = 0;
 		state = State::Damaged;
 	}
 
+	 
 }
 
 void Kyo::Render(HDC hdc)
@@ -449,16 +465,16 @@ void Kyo::Render(HDC hdc)
 				}
 				break;
 			case State::Damaged:
-				if (isPlayer1) {
-					attacked->Render(hdc, pos.x, pos.y, frameX, frameY);
-				}
+				attacked->Render(hdc, pos.x, pos.y, frameX, frameY);
 				elapsedCount++;
-				if (elapsedCount == 3)
+
+
+				if (elapsedCount >= 3)
 				{
 					elapsedCount = 0;
 					frameX++;
 				}
-				if (frameX == 4)
+				if (frameX >= 4)
 				{
 					isAttack = false;
 					state = State::IDLE;
@@ -500,6 +516,7 @@ void Kyo::Render(HDC hdc)
 	}
 	else
 	{
+	cout << "frameX" << frameX << endl;
 		if (MirroringIdle)
 		{
 			Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
@@ -518,6 +535,7 @@ void Kyo::Render(HDC hdc)
 				{
 					frameX = 0;
 				}
+				cout << "0" << endl;
 				break;
 			case State::LegWeak:
 				MirroringWeakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
@@ -533,6 +551,7 @@ void Kyo::Render(HDC hdc)
 					state = State::IDLE;
 					frameX = 0;
 				}
+				cout << "1" << endl;
 				break;
 			case State::LegStrong:
 				MirroringStrongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
@@ -548,6 +567,7 @@ void Kyo::Render(HDC hdc)
 					state = State::IDLE;
 					frameX = 0;
 				}
+				cout << "2" << endl;
 				break;
 			case State::PunchWeak:
 				MirroringWeakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
@@ -563,6 +583,7 @@ void Kyo::Render(HDC hdc)
 					state = State::IDLE;
 					frameX = 0;
 				}
+				cout << "3" << endl;
 				break;
 			case State::PunchStrong:
 				MirroringStrongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
@@ -578,23 +599,26 @@ void Kyo::Render(HDC hdc)
 					state = State::IDLE;
 					frameX = 0;
 				}
+				cout << "4" << endl;
 				break;
 			case State::Damaged:
-				if (isPlayer1) {
-					MirroringAttacked->Render(hdc, pos.x, pos.y, frameX, frameY);
-				}
+
+				MirroringAttacked->Render(hdc, pos.x, pos.y, frameX, frameY);
+				
 				elapsedCount++;
-				if (elapsedCount == 3)
+				if (elapsedCount >= 3)
 				{
 					elapsedCount = 0;
 					frameX++;
 				}
-				if (frameX == 4)
+				if (frameX >= 5)
 				{
+					cout << "바뀜" <<endl;
 					isAttack = false;
 					state = State::IDLE;
 					frameX = 0;
 				}
+				cout << "Damaged" << endl;
 				break;
 			case State::Walk:
 				MirroringWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
@@ -625,6 +649,7 @@ void Kyo::Render(HDC hdc)
 					}
 					pos.x -= moveSpeed / 3;
 				}
+				cout << "walk" << endl;
 				break;
 			}
 		}

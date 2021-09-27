@@ -147,8 +147,8 @@ void CharacterSelect::Update()
 	{
 		UIManager::GetSingleton()->Init();
 		UIManager::GetSingleton()->SetPlayerImage();
-		SceneManager::GetSingleton()->SetIsSceneState("Battle");
 		BattleManager::GetSingleton()->Init();
+		SceneManager::GetSingleton()->SetIsSceneState("Battle");
 	}
 	
 	selectPos1[1].x = 204 + (20 * selectPos1[0].x);

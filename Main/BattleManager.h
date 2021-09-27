@@ -23,7 +23,8 @@ public:
 	bool isPlayer2Damaged = false;
 
 	Image* ko[21];
-
+	Image* win[25];
+	
 	State gameState;
 
 	int elpasedCount = 0;
