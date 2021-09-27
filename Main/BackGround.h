@@ -22,6 +22,13 @@ protected:
 	int player1Pos, player2Pos;
 	int backGroundPos;
 	int backGroundPrint;
+	Image* sceneTransform[11];
+
+
+	bool isSceneTransform=true;
+	int transformFrame=0;
+	int transformElpasedCount = 0;
+
 	int elpasedCount;
 	int frame;
 
@@ -43,6 +50,7 @@ public:
 	void Init();
 	void Update();
 	void Render(HDC hdc);
+	void sceneTransformRender(HDC hdc);
 	void Release();
 };
 

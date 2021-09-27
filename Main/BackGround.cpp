@@ -5,6 +5,9 @@ using namespace std;
 void BackGround::Init()
 {
 
+	elpasedCount = 0;
+	frame = 0;
+
 	for (int i = 0; i < 8; i++)
 	{
 		bulGukSa[i] = new Image;
@@ -15,7 +18,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		bulGukSa[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// ºÒ±¹»ç ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// ë¶ˆêµ­ì‚¬ ì´ë¯¸ì§€ ì´ˆê¸°í™”
 	
 	for (int i = 0; i < 8; i++)
 	{
@@ -27,7 +30,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		desert[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// »ç¸· ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// ì‚¬ë§‰ ì´ë¯¸ì§€ ì´ˆê¸°í™”
 
 	for (int i = 0; i < 29; i++)
 	{
@@ -39,7 +42,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		garden[i]->Init(cha, 768, 248, 1, 1, false, RGB(255, 0, 255));
 	}
-	// Á¤¿ø ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// ì •ì› ì´ë¯¸ì§€ ì´ˆê¸°í™”
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -51,7 +54,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		harbor1[i]->Init(cha, 750 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// Ç×±¸1 ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// í•­êµ¬1 ì´ë¯¸ì§€ ì´ˆê¸°í™”
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -63,7 +66,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		harbor2[i]->Init(cha, 750 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// Ç×±¸2 ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// í•­êµ¬2 ì´ë¯¸ì§€ ì´ˆê¸°í™”
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -75,7 +78,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		hwaHongMun[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// È­È«¹® ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// í™”í™ë¬¸ ì´ë¯¸ì§€ ì´ˆê¸°í™”
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -87,7 +90,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		racing[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// ·¹ÀÌ½Ì ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// ë ˆì´ì‹± ì´ë¯¸ì§€ ì´ˆê¸°í™”
 
 	for (int i = 0; i < 16; i++)
 	{
@@ -99,7 +102,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		street[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// °Å¸® ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// ê±°ë¦¬ ì´ë¯¸ì§€ ì´ˆê¸°í™”
 
 	for (int i = 0; i < 16; i++)
 	{
@@ -111,11 +114,12 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		underBridge[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// ´Ù¸®¹Ø ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// ë‹¤ë¦¬ë°‘ ì´ë¯¸ì§€ ì´ˆê¸°í™”
 
 	backGroundPos = WIN_SIZE_X / 2;
 	elpasedCount = 0;
 	frame = 0;
+
 
 	ui = new Image;
 	char cha[100];
@@ -124,10 +128,23 @@ void BackGround::Init()
 	strcpy_s(cha, str.c_str());
 	ui->Init(cha, 640/2, 114/1.5, 1, 1, false, RGB(255, 0, 255));
 
+
+	for(int i=0; i<11; i++)
+	{
+		sceneTransform[i] = new Image;
+		char cha[100];
+		string str = "Image/SceneTransform/";
+		str += to_string(i + 1);
+		str += ".bmp";
+		strcpy_s(cha, str.c_str());
+		sceneTransform[i]->Init(cha, 680, 492, 1, 1, true, RGB(255, 0, 255));
+	}
+
 	srand(time(NULL));
 	switch (rand() % 9) {
 	case 0:
 		isBackGround = IsBackGround::BulGukSa;
+
 		backGroundPrint = 250;
 		break;
 	case 1:
@@ -161,10 +178,11 @@ void BackGround::Init()
 	case 8:
 		isBackGround = IsBackGround::UnderBridge;
 		backGroundPrint = 250;
+
 		break;
 
 	}
-	// ¹è°æ ·£´ı¼³Á¤
+	// ë°°ê²½ ëœë¤ì„¤ì •
 
 }
 
@@ -191,6 +209,7 @@ void BackGround::Update()
 			}
 		}
 	}
+
 }
 
 void BackGround::Render(HDC hdc)
@@ -199,6 +218,7 @@ void BackGround::Render(HDC hdc)
 	switch (isBackGround) {
 	case IsBackGround::BulGukSa:
 		bulGukSa[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 
 		if (elpasedCount == 5)
@@ -210,6 +230,7 @@ void BackGround::Render(HDC hdc)
 		break;
 	case IsBackGround::Desert:
 		desert[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -220,6 +241,7 @@ void BackGround::Render(HDC hdc)
 		break;
 	case IsBackGround::Garden:
 		garden[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -230,6 +252,7 @@ void BackGround::Render(HDC hdc)
 		break;
 	case IsBackGround::Harbor1:
 		harbor1[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -240,6 +263,7 @@ void BackGround::Render(HDC hdc)
 		break;
 	case IsBackGround::Harbor2:
 		harbor2[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -250,6 +274,7 @@ void BackGround::Render(HDC hdc)
 		break;
 	case IsBackGround::HwaHongMun:
 		hwaHongMun[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -260,6 +285,7 @@ void BackGround::Render(HDC hdc)
 		break;
 	case IsBackGround::Racing:
 		racing[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -270,6 +296,7 @@ void BackGround::Render(HDC hdc)
 		break;
 	case IsBackGround::Street:
 		street[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -280,6 +307,7 @@ void BackGround::Render(HDC hdc)
 		break;
 	case IsBackGround::UnderBridge:
 		underBridge[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -294,6 +322,27 @@ void BackGround::Render(HDC hdc)
 	//ui->Render(hdc, WIN_SIZE_X / 2, 0);
 }
 
+
+void BackGround::sceneTransformRender(HDC hdc)
+{
+	if (isSceneTransform)
+	{
+		sceneTransform[transformFrame]->Render(hdc, 0, 120, 0, 0);
+		transformElpasedCount++;
+		if (transformElpasedCount == 2)
+		{
+
+			cout << transformFrame;
+			transformElpasedCount = 0;
+			transformFrame++;
+			if (transformFrame >= 11)
+			{
+				transformFrame = 0;
+				isSceneTransform = false;
+			}
+		}
+	}
+}
 
 void BackGround::Release()
 {
