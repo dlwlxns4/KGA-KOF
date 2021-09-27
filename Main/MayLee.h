@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObject.h"
 #include "Config.h"
+#include <vector>
+#include "Collider.h"
 
 class Image;
 class MayLee : public GameObject
@@ -13,6 +15,8 @@ private:
 	Image* strongLeg;
 	Image* weakPunch;
 	Image* strongPunch;
+	Image* hit;
+	Image* die;
 
 	Image* mirroringIdle;
 	Image* mirroringFrontWalk;
@@ -21,6 +25,8 @@ private:
 	Image* mirroringstrongLeg;
 	Image* mirroringWeakPunch;
 	Image* mirroringStrongPunch;
+	Image* mirroringHit;
+	Image* mirroringDie;
 
 	int frameX, frameY;
 	int elpasedCount;
@@ -28,6 +34,7 @@ private:
 	float originPos;
 	bool originCheck;
 	bool isAttack;
+	bool isHit;
 	MoveDir moveDir;
 
 protected:
@@ -37,6 +44,9 @@ protected:
 	bool isPlayer1;
 
 public:
+
+	Collider attackCollider[4];
+	Collider damagedCollider[6];
 	void Init(bool isPlayer1);
 	void Update();
 	void Render(HDC hdc);
