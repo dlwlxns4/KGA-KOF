@@ -1,8 +1,6 @@
 #pragma once
 #include "Config.h"
 #include "GameEntity.h"
-#include "Tank.h"
-#include "Ammo.h"
 #include <vector>
 #include "Singleton.h"
 

@@ -3,6 +3,7 @@
 #include "Singleton.h"
 #include <string>
 
+class Image;
 class BattleManager : public Singleton<BattleManager>
 {
 public:
@@ -16,8 +17,8 @@ public:
 	POINTFLOAT playerPos1;
 	POINTFLOAT playerPos2;
 
-	int player1Hp = 100;
-	int player2Hp = 100;
+	int player1Hp = 10;
+	int player2Hp = 10;
 
 	int player1MoveCheck = 0;
 	int player2MoveCheck = 0;
@@ -39,8 +40,8 @@ public:
 	bool isPlayer2Damaged = false;
 
 	void Init(string player, bool isPlayer1, POINTFLOAT pos);
+	void Init();
 	void Render(HDC hdc);
-	int SetDie() { return 1; }
 	bool CheckCollision(RECT* rect, bool isPlayer1);
 	bool CheckDamaged(bool isPlayer1);
 	void SetColliderPos(string player, bool isPlayer1, POINTFLOAT pos);

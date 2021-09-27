@@ -11,56 +11,6 @@ void UIManager::Init()
 	playerHP1->Init("Image/UI/1HP.bmp", 106, 7, true, RGB(255, 0, 255));
 	playerHP2 = new Image;
 	playerHP2->Init("Image/UI/1HP.bmp", 107, 7,  true, RGB(255, 0, 255));
-
-}
-void UIManager::Init2()
-{
-
-	for (int i = 0; i < 21; i++)
-	{
-		static int num = 0;
-		time10[i] = new Image;
-		char cha[100];
-		if (i != 0 && (i % 3) == 0) num++;
-		string str = "Image/UI/TimeNum/Time";
-		str += to_string(num);
-		str += "-";
-		str += to_string((i % 3) + 1);
-		str += ".bmp";
-		strcpy_s(cha, str.c_str());
-		time10[i]->Init(cha, 680 / 2.1, 492 / 2, 1, 1, true, RGB(255, 0, 255));
-	}
-
-	for (int i = 0; i < 30; i++)
-	{
-		static int num = 0;
-		time1[i] = new Image;
-		char cha[100];
-		if (i != 0 && (i % 3) == 0) num++;
-		string str = "Image/UI/TimeNum/Time";
-		str += to_string(num);
-		str += "-";
-		str += to_string((i % 3) + 1);
-		str += ".bmp";
-		strcpy_s(cha, str.c_str());
-		time1[i]->Init(cha, 680 / 2.1, 492 / 2, 1, 1, true, RGB(255, 0, 255));
-	}
-
-	for (int i = 0; i < 13; i++)
-	{
-		timeLoading[i] = new Image;
-		char cha[100];
-		string str = "Image/UI/TimeLoading/TimeLoading";
-		str += to_string(i + 1);
-		str += ".bmp";
-		strcpy_s(cha, str.c_str());
-		timeLoading[i]->Init(cha, 680 / 2.1, 492 / 2, 1, 1, true, RGB(255, 0, 255));
-	}
-
-	timeLoadingNum = 0;
-	timeNum10 = 18;
-	timeNum1 = 0;
-	timeOut = false;
 }
 void UIManager::SetPlayerImage()
 {
@@ -104,63 +54,18 @@ void UIManager::SetPlayerImage()
 }
 void UIManager::Render(HDC hdc)
 {
-	cout << !timeOut;
+	
 	
 	backGroundUI->Render(hdc, WIN_SIZE_Y / 1.5 , WIN_SIZE_Y / 2);
 	player1->Render(hdc, WIN_SIZE_Y / 1.5, WIN_SIZE_Y / 2);
 	player2->Render(hdc, WIN_SIZE_Y / 1.5, WIN_SIZE_Y / 2);
 	playerHP1->Render(hdc, 90, 23, BattleManager::GetSingleton()->player1Hp, true);
 	playerHP2->Render(hdc, WIN_SIZE_X-89, 23, BattleManager::GetSingleton()->player2Hp, false);
-	if (!timeOut)
-	{
-		timeLoading[timeLoadingNum]->Render(hdc, WIN_SIZE_X / 2, WIN_SIZE_Y / 2);
-		time1[timeNum1]->Render(hdc, WIN_SIZE_X / 2, WIN_SIZE_Y / 2);
-		time10[timeNum10]->Render(hdc, WIN_SIZE_X / 2 - 14, WIN_SIZE_Y / 2);
-	} else {
-		timeLoading[0]->Render(hdc, WIN_SIZE_X / 2, WIN_SIZE_Y / 2);
-		time1[2]->Render(hdc, WIN_SIZE_X / 2, WIN_SIZE_Y / 2);
-		time10[2]->Render(hdc, WIN_SIZE_X / 2 - 14, WIN_SIZE_Y / 2);
-	}
+
 }
 
 void UIManager::Update()
 {
-	if (!timeOut)
-	{
-		static int num = 0;
-		static bool time1Check = true;
-		static bool time10Check = true;
-		num++;
-		if (num == 3) {
-			num = 0;
-			timeLoadingNum++;
-		}
-
-		if (timeLoadingNum == 13) {
-			timeLoadingNum = 0;
-			time1Check = true;
-			if (timeNum1 == 2) {
-				timeNum1 = 27;
-				if (timeNum10 == 2) timeOut = true;
-				timeNum10 -= 6;
-				time10Check = true;
-			}
-			else {
-				timeNum1 -= 6;
-			}
-		}
-		cout << timeNum10 << endl;
-
-		if (time1Check && num == 0) {
-			timeNum1++;
-			if ((timeNum1 + 1) % 3 == 0) time1Check = false;
-		}
-		if (time10Check && num == 0) {
-			timeNum10++;
-			if ((timeNum10 + 1) % 3 == 0) time10Check = false;
-
-		}
-	}
 }
 
 void UIManager::Release()
