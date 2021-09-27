@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameObject.h"
+#include "Collider.h"
 
 class Image;
 
@@ -27,6 +28,8 @@ private:
 	int elapsedCount;
 	bool isAttack;
 	MoveDir moveDir;
+	Collider attackCollider[4];
+	Collider damagedCollider[6];
 
 public:
 	RECT rect;
