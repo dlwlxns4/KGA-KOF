@@ -280,7 +280,6 @@ void Kim::Update()
 			&& BattleManager::GetSingleton()->playerPos1.x <= 40) {
 			if (!(pos.x >= 280)) {
 				pos.x += moveSpeed / 3;
-				cout << "Aa";
 			}
 		}
 		if (BattleManager::GetSingleton()->player1MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
@@ -306,6 +305,7 @@ void Kim::Render(HDC hdc)
 		switch (state)
 		{
 		case State::IDLE:
+			originPos = pos.x;
 			if (isPlayer1) {
 				idle->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
@@ -316,6 +316,7 @@ void Kim::Render(HDC hdc)
 			if (frameX >= 11) frameX = 0;
 			break;
 		case State::Walk:
+			originPos = pos.x;
 			if (moveDir == MoveDir::Right) {
 				if (isPlayer1) {
 					frontWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
@@ -453,7 +454,9 @@ void Kim::Render(HDC hdc)
 			static bool check = true;
 			if (check) {
 				frameX = 0;
+				elpasedCount = 0;
 				check = false;
+				pos.x = originPos;
 			}
 			if (isPlayer1) {
 				hit2->Render(hdc, pos.x, pos.y, frameX, frameY);
@@ -463,7 +466,7 @@ void Kim::Render(HDC hdc)
 			}
 
 			elpasedCount++;
-			if (elpasedCount == 3)
+			if (elpasedCount >= 3)
 			{
 				elpasedCount = 0;
 				frameX++;
@@ -479,92 +482,6 @@ void Kim::Render(HDC hdc)
 		}
 	}
 
-	//if (mirroringIdle)
-	//{
-	//	Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
-	//
-	//	switch (state)
-	//	{
-	//	case State::IDLE:
-	//		mirroringIdle->Render(hdc, pos.x, pos.y, frameX, frameY);
-	//		ElpasedCount(fps, frameX, true);
-	//		if (frameX >= 11) frameX = 0;
-	//		break;
-	//	case State::Walk:
-	//		if (moveDir == MoveDir::Right) {
-	//			mirroringFrontWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
-	//			ElpasedCount(fps, frameX, true);
-	//			if (frameX >= 6) frameX = 0;
-	//			pos.x += moveSpeed / 3;
-	//		}
-	//		else {
-	//			mirroringBackWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
-	//			ElpasedCount(fps, frameX, true);
-	//			if (frameX >= 6) frameX = 0;
-	//			pos.x -= moveSpeed / 3;
-	//		}
-	//		break;
-	//	case State::PunchWeak:
-	//		if (!originCheck) {
-	//			originCheck = true;
-	//			originPos = pos.x;
-	//		}
-	//		if (frameX == 0 && elpasedCount == 0)pos.x += 25;
-	//		mirroringWeakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
-	//		elpasedCount = ElpasedCount(fps, frameX, true);
-	//		if (frameX >= 5)
-	//		{
-	//			originCheck = false;
-	//			pos.x = originPos;
-	//			isAttack = false;
-	//			state = State::IDLE;
-	//			frameX = 0;
-	//		}
-	//		break;
-	//	case State::LegWeak:
-	//		if (!originCheck) {
-	//			originCheck = true;
-	//			originPos = pos.x;
-	//		}
-	//		if (frameX == 0 && elpasedCount == 0)pos.x += 25;
-	//		mirroringWeakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
-	//		elpasedCount = ElpasedCount(fps, frameX, true);
-	//		if (frameX >= 9)
-	//		{
-	//			originCheck = false;
-	//			pos.x = originPos;
-	//			isAttack = false;
-	//			state = State::IDLE;
-	//			frameX = 0;
-	//		}
-	//		break;
-	//	case State::LegStrong:
-	//		if (!originCheck) {
-	//			originCheck = true;
-	//			originPos = pos.x;
-	//		}
-	//		if (frameX == 0 && elpasedCount == 0)pos.x += 25;
-	//		if (frameX == 1 && elpasedCount == 0)pos.x -= 15;
-	//		if (frameX == 3 && elpasedCount == 0)pos.x += 10;
-	//		mirroringStrongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
-	//		elpasedCount = ElpasedCount(fps, frameX, true);
-	//		if (frameX >= 11)
-	//		{
-	//			isAttack = false;
-	//			state = State::IDLE;
-	//			frameX = 0;
-	//		}
-	//		if (frameX >= 9)
-	//		{
-	//			originCheck = false;
-	//			pos.x = originPos;
-	//			isAttack = false;
-	//			state = State::IDLE;
-	//			frameX = 0;
-	//		}
-	//		break;
-	//	}
-	//}
 }
 
 void Kim::Release()

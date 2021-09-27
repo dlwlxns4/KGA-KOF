@@ -18,7 +18,7 @@ void MainGame::Init()
 {
 	KeyManager::GetSingleton()->Init();
 	SceneManager::GetSingleton()->Init();
-
+	UIManager::GetSingleton()->Init2();
 	// 타이머 셋팅
 	hTimer = (HANDLE)SetTimer(g_hWnd, 0, FPS, NULL);
 
@@ -67,6 +67,7 @@ void MainGame::Update()
 		characterSelect->Update();
 	}else if (SceneManager::GetSingleton()->GetIsSceneState() == "Battle") {
 		backGround->Update();
+		UIManager::GetSingleton()->Update();
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
 			kim->Update();
 			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(true), true, kim->GetPos());
