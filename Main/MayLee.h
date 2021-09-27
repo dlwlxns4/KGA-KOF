@@ -44,6 +44,8 @@ protected:
 
 	bool isPlayer1;
 
+	bool isMeet;
+
 public:
 
 	Collider attackCollider[4];

@@ -25,44 +25,44 @@ void MayLee::Init(bool isPlayer1)
 {
 	if (isPlayer1)
 	{
-		idle = new Image;			// ´ë±â
+		idle = new Image;			// ëŒ€ê¸°
 		idle->Init("Image/Character/may_lee/MayLee_Idle_8F.bmp", 528, 100, 8, 1, true, RGB(108, 156, 114));
-		frontWalk = new Image;		// ¾ÕÀ¸·Î
+		frontWalk = new Image;		// ì•ìœ¼ë¡œ
 		frontWalk->Init("Image/Character/may_lee/MayLee_Walk_5F.bmp", 270, 112, 5, 1, true, RGB(108, 156, 114));
-		backWalk = new Image;		// µÚ·Î
+		backWalk = new Image;		// ë’¤ë¡œ
 		backWalk->Init("Image/Character/may_lee/MayLee_Back_5F.bmp", 270, 112, 5, 1, true, RGB(108, 156, 114));
-		weakPunch = new Image;		// ¾àÁÖ¸Ô
+		weakPunch = new Image;		// ì•½ì£¼ë¨¹
 		weakPunch->Init("Image/Character/may_lee/MayLee_WeakPunchNormal_4F.bmp", 400, 103, 4, 1, true, RGB(108, 156, 114));
-		strongPunch = new Image;	// °­ÁÖ¸Ô
+		strongPunch = new Image;	// ê°•ì£¼ë¨¹
 		strongPunch->Init("Image/Character/may_lee/MayLee_StrongPunchNormal_8F.bmp", 1200, 119, 8, 1, true, RGB(108, 156, 114));
-		weakLeg = new Image;		// ¾à¹ßÂ÷±â
+		weakLeg = new Image;		// ì•½ë°œì°¨ê¸°
 		weakLeg->Init("Image/Character/may_lee/MayLee_WeakKickNormal_10F.bmp", 1500, 107, 10, 1, true, RGB(108, 156, 114));
-		strongLeg = new Image;		// °­¹ßÂ÷±â
+		strongLeg = new Image;		// ê°•ë°œì°¨ê¸°
 		strongLeg->Init("Image/Character/may_lee/MayLee_StrongKickNormal_13F.bmp", 1800, 120, 13, 1, true, RGB(108, 156, 114));
-		hit = new Image;		// ÇÇ°İ
+		hit = new Image;		// í”¼ê²©
 		hit->Init("Image/Character/may_lee/MayLee_Attacked_5F.bmp", 374, 91, 5, 1, true, RGB(108, 156, 114));
-		die = new Image;		// »ç¸Á
+		die = new Image;		// ì‚¬ë§
 		die->Init("Image/Character/may_lee/MayLee_Lose_9F.bmp", 1125, 100, 9, 1, true, RGB(108, 156, 114));
 	}
 	else
 	{
-		mirroringIdle = new Image;			// ´ë±â
+		mirroringIdle = new Image;			// ëŒ€ê¸°
 		mirroringIdle->Init("Image/Character/may_lee/MayLee_Idle_8F_mirroring.bmp", 528, 100, 8, 1, true, RGB(108, 156, 114));
-		mirroringFrontWalk = new Image;		// ¾ÕÀ¸·Î
+		mirroringFrontWalk = new Image;		// ì•ìœ¼ë¡œ
 		mirroringFrontWalk->Init("Image/Character/may_lee/MayLee_Walk_5F_mirroring.bmp", 270, 112, 5, 1, true, RGB(108, 156, 114));
-		mirroringBackWalk = new Image;		// µÚ·Î
+		mirroringBackWalk = new Image;		// ë’¤ë¡œ
 		mirroringBackWalk->Init("Image/Character/may_lee/MayLee_Back_5F_mirroring.bmp", 270, 112, 5, 1, true, RGB(108, 156, 114));
-		mirroringWeakPunch = new Image;		// ¾àÁÖ¸Ô
+		mirroringWeakPunch = new Image;		// ì•½ì£¼ë¨¹
 		mirroringWeakPunch->Init("Image/Character/may_lee/MayLee_WeakPunchNormal_4F_mirroring.bmp", 400, 103, 4, 1, true, RGB(108, 156, 114));
-		mirroringStrongPunch = new Image;	// °­ÁÖ¸Ô
+		mirroringStrongPunch = new Image;	// ê°•ì£¼ë¨¹
 		mirroringStrongPunch->Init("Image/Character/may_lee/MayLee_StrongPunchNormal_8F_mirroring.bmp", 1200, 119, 8, 1, true, RGB(108, 156, 114));
-		mirroringWeakLeg = new Image;		// ¾à¹ßÂ÷±â
+		mirroringWeakLeg = new Image;		// ì•½ë°œì°¨ê¸°
 		mirroringWeakLeg->Init("Image/Character/may_lee/MayLee_WeakKickNormal_10F_mirroring.bmp", 1500, 107, 10, 1, true, RGB(108, 156, 114));
-		mirroringstrongLeg = new Image;		// °­¹ßÂ÷±â
+		mirroringstrongLeg = new Image;		// ê°•ë°œì°¨ê¸°
 		mirroringstrongLeg->Init("Image/Character/may_lee/MayLee_StrongKickNormal_13F_mirroring.bmp", 1800, 120, 13, 1, true, RGB(108, 156, 114));
-		mirroringHit = new Image;		// ÇÇ°İ
+		mirroringHit = new Image;		// í”¼ê²©
 		mirroringHit->Init("Image/Character/may_lee/MayLee_Attacked_5F_mirroring.bmp", 374, 91, 5, 1, true, RGB(108, 156, 114));
-		mirroringDie = new Image;		// »ç¸Á
+		mirroringDie = new Image;		// ì‚¬ë§
 		mirroringDie->Init("Image/Character/may_lee/MayLee_Lose_9F_mirroring.bmp", 1125, 100, 9, 1, true, RGB(108, 156, 114));
 	}
 
@@ -94,7 +94,6 @@ void MayLee::Init(bool isPlayer1)
 	this->isPlayer1 = isPlayer1;
 	isHit = false;
 	isMeet = false;
-
 }
 
 void MayLee::Update()
@@ -133,25 +132,25 @@ void MayLee::Update()
 			state = State::IDLE;
 		}
 
-		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchWeak;
 		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack) // A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack) // Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchStrong;
 		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::LegWeak;
 		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_KICK) && !isAttack) // A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_KICK) && !isAttack) // Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		{
 			frameX = 0;
 			isAttack = true;
@@ -193,25 +192,25 @@ void MayLee::Update()
 			state = State::IDLE;
 		}
 
-		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_PUNCH) && !isAttack) // A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_PUNCH) && !isAttack) // Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchWeak;
 		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_PUNCH) && !isAttack) // A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_PUNCH) && !isAttack) // Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchStrong;
 		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_KICK) && !isAttack) // A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_KICK) && !isAttack) // Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::LegWeak;
 		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_KICK) && !isAttack) // A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_KICK) && !isAttack) // Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		{
 			frameX = 0;
 			isAttack = true;
@@ -225,7 +224,7 @@ void MayLee::Update()
 		}
 	}
 
-	//Collider °ü¸® ÆÄÆ® 
+	//Collider ê´€ë¦¬ íŒŒíŠ¸ 
 	if (isAttack && state == State::PunchWeak)
 	{
 		if (frameX > 0 && frameX < 2)
@@ -236,7 +235,7 @@ void MayLee::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[0].collider, true) && !isHit)
 				{
 					isHit = true;
-					elpasedCount = -5; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elpasedCount = -5; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 
 			}
@@ -246,7 +245,7 @@ void MayLee::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, false) && !isHit)
 				{
 					isHit = true;
-					elpasedCount = -5; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elpasedCount = -5; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 
 			}
@@ -275,7 +274,7 @@ void MayLee::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[1].collider, true) && !isHit)
 				{
 					isHit = true;
-					elpasedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elpasedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 			}
 			else
@@ -285,7 +284,7 @@ void MayLee::Update()
 				{
 					cout << "attackCollider2 : " << BattleManager::GetSingleton()->attackCollider2[1].isAttack << endl;
 					isHit = true;
-					elpasedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elpasedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 			}
 		}
@@ -313,7 +312,7 @@ void MayLee::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[2].collider, true) && !isHit)
 				{
 					isHit = true;
-					elpasedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elpasedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 			}
 			else
@@ -322,7 +321,7 @@ void MayLee::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[2].collider, false) && !isHit)
 				{
 					isHit = true;
-					elpasedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elpasedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 			}
 		}
@@ -350,7 +349,7 @@ void MayLee::Update()
 			if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[2].collider, true) && !isHit)
 			{
 				isHit = true;
-				elpasedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+				elpasedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 			}
 		}
 		else
@@ -359,7 +358,7 @@ void MayLee::Update()
 			if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[2].collider, false) && !isHit)
 			{
 				isHit = true;
-				elpasedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+				elpasedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 			}
 		}
 	}
@@ -378,7 +377,7 @@ void MayLee::Update()
 	}
 	}
 
-	//0927¼öÁ¤
+	//0927ìˆ˜ì •
 	if (BattleManager::GetSingleton()->CheckDamaged(isPlayer1))
 	{
 		if (BattleManager::GetSingleton()->player1Hp <= 0)
@@ -399,7 +398,7 @@ void MayLee::Update()
 		}
 	}
 
-	// ¹è°æ Ä«¸Ş¶ó ¿òÁ÷ÀÓ °ü·Ã
+	// ë°°ê²½ ì¹´ë©”ë¼ ì›€ì§ì„ ê´€ë ¨
 	if (isPlayer1) {
 		if (BattleManager::GetSingleton()->player2MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
 			&& BattleManager::GetSingleton()->playerPos2.x <= 40) {
@@ -451,6 +450,7 @@ void MayLee::Render(HDC hdc)
 					if (!isMeet) {
 						BattleManager::GetSingleton()->player1MoveCheck = 2;
 						if (pos.x <= 281) pos.x += moveSpeed / 3;
+
 					}
 				}
 				else {
@@ -614,6 +614,7 @@ void MayLee::Render(HDC hdc)
 					if (!isMeet) {
 						BattleManager::GetSingleton()->player2MoveCheck = 1;
 						if (pos.x >= 40)pos.x -= moveSpeed / 3;
+
 					}
 				}
 				break;
