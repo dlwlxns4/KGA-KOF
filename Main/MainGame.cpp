@@ -77,6 +77,7 @@ void MainGame::Update()
 		}
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
 			kyo->Update();
+			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(true), true, kyo->GetPos());
 		}
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") {
 			may->Update();
@@ -93,6 +94,7 @@ void MainGame::Update()
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kyo") {
 			kyo2->Update();
+			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(false), false, kyo2->GetPos());
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "May") {
 			may2->Update();
