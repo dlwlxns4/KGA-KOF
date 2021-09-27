@@ -39,7 +39,7 @@ public:
 	State state;
 	bool isPlayer1;
 
-
+	bool isMeet;
 
 public:
 	void Init(bool isPlayer1);

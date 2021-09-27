@@ -59,6 +59,8 @@ void Iori::Init(bool isPlayer1)
 
 	this->isPlayer1 = isPlayer1;
 	isHit = false;
+
+	isMeet = false;
 }
 
 void Iori::Init(int posX, int posY, bool isMoveRight)
@@ -77,15 +79,26 @@ void Iori::Init(int posX, int posY, bool isMoveRight)
 
 void Iori::Update()
 {
+	if (BattleManager::GetSingleton()->CheckMeet())
+	{
+		isMeet = true;
+	}
+	else
+	{
+		isMeet = false;
+	}
 	if (isPlayer1) {
 		if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_RIGHT_KEY) && state == State::IDLE)
 		{
-			frameX = 0;
-			pos.x += moveSpeed;
-			state = State::Walk;
-			moveDir = MoveDir::Right;
-			isAttack = false;
-			elpasedCount = 0;
+			if (!isMeet)
+			{
+				frameX = 0;
+				pos.x += moveSpeed;
+				state = State::Walk;
+				moveDir = MoveDir::Right;
+				isAttack = false;
+				elpasedCount = 0;
+			}
 
 		}
 		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_LEFT_KEY) && state == State::IDLE)
@@ -146,11 +159,14 @@ void Iori::Update()
 		}
 		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_LEFT_KEY) && state == State::IDLE)
 		{
-			frameX = 0;
-			state = State::Walk;
-			moveDir = MoveDir::Left;
-			isAttack = false;
-			elpasedCount = 0;
+			if (!isMeet)
+			{
+				frameX = 0;
+				state = State::Walk;
+				moveDir = MoveDir::Left;
+				isAttack = false;
+				elpasedCount = 0;
+			}
 		}
 
 		if (state == State::IDLE)
@@ -443,37 +459,70 @@ void Iori::Render(HDC hdc)
 		case State::Walk:
 			if (isPlayer1) {
 				img->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elpasedCount++;
+				if (moveDir == MoveDir::Right) {
+					if (elpasedCount == 5)
+					{
+
+						elpasedCount = 0;
+						frameX++;
+					}
+					if (frameX >= 8)
+					{
+						frameX = 0;
+					}
+					if (!isMeet)
+					{
+						pos.x += moveSpeed / 3;
+					}
+				}
+				else {
+					if (elpasedCount == 5)
+					{
+
+						elpasedCount = 0;
+						frameX--;
+					}
+					if (frameX <= 0)
+					{
+						frameX = 8;
+					}
+					pos.x -= moveSpeed / 3;
+
+				}
 			}
 			else {
 				mirroringImg->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			elpasedCount++;
-			if (moveDir == MoveDir::Right) {
-				if (elpasedCount == 5)
-				{
+				elpasedCount++;
+				if (moveDir == MoveDir::Right) {
+					if (elpasedCount == 5)
+					{
 
-					elpasedCount = 0;
-					frameX++;
+						elpasedCount = 0;
+						frameX++;
+					}
+					if (frameX >= 8)
+					{
+						frameX = 0;
+					}
+					pos.x += moveSpeed / 3;
 				}
-				if (frameX >= 8)
-				{
-					frameX = 0;
-				}
-				pos.x += moveSpeed / 3;
-			}
-			else {
-				if (elpasedCount == 5)
-				{
+				else {
+					if (elpasedCount == 5)
+					{
 
-					elpasedCount = 0;
-					frameX--;
+						elpasedCount = 0;
+						frameX--;
+					}
+					if (frameX <= 0)
+					{
+						frameX = 8;
+					}
+					if (!isMeet)
+					{
+						pos.x -= moveSpeed / 3;
+					}
 				}
-				if (frameX <= 0)
-				{
-					frameX = 8;
-				}
-				pos.x -= moveSpeed / 3;
-
 			}
 			break;
 		case State::Die:

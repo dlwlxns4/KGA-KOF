@@ -42,6 +42,8 @@ public:
 
 	bool isHit;
 
+	bool isMeet;
+
 
 public:
 	void Init(bool isPlayer1);

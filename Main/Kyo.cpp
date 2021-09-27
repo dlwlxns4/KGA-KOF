@@ -77,6 +77,8 @@ void Kyo::Init(bool isPlayer1)
 	this->isPlayer1 = isPlayer1;
 
 	isHit = false;
+
+	isMeet = false;
 }
 
 void Kyo::Init(int posX, int posY, bool isMoveRight)
@@ -85,16 +87,27 @@ void Kyo::Init(int posX, int posY, bool isMoveRight)
 
 void Kyo::Update()
 {
+	if (BattleManager::GetSingleton()->CheckMeet())
+	{
+		isMeet = true;
+	}
+	else
+	{
+		isMeet = false;
+	}
 	if (isPlayer1)
 	{
 		if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_RIGHT_KEY) && state == State::IDLE)
 		{
-			frameX = 0;
-			pos.x += moveSpeed;
-			state = State::Walk;
-			moveDir = MoveDir::Right;
-			isAttack = false;
-			elapsedCount = 0;
+			if (!isMeet)
+			{
+				frameX = 0;
+				pos.x += moveSpeed;
+				state = State::Walk;
+				moveDir = MoveDir::Right;
+				isAttack = false;
+				elapsedCount = 0;
+			}
 		}
 		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_LEFT_KEY) && state == State::IDLE)
 		{
@@ -165,11 +178,14 @@ void Kyo::Update()
 		}
 		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_LEFT_KEY) && state == State::IDLE)
 		{
-			frameX = 0;
-			state = State::Walk;
-			moveDir = MoveDir::Left;
-			isAttack = false;
-			elapsedCount = 0;
+			if (!isMeet)
+			{
+				frameX = 0;
+				state = State::Walk;
+				moveDir = MoveDir::Left;
+				isAttack = false;
+				elapsedCount = 0;
+			}
 		}
 
 		if (state == State::IDLE)
@@ -528,7 +544,10 @@ void Kyo::Render(HDC hdc)
 					{
 						frameX = 0;
 					}
-					pos.x += moveSpeed / 3;
+					if (!isMeet)
+					{
+						pos.x += moveSpeed / 3;
+					}
 				}
 				else
 				{
@@ -702,7 +721,10 @@ void Kyo::Render(HDC hdc)
 					{
 						frameX = 11;
 					}
-					pos.x -= moveSpeed / 3;
+					if (!isMeet)
+					{
+						pos.x -= moveSpeed / 3;
+					}
 				}
 
 				//cout << "walk" << endl;

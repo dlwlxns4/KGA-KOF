@@ -44,6 +44,10 @@ public:
 	void Render(HDC hdc);
 	bool CheckCollision(RECT* rect, bool isPlayer1);
 	bool CheckDamaged(bool isPlayer1);
+
+	//0927 플레이어끼리 서로 접촉
+	bool CheckMeet();
+	
 	void SetColliderPos(string player, bool isPlayer1, POINTFLOAT pos);
 	void KORender(HDC hdc);
 	void WinRender(HDC hdc);

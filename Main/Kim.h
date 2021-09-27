@@ -43,6 +43,8 @@ protected:
 	State state;
 	bool isPlayer1;
 
+	bool isMeet;
+
 public:
 	Collider attackCollider[4];
 	Collider damagedCollider[6];
