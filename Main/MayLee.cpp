@@ -93,20 +93,32 @@ void MayLee::Init(bool isPlayer1)
 	damagedCollider[0].init(pos.x - 25, pos.x + 25, pos.y - 40, pos.y + 50);
 	this->isPlayer1 = isPlayer1;
 	isHit = false;
+
+	isMeet = false;
 }
 
 void MayLee::Update()
 {
+	if (BattleManager::GetSingleton()->CheckMeet())
+	{
+		isMeet = true;
+	}
+	else
+	{
+		isMeet = false;
+	}
 	if(isPlayer1)
 	{
 		if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_RIGHT_KEY) && state == State::IDLE)
 		{
-			frameX = 0;
-			pos.x += moveSpeed;
-			state = State::Walk;
-			moveDir = MoveDir::Right;
-			isAttack = false;
-
+			if (!isMeet)
+			{
+				frameX = 0;
+				pos.x += moveSpeed;
+				state = State::Walk;
+				moveDir = MoveDir::Right;
+				isAttack = false;
+			}
 		}
 		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_LEFT_KEY) && state == State::IDLE)
 		{
@@ -165,10 +177,13 @@ void MayLee::Update()
 		}
 		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_LEFT_KEY) && state == State::IDLE)
 		{
-			frameX = 0;
-			state = State::Walk;
-			moveDir = MoveDir::Left;
-			isAttack = false;
+			if (!isMeet)
+			{
+				frameX = 0;
+				state = State::Walk;
+				moveDir = MoveDir::Left;
+				isAttack = false;
+			}
 		}
 		if (state == State::IDLE)
 		{
@@ -403,7 +418,10 @@ void MayLee::Render(HDC hdc)
 					frontWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 					ElpasedCount(fps, frameX, true);
 					if (frameX >= 5) frameX = 0;
-					pos.x += moveSpeed / 3;
+					if (!isMeet)
+					{
+						pos.x += moveSpeed / 3;
+					}
 				}
 				else {
 					backWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
@@ -561,7 +579,10 @@ void MayLee::Render(HDC hdc)
 					mirroringBackWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 					ElpasedCount(fps, frameX, true);
 					if (frameX >= 5) frameX = 0;
-					pos.x -= moveSpeed / 3;
+					if (!isMeet)
+					{
+						pos.x -= moveSpeed / 3;
+					}
 				}
 				break;
 			case State::PunchWeak:
