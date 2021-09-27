@@ -223,6 +223,12 @@ void Kim::Update()
 			isAttack = true;
 			state = State::PunchWeak;
 		}
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
+		{
+			frameX = 0;
+			isAttack = true;
+			state = State::PunchStrong;
+		}
 		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
 		{
 			frameX = 0;
