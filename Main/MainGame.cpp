@@ -18,16 +18,16 @@ void MainGame::Init()
 {
 	KeyManager::GetSingleton()->Init();
 	SceneManager::GetSingleton()->Init();
-
-	// 타이머 셋팅
+	UIManager::GetSingleton()->Init2();
+	// Ÿ�̸� ����
 	hTimer = (HANDLE)SetTimer(g_hWnd, 0, FPS, NULL);
 
 
-	// 백버퍼
+	// �����
 	backBuffer = new Image;
 	backBuffer->Init(WIN_SIZE_X, WIN_SIZE_Y);
 
-	// 배경
+	// ���
 	backGround = new BackGround;
 	backGround->Init();
 	mainTitle = new MainTitle;
@@ -35,7 +35,7 @@ void MainGame::Init()
 	characterSelect = new CharacterSelect;
 	characterSelect->Init();
 	
-	// 플레이어1
+	// �÷��̾�1
 	iori = new Iori;
 	iori->Init(true);
 	kim = new Kim;
@@ -45,7 +45,7 @@ void MainGame::Init()
 	may = new MayLee;
 	may->Init(true);
 
-	// 플레이어2
+	// �÷��̾�2
 	iori2 = new Iori;
 	iori2->Init(false);
 	kim2 = new Kim;
@@ -105,34 +105,33 @@ void MainGame::Update()
 		characterSelect->Update();
 	}else if (SceneManager::GetSingleton()->GetIsSceneState() == "Battle") {
 		backGround->Update();
+		UIManager::GetSingleton()->Update();
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
 			kim->Update();
-			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(true), true, kim->GetPos());
+			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(true), true, kim->GetPos());
 		}
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
 			iori->Update();
-			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(true), true, iori->GetPos());
+			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(true), true, iori->GetPos());
 		}
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
 			kyo->Update();
-			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(true), true, kyo->GetPos());
 		}
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") {
 			may->Update();
 		}
 
-		//플레이어 2
+		//�÷��̾� 2
 		if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kim") {
 			kim2->Update();
-			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(false), false, kim2->GetPos());
+			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(false), false, kim2->GetPos());
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Iori") {
 			iori2->Update();
-			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(false), false, iori2->GetPos());
+			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(false), false, iori2->GetPos());
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kyo") {
 			kyo2->Update();
-			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(false), false, kyo2->GetPos());
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "May") {
 			may2->Update();
@@ -234,7 +233,7 @@ void MainGame::Release()
 	delete may2;
 	delete kim2;
 
-	// 타이머 객체 삭제
+	// Ÿ�̸� ��ü ���
 	KillTimer(g_hWnd, 0);
 }
 

@@ -4,10 +4,10 @@
 #include <vector>
 #include "Collider.h"
 
-//#include "Image.h"			// ì»´íŒŒì¼ ê´€ê³„ê°€ ë³µì¡, ì»´íŒŒì¼ ì‹œê°„ì´ ì˜¤ë˜ ê±¸ë¦¼
+//#include "Image.h"			// ÄÄÆÄÀÏ °ü°è°¡ º¹Àâ, ÄÄÆÄÀÏ ½Ã°£ÀÌ ¿À·¡ °É¸²
 
-class Image;					// í¬í•¨ê´€ê³„
-class Iori : public GameObject  // ìƒì†ê´€ê³„
+class Image;					// Æ÷ÇÔ°ü°è
+class Iori : public GameObject  // »ó¼Ó°ü°è
 {
 
 private:
@@ -17,7 +17,6 @@ private:
 	Image* weakPunch;
 	Image* strongPunch;
 	Image* damaged;
-	Image* die;
 
 	Image* mirroringImg;
 	Image* mirroringIdle;
@@ -32,13 +31,13 @@ private:
 	bool isAttack;
 	bool isHit;
 	MoveDir moveDir;
-	bool isDie=false;
 
 public:
 	//RECT collider[3]; 
 	State state;
+	Collider attackCollider[4];
+	Collider damagedCollider[6];
 	bool isPlayer1;
-
 
 
 public:
