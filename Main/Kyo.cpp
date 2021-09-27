@@ -21,7 +21,6 @@ void Kyo::Init(bool isPlayer1)
 		strongLeg->Init("Image/Character/Kyo/Kyo_strongLeg.bmp", 1680, 116, 15, 1, true, RGB(240, 0, 240));
 		attacked = new Image;
 		attacked->Init("Image/Character/Kyo/Kyo_attacked.bmp", 560, 116, 5, 1, true, RGB(240, 0, 240));
-
 		die = new Image;
 		die->Init("Image/Character/Kyo/Kyo_die.bmp", 640, 100, 5, 1, true, RGB(240, 0, 240));
 
@@ -238,7 +237,6 @@ void Kyo::Update()
 	//Collider 관리 파트 
 	if (isAttack && state == State::PunchWeak)
 	{
-		cout << frameX << endl;
 		if (frameX > 0 && frameX < 2)
 		{
 			if (this->isPlayer1)
@@ -410,12 +408,46 @@ void Kyo::Update()
 		}
 	}
 
+	// 배경 카메라 움직임 관련
+	if (isPlayer1) {
+		if (BattleManager::GetSingleton()->player2MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
+			&& BattleManager::GetSingleton()->playerPos2.x <= 40) {
+			if (!(pos.x >= 280)) {
+				pos.x += moveSpeed / 3;
+			}
+		}
+		if (BattleManager::GetSingleton()->player2MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
+			&& BattleManager::GetSingleton()->playerPos2.x >= 280) {
+			if (!(pos.x <= 40)) {
+				pos.x -= moveSpeed / 3;
+			}
+		}
+	}
+	else {
+		if (BattleManager::GetSingleton()->player1MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
+			&& BattleManager::GetSingleton()->playerPos1.x <= 40) {
+			if (!(pos.x >= 280)) {
+				pos.x += moveSpeed / 3;
+			}
+		}
+		if (BattleManager::GetSingleton()->player1MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
+			&& BattleManager::GetSingleton()->playerPos1.x >= 280) {
+			if (!(pos.x <= 40)) pos.x -= moveSpeed / 3;
+		}
+	}
 }
 
 void Kyo::Render(HDC hdc)
 {
 	static bool check = true;
 	static bool idelCheck = true;
+	if (isPlayer1) {
+		BattleManager::GetSingleton()->player1MoveCheck = 0;
+	}
+	else {
+		BattleManager::GetSingleton()->player2MoveCheck = 0;
+	}
+
 	if (isPlayer1)
 	{
 		if (idle)
@@ -546,7 +578,8 @@ void Kyo::Render(HDC hdc)
 					}
 					if (!isMeet)
 					{
-						pos.x += moveSpeed / 3;
+						BattleManager::GetSingleton()->player1MoveCheck = 2;
+						if (pos.x <= 281) pos.x += moveSpeed / 3;
 					}
 				}
 				else
@@ -560,7 +593,8 @@ void Kyo::Render(HDC hdc)
 					{
 						frameX = 11;
 					}
-					pos.x -= moveSpeed / 3;
+					BattleManager::GetSingleton()->player1MoveCheck = 1;
+					if (pos.x >= 40) pos.x -= moveSpeed / 3;
 				}
 				break;
 			}
@@ -708,7 +742,8 @@ void Kyo::Render(HDC hdc)
 					{
 						frameX = 0;
 					}
-					pos.x += moveSpeed / 3;
+					BattleManager::GetSingleton()->player2MoveCheck = 2;
+					if (pos.x <= 281) pos.x += moveSpeed / 3;
 				}
 				else
 				{
@@ -723,7 +758,8 @@ void Kyo::Render(HDC hdc)
 					}
 					if (!isMeet)
 					{
-						pos.x -= moveSpeed / 3;
+						BattleManager::GetSingleton()->player2MoveCheck = 1;
+						if (pos.x >= 40) pos.x -= moveSpeed / 3;
 					}
 				}
 

@@ -35,6 +35,7 @@ private:
 	bool originCheck;
 	bool isAttack;
 	bool isHit;
+	bool isMeet;
 	MoveDir moveDir;
 
 protected:
