@@ -19,15 +19,15 @@ void MainGame::Init()
 	KeyManager::GetSingleton()->Init();
 	SceneManager::GetSingleton()->Init();
 	UIManager::GetSingleton()->Init2();
-	// Å¸ÀÌ¸Ó ¼ÂÆÃ
+	// Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 	hTimer = (HANDLE)SetTimer(g_hWnd, 0, FPS, NULL);
 
 
-	// ¹é¹öÆÛ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½
 	backBuffer = new Image;
 	backBuffer->Init(WIN_SIZE_X, WIN_SIZE_Y);
 
-	// ¹è°æ
+	// ï¿½ï¿½ï¿½
 	backGround = new BackGround;
 	backGround->Init();
 	mainTitle = new MainTitle;
@@ -35,7 +35,7 @@ void MainGame::Init()
 	characterSelect = new CharacterSelect;
 	characterSelect->Init();
 	
-	// ÇÃ·¹ÀÌ¾î1
+	// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½1
 	iori = new Iori;
 	iori->Init(true);
 	kim = new Kim;
@@ -45,7 +45,38 @@ void MainGame::Init()
 	may = new MayLee;
 	may->Init(true);
 
-	// ÇÃ·¹ÀÌ¾î2
+	// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½2
+	iori2 = new Iori;
+	iori2->Init(false);
+	kim2 = new Kim;
+	kim2->Init(false);
+	kyo2 = new Kyo;
+	kyo2->Init(false);
+	may2 = new MayLee;
+	may2->Init(false);
+}
+
+void MainGame::GameInit()
+{
+	KeyManager::GetSingleton()->Init();
+	SceneManager::GetSingleton()->Init();
+
+
+	// ë°°ê²½
+	backGround = new BackGround;
+	backGround->Init();
+
+	// í”Œë ˆì´ì–´1
+	iori = new Iori;
+	iori->Init(true);
+	kim = new Kim;
+	kim->Init(true);
+	kyo = new Kyo;
+	kyo->Init(true);
+	may = new MayLee;
+	may->Init(true);
+
+	// í”Œë ˆì´ì–´2
 	iori2 = new Iori;
 	iori2->Init(false);
 	kim2 = new Kim;
@@ -61,6 +92,13 @@ void MainGame::Update()
 
 	if (SceneManager::GetSingleton()->GetIsSceneState() == "MainTitle") {
 		mainTitle->Update();
+		if (gameInit)
+		{
+			GameRelease();
+			GameInit();
+			gameInit = false;
+			BattleManager::GetSingleton()->GameInit();
+		}
 	}else if (SceneManager::GetSingleton()->GetIsSceneState() == "Loading") {
 		mainTitle->Update();
 	}else if (SceneManager::GetSingleton()->GetIsSceneState() == "CharacterSelect") {
@@ -83,7 +121,7 @@ void MainGame::Update()
 			may->Update();
 		}
 
-		//ÇÃ·¹ÀÌ¾î 2
+		//ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ 2
 		if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kim") {
 			kim2->Update();
 			BattleManager::GetSingleton()->Init(SceneManager::GetSingleton()->GetPlayerChar(false), false, kim2->GetPos());
@@ -117,7 +155,6 @@ void MainGame::Update()
 
 void MainGame::Render(HDC hdc)
 {
-
 	HDC hBackBufferDC = backBuffer->GetMemDC();
 	if (SceneManager::GetSingleton()->GetIsSceneState() == "MainTitle") {
 		mainTitle->Render(hBackBufferDC);
@@ -158,35 +195,45 @@ void MainGame::Render(HDC hdc)
 		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "May") {
 			may2->Render(hBackBufferDC);
 		}
+
+
+		backGround->sceneTransformRender(hBackBufferDC);
+		gameInit = BattleManager::GetSingleton()->SceneTransform(hBackBufferDC);
+		if(gameInit) mainTitle->Render(hBackBufferDC);
 	}
 
-	
-	
-	//if (!SceneManager::GetSingleton()->selectCheck1 ||
-	//	!SceneManager::GetSingleton()->selectCheck2) {
-	//	characterSelect->Render(hBackBufferDC);
-	//}
-	//else {
-	//	backGround->Render(hBackBufferDC);
-	//	if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
-	//		kim->Render(hBackBufferDC);
-
-	//	}
-	//	if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
-	//		iori->Render(hBackBufferDC);
-
-	//	}
-	//}
 	backBuffer->Render(hdc);
+}
+
+void MainGame::GameRelease()
+{
+	SAFE_RELEASE(backGround);
+	delete iori;
+	delete kyo;
+	delete may;
+	delete kim;
+	delete iori2;
+	delete kyo2;
+	delete may2;
+	delete kim2;
+
 }
 
 void MainGame::Release()
 {
-	SAFE_RELEASE(backBuffer);
 	SAFE_RELEASE(backGround);
+	SAFE_RELEASE(backBuffer);
 
+	delete iori;
+	delete kyo;
+	delete may;
+	delete kim;
+	delete iori2;
+	delete kyo2;
+	delete may2;
+	delete kim2;
 
-	// Å¸ÀÌ¸Ó °´Ã¼ »èÁ¦
+	// Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½
 	KillTimer(g_hWnd, 0);
 }
 

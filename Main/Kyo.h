@@ -27,6 +27,7 @@ private:
 	int elapsedCount;
 	bool isAttack;
 	MoveDir moveDir;
+	bool isDie=false;
 
 public:
 	RECT rect;

@@ -51,6 +51,7 @@ void SceneManager::SetPlayerChar(string charName, bool player)
 		if (charName == "May")playerChar1 = PlayerChar::May;
 		if (charName == "Kim")playerChar1 = PlayerChar::Kim;
 		if (charName == "Iori")playerChar1 = PlayerChar::Iori;
+		if (charName == "Empty")playerChar1 = PlayerChar::Empty;
 	}
 	else
 	{
@@ -58,6 +59,7 @@ void SceneManager::SetPlayerChar(string charName, bool player)
 		if (charName == "May")playerChar2 = PlayerChar::May;
 		if (charName == "Kim")playerChar2 = PlayerChar::Kim;
 		if (charName == "Iori")playerChar2 = PlayerChar::Iori;
+		if (charName == "Empty")playerChar2 = PlayerChar::Empty;
 	}
 	if (isSceneState == IsSceneState::MainTitle)
 	{
