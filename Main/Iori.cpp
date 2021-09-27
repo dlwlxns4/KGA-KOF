@@ -7,7 +7,7 @@ void Iori::Init(bool isPlayer1)
 {
 
 	img = new Image;
-	img->Init("Image/Character/Iori/Iori_walk.bmp", 612, 104, 9, 1, true, RGB(255,0,255));
+	img->Init("Image/Character/Iori/Iori_walk.bmp", 612, 104, 9, 1, true, RGB(255, 0, 255));
 	idle = new Image;
 	idle->Init("Image/Character/Iori/Iori_Idle.bmp", 664, 109, 8, 1, true, RGB(255, 0, 255));
 	weakLeg = new Image;
@@ -18,19 +18,24 @@ void Iori::Init(bool isPlayer1)
 	strongPunch->Init("Image/Character/Iori/Iori_StrongPunch2.bmp", 777, 121, 7, 1, true, RGB(255, 0, 255));
 	damaged = new Image;
 	damaged->Init("Image/Character/Iori/Iori_Damaged.bmp", 462, 115, 6, 1, true, RGB(255, 0, 255));
+	die = new Image;
+	die->Init("Image/Character/Iori/Iori_Die.bmp", 888, 131, 7, 1, true, RGB(255, 0, 255));
 
-	MirroringImg = new Image;
-	MirroringImg->Init("Image/Character/Iori/Iori_walk_mirroring.bmp", 612, 104, 9, 1, true, RGB(255, 0, 255));
-	MirroringIdle = new Image;
-	MirroringIdle->Init("Image/Character/Iori/Iori_Idle_mirroring.bmp", 664, 109, 8, 1, true, RGB(255, 0, 255));
-	MirroringWeakLeg = new Image;
-	MirroringWeakLeg->Init("Image/Character/Iori/Iori_WeakLeg_mirroring.bmp", 768, 109, 8, 1, true, RGB(255, 0, 255));
-	MirroringWeakPunch = new Image;
-	MirroringWeakPunch->Init("Image/Character/Iori/lori_WeakPunch_mirroring.bmp", 600, 112, 5, 1, true, RGB(255, 0, 255));
-	MirroringStrongPunch = new Image;
-	MirroringStrongPunch->Init("Image/Character/Iori/Iori_StrongPunch2_mirroring.bmp", 777, 121, 7, 1, true, RGB(255, 0, 255));
-	MirroringDamaged = new Image;
-	MirroringDamaged->Init("Image/Character/Iori/Iori_Damaged_mirroring.bmp", 462, 115, 6, 1, true, RGB(255, 0, 255));
+
+	mirroringImg = new Image;
+	mirroringImg->Init("Image/Character/Iori/Iori_walk_mirroring.bmp", 612, 104, 9, 1, true, RGB(255, 0, 255));
+	mirroringIdle = new Image;
+	mirroringIdle->Init("Image/Character/Iori/Iori_Idle_mirroring.bmp", 664, 109, 8, 1, true, RGB(255, 0, 255));
+	mirroringWeakLeg = new Image;
+	mirroringWeakLeg->Init("Image/Character/Iori/Iori_WeakLeg_mirroring.bmp", 768, 109, 8, 1, true, RGB(255, 0, 255));
+	mirroringWeakPunch = new Image;
+	mirroringWeakPunch->Init("Image/Character/Iori/lori_WeakPunch_mirroring.bmp", 600, 112, 5, 1, true, RGB(255, 0, 255));
+	mirroringStrongPunch = new Image;
+	mirroringStrongPunch->Init("Image/Character/Iori/Iori_StrongPunch2_mirroring.bmp", 777, 121, 7, 1, true, RGB(255, 0, 255));
+	mirroringDamaged = new Image;
+	mirroringDamaged->Init("Image/Character/Iori/Iori_Damaged_mirroring.bmp", 462, 115, 6, 1, true, RGB(255, 0, 255));
+	mirroringDie = new Image;
+	mirroringDie->Init("Image/Character/Iori/Iori_Die_mirroring.bmp", 882, 131, 7, 1, true, RGB(255, 0, 255));
 
 	moveDir = MoveDir::Right;
 
@@ -52,11 +57,6 @@ void Iori::Init(bool isPlayer1)
 		this->pos.y = WIN_SIZE_Y / 1.3;
 	}
 
-	for (int i = 0; i < 4; i++)
-	{
-		attackCollider[i].init();
-	}
-	damagedCollider[0].init(pos.x - 25, pos.x + 25, pos.y - 40, pos.y + 50);
 	this->isPlayer1 = isPlayer1;
 	isHit = false;
 }
@@ -101,24 +101,23 @@ void Iori::Update()
 		{
 			isAttack = false;
 			state = State::IDLE;
-			elpasedCount = 0;
 		}
 
-		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::LegWeak;
 			elpasedCount = 0;
 		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchWeak;
 			elpasedCount = 0;
 		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack) // A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack) // Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		{
 			frameX = 0;
 			isAttack = true;
@@ -158,24 +157,23 @@ void Iori::Update()
 		{
 			isAttack = false;
 			state = State::IDLE;
-			elpasedCount = 0;
 		}
 
-		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_KICK) && !isAttack) // A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_KICK) && !isAttack) // Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::LegWeak;
 			elpasedCount = 0;
 		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_PUNCH) && !isAttack) // A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_PUNCH) && !isAttack) // Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchWeak;
 			elpasedCount = 0;
 		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_PUNCH) && !isAttack) // A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_PUNCH) && !isAttack) // Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		{
 			frameX = 0;
 			isAttack = true;
@@ -192,8 +190,9 @@ void Iori::Update()
 	}
 
 
-	//Collider °ü¸® ÆÄÆ® 
-	if (isAttack && state==State::PunchWeak)
+	//Collider ê´€ë¦¬ íŒŒíŠ¸ 
+
+	if (isAttack && state == State::PunchWeak)
 	{
 		if (frameX > 1 && frameX < 3)
 		{
@@ -203,7 +202,7 @@ void Iori::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[0].collider, true) && !isHit)
 				{
 					isHit = true;
-					elpasedCount = -5; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elpasedCount = -5; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 
 			}
@@ -213,7 +212,7 @@ void Iori::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, false) && !isHit)
 				{
 					isHit = true;
-					elpasedCount = -5; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elpasedCount = -5; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 
 			}
@@ -225,7 +224,7 @@ void Iori::Update()
 				BattleManager::GetSingleton()->attackCollider[0].isAttack = false;
 				BattleManager::GetSingleton()->isPlayer2Damaged = false;
 			}
-			else 
+			else
 			{
 				BattleManager::GetSingleton()->attackCollider2[0].isAttack = false;
 				BattleManager::GetSingleton()->isPlayer1Damaged = false;
@@ -242,7 +241,7 @@ void Iori::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[1].collider, true) && !isHit)
 				{
 					isHit = true;
-					elpasedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elpasedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 			}
 			else
@@ -250,13 +249,12 @@ void Iori::Update()
 				BattleManager::GetSingleton()->attackCollider2[1].isAttack = true;
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[1].collider, false) && !isHit)
 				{
-					cout << "attackCollider2 : " << BattleManager::GetSingleton()->attackCollider2[1].isAttack << endl;
 					isHit = true;
-					elpasedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elpasedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 			}
 		}
-		else 
+		else
 		{
 			if (this->isPlayer1)
 			{
@@ -272,7 +270,8 @@ void Iori::Update()
 	}
 	else if (isAttack && state == State::LegWeak)
 	{
-		if (frameX > 2 && frameX < 5 )
+		if (frameX > 2 && frameX < 5)
+
 		{
 			if (this->isPlayer1)
 			{
@@ -280,7 +279,7 @@ void Iori::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[2].collider, true) && !isHit)
 				{
 					isHit = true;
-					elpasedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elpasedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 			}
 			else
@@ -289,13 +288,15 @@ void Iori::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[2].collider, false) && !isHit)
 				{
 					isHit = true;
-					elpasedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elpasedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 			}
 		}
-		else 
+
+		else
 		{
-			if (this->isPlayer1) 
+			if (this->isPlayer1)
+
 			{
 				BattleManager::GetSingleton()->attackCollider[2].isAttack = false;
 				BattleManager::GetSingleton()->isPlayer2Damaged = false;
@@ -307,10 +308,24 @@ void Iori::Update()
 			}
 		}
 	}
-	
-	if (BattleManager::GetSingleton()->CheckDamaged(isPlayer1) ) 
+
+	//0927ìˆ˜ì •
+	if (BattleManager::GetSingleton()->CheckDamaged(isPlayer1))
 	{
-		state = State::Damaged;
+		if (BattleManager::GetSingleton()->player1Hp <= 0)
+		{
+			frameX = 0;
+			state = State::Die;
+		}
+		else if (BattleManager::GetSingleton()->player2Hp <= 0)
+		{
+			frameX = 0;
+			state = State::Die;
+		}
+		else
+		{
+			state = State::Damaged;
+		}
 	}
 }
 
@@ -318,15 +333,16 @@ void Iori::Update()
 
 void Iori::Render(HDC hdc)
 {
-	if (img && MirroringIdle)
+	if (img && mirroringIdle)
 	{
 		switch (state)
 		{
 		case State::IDLE:
 			if (isPlayer1) {
 				idle->Render(hdc, pos.x, pos.y, frameX, frameY);
-			} else {
-				MirroringIdle->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+			else {
+				mirroringIdle->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			elpasedCount++;
 			if (elpasedCount == 5)
@@ -342,8 +358,9 @@ void Iori::Render(HDC hdc)
 		case State::LegWeak:
 			if (isPlayer1) {
 				weakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
-			} else {
-				MirroringWeakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+			else {
+				mirroringWeakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			elpasedCount++;
 			if (elpasedCount == 3)
@@ -362,8 +379,9 @@ void Iori::Render(HDC hdc)
 		case State::PunchWeak:
 			if (isPlayer1) {
 				weakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
-			} else {
-				MirroringWeakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+			else {
+				mirroringWeakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			elpasedCount++;
 			if (elpasedCount == 3)
@@ -382,10 +400,11 @@ void Iori::Render(HDC hdc)
 		case State::PunchStrong:
 			if (isPlayer1) {
 				strongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}else {
-				MirroringStrongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			
+			else {
+				mirroringStrongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+
 			elpasedCount++;
 			if (elpasedCount == 3)
 			{
@@ -403,10 +422,11 @@ void Iori::Render(HDC hdc)
 		case State::Damaged:
 			if (isPlayer1) {
 				damaged->Render(hdc, pos.x, pos.y, frameX, frameY);
-			} else {
-				MirroringDamaged->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			
+			else {
+				mirroringDamaged->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+
 			elpasedCount++;
 			if (elpasedCount == 3)
 			{
@@ -423,8 +443,9 @@ void Iori::Render(HDC hdc)
 		case State::Walk:
 			if (isPlayer1) {
 				img->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}else {
-				MirroringImg->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+			else {
+				mirroringImg->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			elpasedCount++;
 			if (moveDir == MoveDir::Right) {
@@ -455,131 +476,43 @@ void Iori::Render(HDC hdc)
 
 			}
 			break;
+		case State::Die:
+			if (isPlayer1) {
+				die->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+			else {
+				mirroringDie->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+			elpasedCount++;
+			if (elpasedCount == 12)
+			{
+				elpasedCount = 0;
+				frameX++;
+			}
+
+			if (frameX >= 6) frameX = 6;
+			if (frameX >= 6 && !isDie)
+			{
+				frameX = 6;
+				isDie = true;
+				BattleManager::GetSingleton()->SetDie();
+			}
+
+			break;
 		}
 	}
 
-	//if (MirroringIdle)
-	//{
-	//	switch (state)
-	//	{
-	//	case State::IDLE:
-	//		MirroringIdle->Render(hdc, pos.x, pos.y, frameX, frameY);
-	//		elpasedCount++;
-	//		if (elpasedCount == 5)
-	//		{
-	//			elpasedCount = 0;
-	//			frameX++;
-	//		}
-	//		if (frameX == 8)
-	//		{
-	//			frameX = 0;
-	//		}
-	//
-	//		break;
-	//	case State::LegWeak:
-	//		MirroringWeakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
-	//		elpasedCount++;
-	//		if (elpasedCount == 3)
-	//		{
-	//			elpasedCount = 0;
-	//			frameX++;
-	//		}
-	//		if (frameX == 8)
-	//		{
-	//			isAttack = false;
-	//			state = State::IDLE;
-	//			isHit = false;
-	//			frameX = 0;
-	//		}
-	//		break;
-	//	case State::PunchWeak:
-	//		MirroringWeakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
-	//		elpasedCount++;
-	//		if (elpasedCount == 3)
-	//		{
-	//			elpasedCount = 0;
-	//			frameX++;
-	//		}
-	//		if (frameX == 5)
-	//		{
-	//			isAttack = false;
-	//			state = State::IDLE;
-	//			isHit = false;
-	//			frameX = 0;
-	//		}
-	//		break;
-	//	case State::PunchStrong:
-	//		MirroringStrongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
-	//		elpasedCount++;
-	//		if (elpasedCount == 3)
-	//		{
-	//			elpasedCount = 0;
-	//			frameX++;
-	//		}
-	//		if (frameX == 7)
-	//		{
-	//			isAttack = false;
-	//			state = State::IDLE;
-	//			isHit = false;
-	//			frameX = 0;
-	//		}
-	//		break;
-	//	case State::Damaged:
-	//		MirroringDamaged->Render(hdc, pos.x, pos.y, frameX, frameY);
-	//		elpasedCount++;
-	//		if (elpasedCount == 3)
-	//		{
-	//			elpasedCount = 0;
-	//			frameX++;
-	//		}
-	//		if (frameX == 6)
-	//		{
-	//			isAttack = false;
-	//			state = State::IDLE;
-	//			frameX = 0;
-	//		}
-	//		break;
-	//	case State::Walk:
-	//		MirroringImg->Render(hdc, pos.x, pos.y, frameX, frameY);
-	//		elpasedCount++;
-	//		if (moveDir == MoveDir::Right) {
-	//			if (elpasedCount == 5)
-	//			{
-	//
-	//				elpasedCount = 0;
-	//				frameX++;
-	//			}
-	//			if (frameX >= 8)
-	//			{
-	//				frameX = 0;
-	//			}
-	//			pos.x += moveSpeed / 3;
-	//		}
-	//		else {
-	//			if (elpasedCount == 5)
-	//			{
-	//
-	//				elpasedCount = 0;
-	//				frameX--;
-	//			}
-	//			if (frameX <= 0)
-	//			{
-	//				frameX = 8;
-	//			}
-	//			pos.x -= moveSpeed / 3;
-	//
-	//		}
-	//		break;
-	//	}
-	//}
-
 }
+
+
+
 
 void Iori::Release()
 {
-	if (img) 
-	{
-		delete img;
-	}
+	if (img) { delete img; }
+	if (idle) { delete idle; }
+	if (strongPunch) { delete strongPunch; }
+	if (weakLeg) { delete weakLeg; }
+	if (weakPunch) { delete weakPunch; }
 }
 

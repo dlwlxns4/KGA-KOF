@@ -1,8 +1,6 @@
 #pragma once
 #include "Config.h"
 #include "GameEntity.h"
-#include "Tank.h"
-#include "Ammo.h"
 #include <vector>
 #include "Singleton.h"
 
@@ -37,11 +35,15 @@ private:
 	Kyo* kyo2;
 	MayLee* may2;
 	
+	bool gameInit=false;
+
 public:
 	void Init();
+	void GameInit();
 	void Update();
 	//void Render();			// 오버라이딩 : 상속 관계에서 부모클래스의 함수를 재정의
 	void Render(HDC hdc);	// 오버로딩
+	void GameRelease();
 	void Release();
 	void setEnemy();
 

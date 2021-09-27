@@ -45,9 +45,14 @@ void MainTitle::Update()
 	{
 		elpasedCount = 0;
 		frame++;
-		if (frame == 41) SceneManager::GetSingleton()->SetIsSceneState("CharacterSelect");
+		if (frame == 41) 
+		{
+			SceneManager::GetSingleton()->SetIsSceneState("CharacterSelect");
+			Init();
+		}
 		if (frame >= maxFrame) frame = 0;
 	}
+
 	if (KeyManager::GetSingleton()->IsOnceKeyDown('A') && !isLoading) {
 		frame = 0;
 		maxFrame = 41;

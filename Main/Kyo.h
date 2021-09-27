@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameObject.h"
+#include "Collider.h"
 
 class Image;
 
@@ -14,25 +15,32 @@ private:
 	Image* weakLeg;
 	Image* strongLeg;
 	Image* attacked;
+	Image* die;
 
-	Image* MirroringIdle;
-	Image* MirroringWalk;
-	Image* MirroringWeakPunch;
-	Image* MirroringStrongPunch;
-	Image* MirroringWeakLeg;
-	Image* MirroringStrongLeg;
-	Image* MirroringAttacked;
+	Image* mirroringIdle;
+	Image* mirroringWalk;
+	Image* mirroringWeakPunch;
+	Image* mirroringStrongPunch;
+	Image* mirroringWeakLeg;
+	Image* mirroringStrongLeg;
+	Image* mirroringAttacked;
+	Image* mirroringDie;
 
 	int frameX, frameY;
 	int elapsedCount;
 	bool isAttack;
 	MoveDir moveDir;
+	Collider attackCollider[4];
+	Collider damagedCollider[6];
+	bool isDie=false;
 
 public:
 	RECT rect;
 	State state;
 
 	bool isPlayer1;
+
+	bool isHit;
 
 
 public:
