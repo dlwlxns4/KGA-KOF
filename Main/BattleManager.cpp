@@ -34,6 +34,14 @@ void BattleManager::SetColliderPos(string player, bool isPlayer1, POINTFLOAT pos
 			attackCollider[3].setColliderPos(pos.x + 20, pos.y - 40, pos.x + 60, pos.y - 10); attackCollider[3].damage = 12;	// 강발
 			attackCollider[4].setColliderPos(pos.x + 10, pos.y - 65, pos.x + 50, pos.y - 30); attackCollider[4].damage = 7;		// 강손2
 		}
+
+		if (player._Equal("Kyo")) {
+			damagedCollider[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
+			attackCollider[0].setColliderPos(pos.x + 20, pos.y - 35, pos.x + 50, pos.y - 15); attackCollider[0].damage = 5;		// 약손
+			attackCollider[1].setColliderPos(pos.x + 20, pos.y - 15, pos.x + 60, pos.y + 10); attackCollider[1].damage = 7;		// 강손
+			attackCollider[2].setColliderPos(pos.x + 20, pos.y - 25, pos.x + 60, pos.y - 10); attackCollider[2].damage = 8;		// 약발
+			attackCollider[3].setColliderPos(pos.x + 20, pos.y - 40, pos.x + 50, pos.y - 20); attackCollider[3].damage = 12;	// 강발
+		}
 	}
 	else // 플레이어 2일 때
 	{
@@ -51,6 +59,14 @@ void BattleManager::SetColliderPos(string player, bool isPlayer1, POINTFLOAT pos
 			attackCollider2[2].setColliderPos(pos.x - 10, pos.y - 45, pos.x - 50, pos.y - 10); attackCollider2[2].damage = 8;	 // 약발
 			attackCollider2[3].setColliderPos(pos.x - 60, pos.y - 40, pos.x - 20, pos.y - 10); attackCollider2[3].damage = 12;	 // 강발
 			attackCollider2[4].setColliderPos(pos.x - 60, pos.y - 50, pos.x - 10, pos.y + 10); attackCollider2[4].damage = 7;	 // 강손2
+		}
+
+		if (player._Equal("Kyo")) {
+			damagedCollider2[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
+			attackCollider2[0].setColliderPos(pos.x - 20, pos.y - 35, pos.x - 50, pos.y - 15); attackCollider2[0].damage = 5;		// 약손
+			attackCollider2[1].setColliderPos(pos.x - 20, pos.y - 15, pos.x - 60, pos.y + 10); attackCollider2[1].damage = 7;		// 강손1
+			attackCollider2[2].setColliderPos(pos.x - 20, pos.y - 25, pos.x - 60, pos.y - 10); attackCollider2[2].damage = 8;		// 약발
+			attackCollider2[3].setColliderPos(pos.x - 20, pos.y - 40, pos.x - 50, pos.y - 20); attackCollider2[3].damage = 12;		// 강발
 		}
 	}
 }
