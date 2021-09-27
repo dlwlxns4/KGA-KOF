@@ -1,6 +1,7 @@
 #include "MayLee.h"
 #include "Image.h"
 #include "KeyManager.h"
+#include "BattleManager.h"
 
 int MayLee::ElpasedCount(int fps, int& frameX, bool check) {
 	static int elpasedCount = 0;
@@ -38,6 +39,10 @@ void MayLee::Init(bool isPlayer1)
 		weakLeg->Init("Image/Character/may_lee/MayLee_WeakKickNormal_10F.bmp", 1500, 107, 10, 1, true, RGB(108, 156, 114));
 		strongLeg = new Image;		// 강발차기
 		strongLeg->Init("Image/Character/may_lee/MayLee_StrongKickNormal_13F.bmp", 1800, 120, 13, 1, true, RGB(108, 156, 114));
+		hit = new Image;		// 피격
+		hit->Init("Image/Character/may_lee/MayLee_Attacked_5F.bmp", 374, 91, 5, 1, true, RGB(108, 156, 114));
+		die = new Image;		// 사망
+		die->Init("Image/Character/may_lee/MayLee_Lose_9F.bmp", 1125, 100, 9, 1, true, RGB(108, 156, 114));
 	}
 	else
 	{
@@ -55,6 +60,10 @@ void MayLee::Init(bool isPlayer1)
 		mirroringWeakLeg->Init("Image/Character/may_lee/MayLee_WeakKickNormal_10F_mirroring.bmp", 1500, 107, 10, 1, true, RGB(108, 156, 114));
 		mirroringstrongLeg = new Image;		// 강발차기
 		mirroringstrongLeg->Init("Image/Character/may_lee/MayLee_StrongKickNormal_13F_mirroring.bmp", 1800, 120, 13, 1, true, RGB(108, 156, 114));
+		mirroringHit = new Image;		// 피격
+		mirroringHit->Init("Image/Character/may_lee/MayLee_Attacked_5F_mirroring.bmp", 374, 91, 5, 1, true, RGB(108, 156, 114));
+		mirroringDie = new Image;		// 사망
+		mirroringDie->Init("Image/Character/may_lee/MayLee_Lose_9F_mirroring.bmp", 1125, 100, 9, 1, true, RGB(108, 156, 114));
 	}
 
 	moveDir = MoveDir::Right;
@@ -77,7 +86,13 @@ void MayLee::Init(bool isPlayer1)
 		this->pos.y = WIN_SIZE_Y / 1.3;
 	}
 
+	for (int i = 0; i < 4; i++)
+	{
+		attackCollider[i].init();
+	}
+	damagedCollider[0].init(pos.x - 25, pos.x + 25, pos.y - 40, pos.y + 50);
 	this->isPlayer1 = isPlayer1;
+	isHit = false;
 }
 
 void MayLee::Update()
@@ -192,6 +207,180 @@ void MayLee::Update()
 			state = State::IDLE;
 		}
 	}
+
+	//Collider 관리 파트 
+	if (isAttack && state == State::PunchWeak)
+	{
+		if (frameX > 0 && frameX < 2)
+		{
+			if (this->isPlayer1)
+			{
+				BattleManager::GetSingleton()->attackCollider[0].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[0].collider, true) && !isHit)
+				{
+					isHit = true;
+					elpasedCount = -5; // Hit했을 때 경직도
+				}
+
+			}
+			else
+			{
+				BattleManager::GetSingleton()->attackCollider2[0].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, false) && !isHit)
+				{
+					isHit = true;
+					elpasedCount = -5; // Hit했을 때 경직도
+				}
+
+			}
+		}
+		else if (frameX > 2)
+		{
+			if (this->isPlayer1)
+			{
+				BattleManager::GetSingleton()->attackCollider[0].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer2Damaged = false;
+			}
+			else
+			{
+				BattleManager::GetSingleton()->attackCollider2[0].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer1Damaged = false;
+			}
+		}
+	}
+	else if (isAttack && state == State::PunchStrong)
+	{
+		if (frameX > 1 && frameX < 4)
+		{
+			if (this->isPlayer1)
+			{
+				BattleManager::GetSingleton()->attackCollider[1].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[1].collider, true) && !isHit)
+				{
+					isHit = true;
+					elpasedCount = -3; // Hit했을 때 경직도
+				}
+			}
+			else
+			{
+				BattleManager::GetSingleton()->attackCollider2[1].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[1].collider, false) && !isHit)
+				{
+					cout << "attackCollider2 : " << BattleManager::GetSingleton()->attackCollider2[1].isAttack << endl;
+					isHit = true;
+					elpasedCount = -3; // Hit했을 때 경직도
+				}
+			}
+		}
+		else
+		{
+			if (this->isPlayer1)
+			{
+				BattleManager::GetSingleton()->attackCollider[1].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer2Damaged = false;
+			}
+			else
+			{
+				BattleManager::GetSingleton()->attackCollider2[1].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer1Damaged = false;
+			}
+		}
+	}
+	else if (isAttack && state == State::LegWeak)
+	{
+		if (frameX > 2 && frameX < 5)
+		{
+			if (this->isPlayer1)
+			{
+				BattleManager::GetSingleton()->attackCollider[2].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[2].collider, true) && !isHit)
+				{
+					isHit = true;
+					elpasedCount = -3; // Hit했을 때 경직도
+				}
+			}
+			else
+			{
+				BattleManager::GetSingleton()->attackCollider2[2].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[2].collider, false) && !isHit)
+				{
+					isHit = true;
+					elpasedCount = -3; // Hit했을 때 경직도
+				}
+			}
+		}
+		else
+		{
+			if (this->isPlayer1)
+			{
+				BattleManager::GetSingleton()->attackCollider[2].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer2Damaged = false;
+			}
+			else
+			{
+				BattleManager::GetSingleton()->attackCollider2[2].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer1Damaged = false;
+			}
+		}
+	}
+	else if (isAttack && state == State::LegStrong)
+	{
+	if (frameX > 6 && frameX < 9)
+	{
+		if (this->isPlayer1)
+		{
+			BattleManager::GetSingleton()->attackCollider[3].isAttack = true;
+			if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[2].collider, true) && !isHit)
+			{
+				isHit = true;
+				elpasedCount = -3; // Hit했을 때 경직도
+			}
+		}
+		else
+		{
+			BattleManager::GetSingleton()->attackCollider2[3].isAttack = true;
+			if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[2].collider, false) && !isHit)
+			{
+				isHit = true;
+				elpasedCount = -3; // Hit했을 때 경직도
+			}
+		}
+	}
+	else
+	{
+		if (this->isPlayer1)
+		{
+			BattleManager::GetSingleton()->attackCollider[3].isAttack = false;
+			BattleManager::GetSingleton()->isPlayer2Damaged = false;
+		}
+		else
+		{
+			BattleManager::GetSingleton()->attackCollider2[3].isAttack = false;
+			BattleManager::GetSingleton()->isPlayer1Damaged = false;
+		}
+	}
+	}
+
+	//0927수정
+	if (BattleManager::GetSingleton()->CheckDamaged(isPlayer1))
+	{
+		if (BattleManager::GetSingleton()->player1Hp <= 0)
+		{
+			frameX = 0;
+			state = State::Die;
+		}
+		else if (BattleManager::GetSingleton()->player2Hp <= 0)
+		{
+			frameX = 0;
+			state = State::Die;
+			cout << "damaged" << endl;
+
+		}
+		else
+		{
+			state = State::Damaged;
+		}
+	}
 }
 
 void MayLee::Render(HDC hdc)
@@ -294,7 +483,58 @@ void MayLee::Render(HDC hdc)
 					frameX = 0;
 				}
 				break;
+			case State::Damaged:
+				{static bool check = true;
+				if (check) {
+					frameX = 0;
+					check = false;
+				}
+				if (isPlayer1) {
+					hit->Render(hdc, pos.x, pos.y, frameX, frameY);
+				}
+				else {
+					mirroringHit->Render(hdc, pos.x, pos.y, frameX, frameY);
+				}
+
+				elpasedCount++;
+				if (elpasedCount == 3)
+				{
+					elpasedCount = 0;
+					frameX++;
+				}
+				if (frameX >= 4)
+				{
+					check = true;
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				}
+					break;
+			case State::Die:
+				cout << frameX << endl;
+				if (isPlayer1) {
+					//die->Render(hdc, pos.x, pos.y, frameX, frameY);
+				}
+				else {
+					//mirroringDie->Render(hdc, pos.x, pos.y, frameX, frameY);
+				}
+				elpasedCount++;
+				if (elpasedCount == 12)
+				{
+					elpasedCount = 0;
+					frameX++;
+				}
+				if (frameX >= 8)
+				{
+					frameX = 8;
+					BattleManager::GetSingleton()->SetDie();
+				}
+
+				break;
+		
 			}
+			
 		}
 	}
 	else
@@ -394,6 +634,54 @@ void MayLee::Render(HDC hdc)
 					state = State::IDLE;
 					frameX = 0;
 				}
+				break;
+			case State::Damaged:
+			{static bool check = true;
+			if (check) {
+				frameX = 0;
+				check = false;
+			}
+			if (isPlayer1) {
+				hit->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+			else {
+				mirroringHit->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+
+			elpasedCount++;
+			if (elpasedCount == 3)
+			{
+				elpasedCount = 0;
+				frameX++;
+			}
+			if (frameX >= 4)
+			{
+				check = true;
+				isAttack = false;
+				state = State::IDLE;
+				frameX = 0;
+			}
+			}
+				break;
+			case State::Die:
+				if (isPlayer1) {
+					die->Render(hdc, pos.x, pos.y, frameX, frameY);
+				}
+				else {
+					mirroringDie->Render(hdc, pos.x, pos.y, frameX, frameY);
+				}
+				elpasedCount++;
+				if (elpasedCount == 12)
+				{
+					elpasedCount = 0;
+					frameX++;
+				}
+				if (frameX >= 8)
+				{
+					frameX = 8;
+					BattleManager::GetSingleton()->SetDie();
+				}
+
 				break;
 			}
 		}

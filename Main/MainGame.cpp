@@ -121,6 +121,7 @@ void MainGame::Update()
 		}
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") {
 			may->Update();
+			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(true), true, may->GetPos());
 		}
 
 		//플레이어 2
@@ -138,6 +139,7 @@ void MainGame::Update()
 		}
 		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "May") {
 			may2->Update();
+			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(false), false, may2->GetPos());
 		}
 	}
 
