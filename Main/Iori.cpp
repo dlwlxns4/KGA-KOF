@@ -98,7 +98,6 @@ void Iori::Update()
 		{
 			isAttack = false;
 			state = State::IDLE;
-			elpasedCount = 0;
 		}
 
 		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
@@ -155,7 +154,6 @@ void Iori::Update()
 		{
 			isAttack = false;
 			state = State::IDLE;
-			elpasedCount = 0;
 		}
 
 		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
@@ -247,7 +245,6 @@ void Iori::Update()
 				BattleManager::GetSingleton()->attackCollider2[1].isAttack = true;
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[1].collider, false) && !isHit)
 				{
-					cout << "attackCollider2 : " << BattleManager::GetSingleton()->attackCollider2[1].isAttack << endl;
 					isHit = true;
 					elpasedCount = -3; // Hit했을 때 경직도
 				}
@@ -311,13 +308,13 @@ void Iori::Update()
 	{
 		if (BattleManager::GetSingleton()->player1Hp <= 0)
 		{
+			frameX = 0;
 			state = State::Die;
 		}
 		else if (BattleManager::GetSingleton()->player2Hp <= 0)
 		{
-			cout << "damaged" << endl;
+			frameX = 0;
 			state = State::Die;
-
 		}
 		else
 		{
@@ -486,9 +483,10 @@ void Iori::Render(HDC hdc)
 				elpasedCount = 0;
 				frameX++;
 			}
-			if (frameX >= 6)
+			if (frameX >= 6 && !isDie)
 			{
 				frameX = 6;
+				isDie = true;
 				BattleManager::GetSingleton()->SetDie();
 			}
 

@@ -159,6 +159,9 @@ void MainGame::Render(HDC hdc)
 		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "May") {
 			may2->Render(hBackBufferDC);
 		}
+
+
+		backGround->sceneTransformRender(hBackBufferDC);
 	}
 
 	

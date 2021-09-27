@@ -88,7 +88,7 @@ void BattleManager::Render(HDC hdc)
 			Rectangle(hdc, attackCollider2[i].collider.left, attackCollider2[i].collider.top, attackCollider2[i].collider.right, attackCollider2[i].collider.bottom);
 	}
 
-	if ((player1Hp <= 0 || player2Hp <= 0) && gameState == State::Die && gameState != State::End)
+	if ((player1Hp <= 0 || player2Hp <= 0) && gameState == State::Die )
 	{
 		elpasedCount++;
 		if (elpasedCount >= maxElpasedCount && gameState !=State::End)
@@ -103,7 +103,7 @@ void BattleManager::Render(HDC hdc)
 			}
 		}
 
-		if(gameState !=State::End && frame!=19)
+		if(gameState !=State::End && gameState != State::End)
 			KORender(hdc);
 	}
 
