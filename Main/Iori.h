@@ -32,10 +32,13 @@ private:
 	bool isHit;
 	MoveDir moveDir;
 
+	bool isDie=false;
+
 public:
 	//RECT collider[3]; 
 	State state;
 	bool isPlayer1;
+
 
 
 public:

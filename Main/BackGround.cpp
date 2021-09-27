@@ -120,6 +120,17 @@ void BackGround::Init()
 	strcpy_s(cha, str.c_str());
 	ui->Init(cha, 640/2, 114/1.5, 1, 1, false, RGB(255, 0, 255));
 
+	for(int i=0; i<11; i++)
+	{
+		sceneTransform[i] = new Image;
+		char cha[100];
+		string str = "Image/SceneTransform/";
+		str += to_string(i + 1);
+		str += ".bmp";
+		strcpy_s(cha, str.c_str());
+		sceneTransform[i]->Init(cha, 680, 492, 1, 1, true, RGB(255, 0, 255));
+	}
+
 	srand(time(NULL));
 	switch (rand() % 9) {
 	case 0:
@@ -161,6 +172,8 @@ void BackGround::Update()
 
 void BackGround::Render(HDC hdc)
 {
+
+	
 
 	switch (isBackGround) {
 	case IsBackGround::BulGukSa:
@@ -260,6 +273,26 @@ void BackGround::Render(HDC hdc)
 	//ui->Render(hdc, WIN_SIZE_X / 2, 0);
 }
 
+void BackGround::sceneTransformRender(HDC hdc)
+{
+	if (isSceneTransform)
+	{
+		sceneTransform[transformFrame]->Render(hdc, 0, 120, 0, 0);
+		transformElpasedCount++;
+		if (transformElpasedCount == 2)
+		{
+
+			cout << transformFrame;
+			transformElpasedCount = 0;
+			transformFrame++;
+			if (transformFrame >= 11)
+			{
+				transformFrame = 0;
+				isSceneTransform = false;
+			}
+		}
+	}
+}
 
 void BackGround::Release()
 {

@@ -28,7 +28,7 @@ public:
 	State gameState;
 
 	int elpasedCount = 0;
-	int maxElpasedCount = 2;
+	int maxElpasedCount = 5;
 	int frame = 0;
 	int maxFrame = 21;
 
@@ -39,4 +39,5 @@ public:
 	bool CheckDamaged(bool isPlayer1);
 	void KORender(HDC hdc);
 	inline void SetDie() { gameState = State::Die; };
+	string GetState();
 };
