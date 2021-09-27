@@ -97,28 +97,28 @@ void Kyo::Update()
 			state = State::IDLE;
 		}
 
-		// A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack)
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::LegWeak;
 		}
-		// A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_KICK) && !isAttack)
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::LegStrong;
 		}
-		// A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack)
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchWeak;
 		}
-		// A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack)
 		{
 			frameX = 0;
@@ -157,28 +157,28 @@ void Kyo::Update()
 			state = State::IDLE;
 		}
 
-		// A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_KICK) && !isAttack)
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::LegWeak;
 		}
-		// A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_KICK) && !isAttack)
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::LegStrong;
 		}
-		// A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_PUNCH) && !isAttack)
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchWeak;
 		}
-		// A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_PUNCH) && !isAttack)
 		{
 			frameX = 0;
@@ -277,6 +277,39 @@ void Kyo::Render(HDC hdc)
 					isAttack = false;
 					state = State::IDLE;
 					frameX = 0;
+				}
+				break;
+
+			case State::Damaged:
+				attacked->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elapsedCount++;
+
+
+				if (elapsedCount >= 3)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX >= 4)
+				{
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				break;
+			case State::Die:
+				die->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elapsedCount++;
+				if (elapsedCount >= 12)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX >= 4 && !isDie)
+				{
+					frameX = 4;
+					isDie = true;
+					BattleManager::GetSingleton()->SetDie();
 				}
 				break;
 			case State::Walk:

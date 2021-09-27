@@ -18,12 +18,13 @@ private:
 	Image* strongPunch;
 	Image* damaged;
 
-	Image* MirroringImg;
-	Image* MirroringIdle;
-	Image* MirroringWeakLeg;
-	Image* MirroringWeakPunch;
-	Image* MirroringStrongPunch;
-	Image* MirroringDamaged;
+	Image* mirroringImg;
+	Image* mirroringIdle;
+	Image* mirroringWeakLeg;
+	Image* mirroringWeakPunch;
+	Image* mirroringStrongPunch;
+	Image* mirroringDamaged;
+	Image* mirroringDie;
 	
 	int frameX, frameY;
 	int elpasedCount;

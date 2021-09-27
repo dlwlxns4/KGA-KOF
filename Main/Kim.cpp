@@ -28,7 +28,7 @@ void Kim::Collision(int frameX, int frameMin, int frameMax, int colliderNum,int&
 			if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[colliderNum].collider, true) && !isHit)
 			{
 				isHit = true;
-				elpasedCount = -5; // HitÇßÀ» ¶§ °æÁ÷µµ
+				elpasedCount = -5; // Hitï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			}
 		}
 		else
@@ -37,7 +37,7 @@ void Kim::Collision(int frameX, int frameMin, int frameMax, int colliderNum,int&
 			if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[colliderNum].collider, false) && !isHit)
 			{
 				isHit = true;
-				elpasedCount = -5; // HitÇßÀ» ¶§ °æÁ÷µµ
+				elpasedCount = -5; // Hitï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			}
 
 		}
@@ -65,19 +65,19 @@ void Kim::Collision(int frameX, int frameMin, int frameMax, int colliderNum,int&
 
 void Kim::Init(bool isPlayer1)
 {
-	idle = new Image;	// ´ë±â
+	idle = new Image;	// ï¿½ï¿½ï¿½
 	idle->Init("Image/Character/kim/kim_Idle.bmp", 682, 120, 11, 1, true, RGB(255, 0, 255));
-	frontWalk = new Image;	// ¾ÕÀ¸·Î
+	frontWalk = new Image;	// ï¿½ï¿½ï¿½ï¿½ï¿½
 	frontWalk->Init("Image/Character/kim/kim_FrontWalk.bmp", 372, 120, 6, 1, true, RGB(255, 0, 255));
-	backWalk = new Image;	// µÚ·Î
+	backWalk = new Image;	// ï¿½Ú·ï¿½
 	backWalk->Init("Image/Character/kim/kim_BackWalk.bmp", 348, 120, 6, 1, true, RGB(255, 0, 255));
-	weakPunch = new Image;	// ¾àÁÖ¸Ô
+	weakPunch = new Image;	// ï¿½ï¿½ï¿½Ö¸ï¿½
 	weakPunch->Init("Image/Character/kim/kim_WeakPunch.bmp", 590, 120, 5, 1, true, RGB(255, 0, 255));
-	strongPunch = new Image; // °­ÁÖ¸Ô
+	strongPunch = new Image; // ï¿½ï¿½ï¿½Ö¸ï¿½
 	strongPunch->Init("Image/Character/kim/kim_StrongPunch.bmp", 1656, 132, 18, 1, true, RGB(255, 0, 255));
-	weakLeg = new Image;	// ¾à¹ßÂ÷±â
+	weakLeg = new Image;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	weakLeg->Init("Image/Character/kim/kim_WeakKick.bmp", 909, 120, 9, 1, true, RGB(255, 0, 255));
-	strongLeg = new Image;	// °­¹ßÂ÷±â
+	strongLeg = new Image;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	strongLeg->Init("Image/Character/kim/kim_StrongKick.bmp", 1287, 120, 11, 1, true, RGB(255, 0, 255));
 	hit1 = new Image;
 	hit1->Init("Image/Character/kim/kim_Hit1.bmp", 162, 120, 2, 1, true, RGB(255, 0, 255));;
@@ -86,19 +86,19 @@ void Kim::Init(bool isPlayer1)
 	hit3 = new Image;
 	hit3->Init("Image/Character/kim/kim_Hit3.bmp", 480, 120, 5, 1, true, RGB(255, 0, 255));;
 
-	mirroringIdle = new Image;	// ´ë±â
+	mirroringIdle = new Image;	// ï¿½ï¿½ï¿½
 	mirroringIdle->Init("Image/Character/kim/kim_Idle_mirroring.bmp", 682, 120, 11, 1, true, RGB(255, 0, 255));
-	mirroringFrontWalk = new Image;	// ¾ÕÀ¸·Î
+	mirroringFrontWalk = new Image;	// ï¿½ï¿½ï¿½ï¿½ï¿½
 	mirroringFrontWalk->Init("Image/Character/kim/kim_FrontWalk_mirroring.bmp", 372, 120, 6, 1, true, RGB(255, 0, 255));
-	mirroringBackWalk = new Image;	// µÚ·Î
+	mirroringBackWalk = new Image;	// ï¿½Ú·ï¿½
 	mirroringBackWalk->Init("Image/Character/kim/kim_BackWalk_mirroring.bmp", 348, 120, 6, 1, true, RGB(255, 0, 255));
-	mirroringWeakPunch = new Image;	// ¾àÁÖ¸Ô
+	mirroringWeakPunch = new Image;	// ï¿½ï¿½ï¿½Ö¸ï¿½
 	mirroringWeakPunch->Init("Image/Character/kim/kim_WeakPunch_mirroring.bmp", 590, 120, 5, 1, true, RGB(255, 0, 255));
-	mirroringStrongPunch = new Image; // °­ÁÖ¸Ô
+	mirroringStrongPunch = new Image; // ï¿½ï¿½ï¿½Ö¸ï¿½
 	mirroringStrongPunch->Init("Image/Character/kim/kim_StrongPunch_mirroring.bmp", 1656, 132, 18, 1, true, RGB(255, 0, 255));
-	mirroringWeakLeg = new Image;	// ¾à¹ßÂ÷±â
+	mirroringWeakLeg = new Image;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	mirroringWeakLeg->Init("Image/Character/kim/kim_WeakKick_mirroring.bmp", 909, 120, 9, 1, true, RGB(255, 0, 255));
-	mirroringStrongLeg = new Image;	// °­¹ßÂ÷±â
+	mirroringStrongLeg = new Image;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	mirroringStrongLeg->Init("Image/Character/kim/kim_StrongKick_mirroring.bmp", 1287, 120, 11, 1, true, RGB(255, 0, 255));
 	mirroringHit1 = new Image;
 	mirroringHit1->Init("Image/Character/kim/kim_Hit1_mirroring.bmp", 162, 120, 2, 1, true, RGB(255, 0, 255));;
@@ -163,25 +163,25 @@ void Kim::Update()
 			state = State::IDLE;
 		}
 
-		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchWeak;
 		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack) // A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack) // Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchStrong;
 		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::LegWeak;
 		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_KICK) && !isAttack) // A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_KICK) && !isAttack) // Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			frameX = 0;
 			isAttack = true;
@@ -217,19 +217,19 @@ void Kim::Update()
 			state = State::IDLE;
 		}
 
-		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_PUNCH) && !isAttack) // A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_PUNCH) && !isAttack) // Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchWeak;
 		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_KICK) && !isAttack) // A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_KICK) && !isAttack) // Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			frameX = 0;
 			isAttack = true;
 			state = State::LegWeak;
 		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_KICK) && !isAttack) // A´©¸£°í °ø°ÝÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_KICK) && !isAttack) // Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			frameX = 0;
 			isAttack = true;
