@@ -507,9 +507,10 @@ void Kyo::Render(HDC hdc)
 					elapsedCount = 0;
 					frameX++;
 				}
-				if (frameX >= 4)
+				if (frameX >= 4 && !isDie)
 				{
 					frameX = 4;
+					isDie = true;
 					BattleManager::GetSingleton()->SetDie();
 				}
 				break;

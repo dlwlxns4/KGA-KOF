@@ -56,11 +56,49 @@ void MainGame::Init()
 	may2->Init(false);
 }
 
+void MainGame::GameInit()
+{
+	KeyManager::GetSingleton()->Init();
+	SceneManager::GetSingleton()->Init();
+
+
+	// 배경
+	backGround = new BackGround;
+	backGround->Init();
+
+	// 플레이어1
+	iori = new Iori;
+	iori->Init(true);
+	kim = new Kim;
+	kim->Init(true);
+	kyo = new Kyo;
+	kyo->Init(true);
+	may = new MayLee;
+	may->Init(true);
+
+	// 플레이어2
+	iori2 = new Iori;
+	iori2->Init(false);
+	kim2 = new Kim;
+	kim2->Init(false);
+	kyo2 = new Kyo;
+	kyo2->Init(false);
+	may2 = new MayLee;
+	may2->Init(false);
+}
+
 void MainGame::Update()
 {
 
 	if (SceneManager::GetSingleton()->GetIsSceneState() == "MainTitle") {
 		mainTitle->Update();
+		if (gameInit)
+		{
+			GameRelease();
+			GameInit();
+			gameInit = false;
+			BattleManager::GetSingleton()->GameInit();
+		}
 	}else if (SceneManager::GetSingleton()->GetIsSceneState() == "Loading") {
 		mainTitle->Update();
 	}else if (SceneManager::GetSingleton()->GetIsSceneState() == "CharacterSelect") {
@@ -118,8 +156,6 @@ void MainGame::Update()
 
 void MainGame::Render(HDC hdc)
 {
-
-
 	HDC hBackBufferDC = backBuffer->GetMemDC();
 	if (SceneManager::GetSingleton()->GetIsSceneState() == "MainTitle") {
 		mainTitle->Render(hBackBufferDC);
@@ -163,33 +199,40 @@ void MainGame::Render(HDC hdc)
 
 
 		backGround->sceneTransformRender(hBackBufferDC);
+		gameInit = BattleManager::GetSingleton()->SceneTransform(hBackBufferDC);
+		if(gameInit) mainTitle->Render(hBackBufferDC);
 	}
 
-	
-	
-	//if (!SceneManager::GetSingleton()->selectCheck1 ||
-	//	!SceneManager::GetSingleton()->selectCheck2) {
-	//	characterSelect->Render(hBackBufferDC);
-	//}
-	//else {
-	//	backGround->Render(hBackBufferDC);
-	//	if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
-	//		kim->Render(hBackBufferDC);
-
-	//	}
-	//	if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
-	//		iori->Render(hBackBufferDC);
-
-	//	}
-	//}
 	backBuffer->Render(hdc);
+}
+
+void MainGame::GameRelease()
+{
+	SAFE_RELEASE(backGround);
+	delete iori;
+	delete kyo;
+	delete may;
+	delete kim;
+	delete iori2;
+	delete kyo2;
+	delete may2;
+	delete kim2;
+
 }
 
 void MainGame::Release()
 {
-	SAFE_RELEASE(backBuffer);
 	SAFE_RELEASE(backGround);
+	SAFE_RELEASE(backBuffer);
 
+	delete iori;
+	delete kyo;
+	delete may;
+	delete kim;
+	delete iori2;
+	delete kyo2;
+	delete may2;
+	delete kim2;
 
 	// 타이머 객체 삭제
 	KillTimer(g_hWnd, 0);

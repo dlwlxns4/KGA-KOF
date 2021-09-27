@@ -32,6 +32,7 @@ private:
 	MoveDir moveDir;
 	Collider attackCollider[4];
 	Collider damagedCollider[6];
+	bool isDie=false;
 
 public:
 	RECT rect;

@@ -1,13 +1,13 @@
 #include "BattleManager.h"
 #include "Image.h"
-
+#include "SceneManager.h"
 
 void BattleManager::Init(string player, bool isPlayer1, POINTFLOAT pos)
 {
 	if (isPlayer1) //플레이어 1일 때
 	{
 		playerPos1 = pos;
-  }
+	}
 }
 
 void BattleManager::Init()
@@ -21,6 +21,28 @@ void BattleManager::Init()
 		str += ".bmp";
 		strcpy_s(cha, str.c_str());
 		ko[i]->Init(cha, 680 / 2.1, 492 / 2.0, 1, 1, true, RGB(255, 0, 255));
+	}
+
+	for (int i = 0; i < 25; i++)
+	{
+		win[i] = new Image;
+		char cha[100];
+		string str = "Image/UI/KO/Winner";
+		str += to_string(i + 1);
+		str += ".bmp";
+		strcpy_s(cha, str.c_str());
+		win[i]->Init(cha, 680 / 2.1, 492 / 2.0, 1, 1, true, RGB(255, 0, 255));
+	}
+
+	for (int i = 0; i < 20; i++)
+	{
+		sceneTransform[i] = new Image;
+		char cha[100];
+		string str = "Image/UI/SceneTransform/CutChange";
+		str += to_string(i + 1);
+		str += ".bmp";
+		strcpy_s(cha, str.c_str());
+		sceneTransform[i]->Init(cha, 680 / 2.1, 492 / 2.0, 1, 1, true, RGB(255, 0, 255));
 	}
 }
 
@@ -59,9 +81,9 @@ void BattleManager::SetColliderPos(string player, bool isPlayer1, POINTFLOAT pos
 		playerPos2 = pos;
 		if (player._Equal("Iori")) {
 			damagedCollider2[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
-			attackCollider2[0].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 60, pos.y);  attackCollider2[0].damage = 5;
-			attackCollider2[1].setColliderPos(pos.x + 10, pos.y - 50, pos.x + 60, pos.y + 10); attackCollider2[1].damage = 10;
-			attackCollider2[2].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 50, pos.y + 50); attackCollider2[2].damage = 8;
+			attackCollider2[0].setColliderPos(pos.x - 60, pos.y - 20, pos.x - 20, pos.y);  attackCollider2[0].damage = 5;
+			attackCollider2[1].setColliderPos(pos.x - 60, pos.y - 50, pos.x - 10, pos.y + 10); attackCollider2[1].damage = 10;
+			attackCollider2[2].setColliderPos(pos.x - 50, pos.y - 20, pos.x - 20, pos.y + 50); attackCollider2[2].damage = 8;
 		}
 
 
@@ -100,23 +122,46 @@ void BattleManager::Render(HDC hdc)
 	}
 
 
-	if ((player1Hp <= 0 || player2Hp <= 0) && gameState == State::Die )
+	if ((player1Hp <= 0 || player2Hp <= 0) )
 	{
-		elpasedCount++;
-		if (elpasedCount >= maxElpasedCount && gameState !=State::End)
+		if (gameState != State::KO && gameState != State::END)
 		{
-			elpasedCount = 0;
-			frame++;
+			if( gameState == State::Die && gameState != State::END)
+			{ 
+				elpasedCount++;
+				if (elpasedCount >= maxElpasedCount)
+				{
+					elpasedCount = 0;
+					frame++;
 
-			if (frame >= maxFrame-1)
-			{
-				frame--;
-				gameState = State::End;
+					if (frame >= maxFrame )
+					{
+						maxElpasedCount = 3;
+						frame = 0; maxFrame = 25;
+						gameState = State::KO;
+					}
+				}
+				KORender(hdc);
 			}
 		}
+		else if(gameState != State::END)
+		{
+			elpasedCount++;
+			if (elpasedCount >= maxElpasedCount)
+			{
+				elpasedCount = 0;
+				frame++;
 
-		if(gameState !=State::End && gameState != State::End)
-			KORender(hdc);
+				if (frame >= maxFrame )
+				{
+					maxElpasedCount = 3;
+					frame = 0; maxFrame = 20;
+					gameState = State::END;
+				}
+			}
+			WinRender(hdc);
+		}
+
 	}
 
 }
@@ -188,9 +233,60 @@ void BattleManager::KORender(HDC hdc)
 {
 	if (player1Hp <= 0 || player2Hp <= 0)
 	{
-		for (int i = 0; i < 21; i++)
-		{
-			ko[frame]->Render(hdc, WIN_SIZE_X / 2, WIN_SIZE_Y / 2, 0, 0);
-		}
+		ko[frame]->Render(hdc, WIN_SIZE_X / 2, WIN_SIZE_Y / 2, 0, 0);
 	}
 }
+
+void BattleManager::WinRender(HDC hdc)
+{
+	if (player1Hp <= 0)
+	{
+		win[frame]->Render(hdc, WIN_SIZE_X / 2, WIN_SIZE_Y / 2, 0, 0);
+	}
+	else
+	{	
+		win[frame]->Render(hdc, WIN_SIZE_X / 1.2 - WIN_SIZE_X , WIN_SIZE_Y / 2, 0, 0);
+	}
+}
+
+bool BattleManager::SceneTransform(HDC hdc)
+{
+	if (gameState == State::END)
+	{
+		elpasedCount++;
+		if (elpasedCount >= maxElpasedCount)
+		{
+			elpasedCount = 0;
+			frame++;
+
+			if (frame >= maxFrame)
+			{
+				SceneManager::GetSingleton()->SetIsSceneState("MainTitle");
+				cout << "Go Maintitle!" << endl;
+				return true;
+
+			}
+		}
+		sceneTransform[frame]->Render(hdc, WIN_SIZE_X / 2, WIN_SIZE_Y / 2, 0, 0);
+	}
+}
+
+void BattleManager::GameInit()
+{
+	player1Hp = 10;
+	player2Hp = 10;
+
+	player1MoveCheck = 0;
+	player2MoveCheck = 0;
+	backGroundMove = 0;
+
+	elpasedCount = 0;
+	maxElpasedCount = 3;
+	frame = 0;
+	maxFrame = 21;
+	gameState = State::Playing;
+
+	SceneManager::GetSingleton()->SetPlayerChar("Empty", true);
+	SceneManager::GetSingleton()->SetPlayerChar("Empty", false);
+}
+
