@@ -40,6 +40,7 @@ public:
 
 	void Init(string player, bool isPlayer1, POINTFLOAT pos);
 	void Render(HDC hdc);
+	int SetDie() { return 1; }
 	bool CheckCollision(RECT* rect, bool isPlayer1);
 	bool CheckDamaged(bool isPlayer1);
 	void SetColliderPos(string player, bool isPlayer1, POINTFLOAT pos);

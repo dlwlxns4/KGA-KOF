@@ -223,7 +223,14 @@ void Kim::Update()
 			isAttack = true;
 			state = State::PunchWeak;
 		}
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_PUNCH) && !isAttack) // A������ ������� �ƴҶ��� ����
+		{
+			frameX = 0;
+			isAttack = true;
+			state = State::PunchStrong;
+		}
 		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_KICK) && !isAttack) // A������ ������� �ƴҶ��� ����
+
 		{
 			frameX = 0;
 			isAttack = true;

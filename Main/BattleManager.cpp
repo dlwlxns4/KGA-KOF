@@ -101,11 +101,12 @@ void BattleManager::SetColliderPos(string player, bool isPlayer1, POINTFLOAT pos
 
 		if (player._Equal("Kim")) {
 			damagedCollider2[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
+
 			attackCollider2[0].setColliderPos(pos.x - 60, pos.y - 15, pos.x - 20, pos.y + 5); attackCollider2[0].damage = 5;	 // ���
 			attackCollider2[1].setColliderPos(pos.x + 10, pos.y - 50, pos.x + 60, pos.y + 10); attackCollider2[1].damage = 7;	 // ����1
 			attackCollider2[2].setColliderPos(pos.x - 50, pos.y - 45, pos.x - 10, pos.y - 10); attackCollider2[2].damage = 8;	 // ���
 			attackCollider2[3].setColliderPos(pos.x - 60, pos.y - 40, pos.x - 20, pos.y - 10); attackCollider2[3].damage = 12;	 // ����
-			attackCollider2[4].setColliderPos(pos.x - 60, pos.y - 50, pos.x - 10, pos.y + 10); attackCollider2[4].damage = 7;	 // ����2
+
 		}
 		
 	}
