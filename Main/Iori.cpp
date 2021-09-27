@@ -22,18 +22,20 @@ void Iori::Init(bool isPlayer1)
 	die->Init("Image/Character/Iori/Iori_Die.bmp", 888, 131, 7, 1, true, RGB(255, 0, 255));
 
 
-	MirroringImg = new Image;
-	MirroringImg->Init("Image/Character/Iori/Iori_walk_mirroring.bmp", 612, 104, 9, 1, true, RGB(255, 0, 255));
-	MirroringIdle = new Image;
-	MirroringIdle->Init("Image/Character/Iori/Iori_Idle_mirroring.bmp", 664, 109, 8, 1, true, RGB(255, 0, 255));
-	MirroringWeakLeg = new Image;
-	MirroringWeakLeg->Init("Image/Character/Iori/Iori_WeakLeg_mirroring.bmp", 768, 109, 8, 1, true, RGB(255, 0, 255));
-	MirroringWeakPunch = new Image;
-	MirroringWeakPunch->Init("Image/Character/Iori/lori_WeakPunch_mirroring.bmp", 600, 112, 5, 1, true, RGB(255, 0, 255));
-	MirroringStrongPunch = new Image;
-	MirroringStrongPunch->Init("Image/Character/Iori/Iori_StrongPunch2_mirroring.bmp", 777, 121, 7, 1, true, RGB(255, 0, 255));
-	MirroringDamaged = new Image;
-	MirroringDamaged->Init("Image/Character/Iori/Iori_Damaged_mirroring.bmp", 462, 115, 6, 1, true, RGB(255, 0, 255));
+	mirroringImg = new Image;
+	mirroringImg->Init("Image/Character/Iori/Iori_walk_mirroring.bmp", 612, 104, 9, 1, true, RGB(255, 0, 255));
+	mirroringIdle = new Image;
+	mirroringIdle->Init("Image/Character/Iori/Iori_Idle_mirroring.bmp", 664, 109, 8, 1, true, RGB(255, 0, 255));
+	mirroringWeakLeg = new Image;
+	mirroringWeakLeg->Init("Image/Character/Iori/Iori_WeakLeg_mirroring.bmp", 768, 109, 8, 1, true, RGB(255, 0, 255));
+	mirroringWeakPunch = new Image;
+	mirroringWeakPunch->Init("Image/Character/Iori/lori_WeakPunch_mirroring.bmp", 600, 112, 5, 1, true, RGB(255, 0, 255));
+	mirroringStrongPunch = new Image;
+	mirroringStrongPunch->Init("Image/Character/Iori/Iori_StrongPunch2_mirroring.bmp", 777, 121, 7, 1, true, RGB(255, 0, 255));
+	mirroringDamaged = new Image;
+	mirroringDamaged->Init("Image/Character/Iori/Iori_Damaged_mirroring.bmp", 462, 115, 6, 1, true, RGB(255, 0, 255));
+	mirroringDie = new Image;
+	mirroringDie->Init("Image/Character/Iori/Iori_Die_mirroring.bmp", 882, 131, 7, 1, true, RGB(255, 0, 255));
 
 	moveDir = MoveDir::Right;
 
@@ -331,7 +333,7 @@ void Iori::Update()
 
 void Iori::Render(HDC hdc)
 {
-	if (img && MirroringIdle)
+	if (img && mirroringIdle)
 	{
 		switch (state)
 		{
@@ -340,7 +342,7 @@ void Iori::Render(HDC hdc)
 				idle->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			else {
-				MirroringIdle->Render(hdc, pos.x, pos.y, frameX, frameY);
+				mirroringIdle->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			elpasedCount++;
 			if (elpasedCount == 5)
@@ -358,7 +360,7 @@ void Iori::Render(HDC hdc)
 				weakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			else {
-				MirroringWeakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
+				mirroringWeakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			elpasedCount++;
 			if (elpasedCount == 3)
@@ -379,7 +381,7 @@ void Iori::Render(HDC hdc)
 				weakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			else {
-				MirroringWeakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
+				mirroringWeakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			elpasedCount++;
 			if (elpasedCount == 3)
@@ -400,7 +402,7 @@ void Iori::Render(HDC hdc)
 				strongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			else {
-				MirroringStrongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
+				mirroringStrongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 
 			elpasedCount++;
@@ -422,7 +424,7 @@ void Iori::Render(HDC hdc)
 				damaged->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			else {
-				MirroringDamaged->Render(hdc, pos.x, pos.y, frameX, frameY);
+				mirroringDamaged->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 
 			elpasedCount++;
@@ -443,7 +445,7 @@ void Iori::Render(HDC hdc)
 				img->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			else {
-				MirroringImg->Render(hdc, pos.x, pos.y, frameX, frameY);
+				mirroringImg->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			elpasedCount++;
 			if (moveDir == MoveDir::Right) {
@@ -479,7 +481,7 @@ void Iori::Render(HDC hdc)
 				die->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			else {
-				die->Render(hdc, pos.x, pos.y, frameX, frameY);
+				mirroringDie->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			elpasedCount++;
 			if (elpasedCount == 12)
@@ -488,6 +490,7 @@ void Iori::Render(HDC hdc)
 				frameX++;
 			}
 
+			if (frameX >= 6) frameX = 6;
 			if (frameX >= 6 && !isDie)
 			{
 				frameX = 6;
