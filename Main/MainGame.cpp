@@ -16,6 +16,7 @@
 
 void MainGame::Init()
 {
+	UIManager::GetSingleton()->Init2();
 	KeyManager::GetSingleton()->Init();
 	SceneManager::GetSingleton()->Init();
 
@@ -105,6 +106,7 @@ void MainGame::Update()
 		characterSelect->Update();
 	}else if (SceneManager::GetSingleton()->GetIsSceneState() == "Battle") {
 		backGround->Update();
+		UIManager::GetSingleton()->Update();
 		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
 			kim->Update();
 			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(true), true, kim->GetPos());
