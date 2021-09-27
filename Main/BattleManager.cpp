@@ -1,6 +1,16 @@
 #include "BattleManager.h"
 #include "Image.h"
 
+
+void BattleManager::Init(string player, bool isPlayer1, POINTFLOAT pos)
+{
+	if (isPlayer1) //í”Œë ˆì´ì–´ 1ì¼ ë•Œ
+	{
+		playerPos1 = pos;
+  }
+}
+=======
+
 void BattleManager::Init()
 {
 	for (int i = 0; i < 21; i++)
@@ -15,14 +25,13 @@ void BattleManager::Init()
 	}
 }
 
-void BattleManager::Update()
-{
-}
+
 
 void BattleManager::SetColliderPos(string player, bool isPlayer1, POINTFLOAT pos)
 {
-	if (isPlayer1) //ÇÃ·¹ÀÌ¾î 1ÀÏ ¶§
+	if (isPlayer1) //í”Œë ˆì´ì–´ 1ì¼ ë•Œ
 	{
+
 		if (player._Equal("Iori")) {
 			damagedCollider[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
 			attackCollider[0].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 60, pos.y); attackCollider[0].damage = 5;
@@ -32,45 +41,46 @@ void BattleManager::SetColliderPos(string player, bool isPlayer1, POINTFLOAT pos
 
 		if (player._Equal("Kim")) {
 			damagedCollider[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
-			attackCollider[0].setColliderPos(pos.x + 20, pos.y - 15, pos.x + 60, pos.y + 5); attackCollider[0].damage = 5;		// ¾à¼Õ
-			attackCollider[1].setColliderPos(pos.x + 10, pos.y - 50, pos.x + 50, pos.y - 10); attackCollider[1].damage = 7;		// °­¼Õ1
-			attackCollider[2].setColliderPos(pos.x + 10, pos.y - 45, pos.x + 50, pos.y - 10); attackCollider[2].damage = 8;		// ¾à¹ß
-			attackCollider[3].setColliderPos(pos.x + 20, pos.y - 40, pos.x + 60, pos.y - 10); attackCollider[3].damage = 12;	// °­¹ß
-			attackCollider[4].setColliderPos(pos.x + 10, pos.y - 65, pos.x + 50, pos.y - 30); attackCollider[4].damage = 7;		// °­¼Õ2
+			attackCollider[0].setColliderPos(pos.x + 20, pos.y - 15, pos.x + 60, pos.y + 5); attackCollider[0].damage = 5;		// ì•½ì†
+			attackCollider[1].setColliderPos(pos.x + 10, pos.y - 50, pos.x + 50, pos.y - 10); attackCollider[1].damage = 7;		// ê°•ì†1
+			attackCollider[2].setColliderPos(pos.x + 10, pos.y - 45, pos.x + 50, pos.y - 10); attackCollider[2].damage = 8;		// ì•½ë°œ
+			attackCollider[3].setColliderPos(pos.x + 20, pos.y - 40, pos.x + 60, pos.y - 10); attackCollider[3].damage = 12;	// ê°•ë°œ
+			attackCollider[4].setColliderPos(pos.x + 10, pos.y - 65, pos.x + 50, pos.y - 30); attackCollider[4].damage = 7;		// ê°•ì†2
+		}
+    if (player._Equal("Kyo")) {
+			damagedCollider[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
+			attackCollider[0].setColliderPos(pos.x + 20, pos.y - 35, pos.x + 50, pos.y - 15); attackCollider[0].damage = 5;		// ì•½ì†
+			attackCollider[1].setColliderPos(pos.x + 20, pos.y - 15, pos.x + 60, pos.y + 10); attackCollider[1].damage = 7;		// ê°•ì†
+			attackCollider[2].setColliderPos(pos.x + 20, pos.y - 25, pos.x + 60, pos.y - 10); attackCollider[2].damage = 8;		// ì•½ë°œ
+			attackCollider[3].setColliderPos(pos.x + 20, pos.y - 40, pos.x + 50, pos.y - 20); attackCollider[3].damage = 12;	// ê°•ë°œ
 		}
 
-		if (player._Equal("Kyo")) {
-			damagedCollider[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
-			attackCollider[0].setColliderPos(pos.x + 20, pos.y - 35, pos.x + 50, pos.y - 15); attackCollider[0].damage = 5;		// ¾à¼Õ
-			attackCollider[1].setColliderPos(pos.x + 20, pos.y - 15, pos.x + 60, pos.y + 10); attackCollider[1].damage = 7;		// °­¼Õ
-			attackCollider[2].setColliderPos(pos.x + 20, pos.y - 25, pos.x + 60, pos.y - 10); attackCollider[2].damage = 8;		// ¾à¹ß
-			attackCollider[3].setColliderPos(pos.x + 20, pos.y - 40, pos.x + 50, pos.y - 20); attackCollider[3].damage = 12;	// °­¹ß
-		}
-	}
-	else // ÇÃ·¹ÀÌ¾î 2ÀÏ ¶§
+	else // í”Œë ˆì´ì–´ 2ì¼ ë•Œ
 	{
+		playerPos2 = pos;
 		if (player._Equal("Iori")) {
 			damagedCollider2[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
-			attackCollider2[0].setColliderPos(pos.x - 60, pos.y - 20, pos.x - 20, pos.y);  attackCollider2[0].damage = 5;
-			attackCollider2[1].setColliderPos(pos.x - 60, pos.y - 50, pos.x - 10, pos.y + 10); attackCollider2[1].damage = 10;
-			attackCollider2[2].setColliderPos(pos.x - 50, pos.y - 20, pos.x - 20, pos.y + 50); attackCollider2[2].damage = 8;
-		}
+			attackCollider2[0].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 60, pos.y);  attackCollider2[0].damage = 5;
+			attackCollider2[1].setColliderPos(pos.x + 10, pos.y - 50, pos.x + 60, pos.y + 10); attackCollider2[1].damage = 10;
+			attackCollider2[2].setColliderPos(pos.x + 20, pos.y - 20, pos.x + 50, pos.y + 50); attackCollider2[2].damage = 8;
+	  }
+
 
 		if (player._Equal("Kim")) {
 			damagedCollider2[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
-			attackCollider2[0].setColliderPos(pos.x - 60, pos.y - 15, pos.x - 20, pos.y + 5); attackCollider2[0].damage = 5;	 // ¾à¼Õ
-			attackCollider2[1].setColliderPos(pos.x + 10, pos.y - 50, pos.x + 60, pos.y + 10); attackCollider2[1].damage = 7;	 // °­¼Õ1
-			attackCollider2[2].setColliderPos(pos.x - 10, pos.y - 45, pos.x - 50, pos.y - 10); attackCollider2[2].damage = 8;	 // ¾à¹ß
-			attackCollider2[3].setColliderPos(pos.x - 60, pos.y - 40, pos.x - 20, pos.y - 10); attackCollider2[3].damage = 12;	 // °­¹ß
-			attackCollider2[4].setColliderPos(pos.x - 60, pos.y - 50, pos.x - 10, pos.y + 10); attackCollider2[4].damage = 7;	 // °­¼Õ2
+			attackCollider2[0].setColliderPos(pos.x - 60, pos.y - 15, pos.x - 20, pos.y + 5); attackCollider2[0].damage = 5;	 // ì•½ì†
+			attackCollider2[1].setColliderPos(pos.x + 10, pos.y - 50, pos.x + 60, pos.y + 10); attackCollider2[1].damage = 7;	 // ê°•ì†1
+			attackCollider2[2].setColliderPos(pos.x - 10, pos.y - 45, pos.x - 50, pos.y - 10); attackCollider2[2].damage = 8;	 // ì•½ë°œ
+			attackCollider2[3].setColliderPos(pos.x - 60, pos.y - 40, pos.x - 20, pos.y - 10); attackCollider2[3].damage = 12;	 // ê°•ë°œ
+			attackCollider2[4].setColliderPos(pos.x - 60, pos.y - 50, pos.x - 10, pos.y + 10); attackCollider2[4].damage = 7;	 // ê°•ì†2
 		}
 
 		if (player._Equal("Kyo")) {
 			damagedCollider2[0].setColliderPos(pos.x - 25, pos.y - 40, pos.x + 25, pos.y + 50);
-			attackCollider2[0].setColliderPos(pos.x - 50, pos.y - 35, pos.x - 20, pos.y - 15); attackCollider2[0].damage = 5;		// ¾à¼Õ
-			attackCollider2[1].setColliderPos(pos.x - 60, pos.y - 15, pos.x - 20, pos.y + 10); attackCollider2[1].damage = 7;		// °­¼Õ1
-			attackCollider2[2].setColliderPos(pos.x - 60, pos.y - 25, pos.x - 20, pos.y - 10); attackCollider2[2].damage = 8;		// ¾à¹ß
-			attackCollider2[3].setColliderPos(pos.x - 50, pos.y - 40, pos.x - 20, pos.y - 20); attackCollider2[3].damage = 12;		// °­¹ß
+			attackCollider2[0].setColliderPos(pos.x - 50, pos.y - 35, pos.x - 20, pos.y - 15); attackCollider2[0].damage = 5;		// ì•½ì†
+			attackCollider2[1].setColliderPos(pos.x - 60, pos.y - 15, pos.x - 20, pos.y + 10); attackCollider2[1].damage = 7;		// ê°•ì†1
+			attackCollider2[2].setColliderPos(pos.x - 60, pos.y - 25, pos.x - 20, pos.y - 10); attackCollider2[2].damage = 8;		// ì•½ë°œ
+			attackCollider2[3].setColliderPos(pos.x - 50, pos.y - 40, pos.x - 20, pos.y - 20); attackCollider2[3].damage = 12;		// ê°•ë°œ
 		}
 	}
 }
@@ -80,6 +90,7 @@ void BattleManager::Render(HDC hdc)
 	for (int i = 0; i < 6; i++) {
 		Rectangle(hdc, damagedCollider[i].collider.left, damagedCollider[i].collider.top, damagedCollider[i].collider.right, damagedCollider[i].collider.bottom);
 		Rectangle(hdc, damagedCollider2[i].collider.left, damagedCollider2[i].collider.top, damagedCollider2[i].collider.right, damagedCollider2[i].collider.bottom);
+
 	}
 	for (int i = 0; i < 5; i++) {
 		if(attackCollider[i].isAttack)
@@ -87,6 +98,7 @@ void BattleManager::Render(HDC hdc)
 		if (attackCollider2[i].isAttack)
 			Rectangle(hdc, attackCollider2[i].collider.left, attackCollider2[i].collider.top, attackCollider2[i].collider.right, attackCollider2[i].collider.bottom);
 	}
+
 
 	if ((player1Hp <= 0 || player2Hp <= 0) && gameState == State::Die )
 	{
@@ -137,13 +149,13 @@ bool BattleManager::CheckCollision(RECT *rect, bool isPlayer1)
 bool BattleManager::CheckDamaged(bool isPlayer1)
 {
 	RECT a;
-	if (isPlayer1) //ÇÃ·¹ÀÌ¾î 1ÀÏ°æ¿ì
+	if (isPlayer1) //í”Œë ˆì´ì–´ 1ì¼ê²½ìš°
 	{
 		for (int j = 0; j < 1; j++)
 		{
 			for (int i = 0; i < 5; i++)
 			{
-				if (IntersectRect(&a, &damagedCollider[j].collider, &attackCollider2[i].collider) && attackCollider2[i].isAttack && !isPlayer1Damaged) { // ÇØ´çÄİ¶óÀÌ´õ°¡ °ø°İ »óÅÂÀÎ °æ¿ì
+				if (IntersectRect(&a, &damagedCollider[j].collider, &attackCollider2[i].collider) && attackCollider2[i].isAttack && !isPlayer1Damaged) { // í•´ë‹¹ì½œë¼ì´ë”ê°€ ê³µê²© ìƒíƒœì¸ ê²½ìš°
 					player1Hp -= attackCollider2[i].damage;
 					isPlayer1Damaged = true;
 					cout << "player1Hp : " << player1Hp << endl;
@@ -171,8 +183,6 @@ bool BattleManager::CheckDamaged(bool isPlayer1)
 
 	return false;
 }
-
-
 
 void BattleManager::KORender(HDC hdc)
 {

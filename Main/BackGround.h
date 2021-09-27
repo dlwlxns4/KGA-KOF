@@ -16,9 +16,14 @@ protected:
 	Image* racing[8];
 	Image* street[16];
 	Image* underBridge[16];
-	Image* sceneTransform[11];
 
 	Image* ui;
+
+	int player1Pos, player2Pos;
+	int backGroundPos;
+	int backGroundPrint;
+	Image* sceneTransform[11];
+
 
 	bool isSceneTransform=true;
 	int transformFrame=0;

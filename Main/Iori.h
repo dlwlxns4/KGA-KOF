@@ -4,10 +4,10 @@
 #include <vector>
 #include "Collider.h"
 
-//#include "Image.h"			// ÄÄÆÄÀÏ °ü°è°¡ º¹Àâ, ÄÄÆÄÀÏ ½Ã°£ÀÌ ¿À·¡ °É¸²
+//#include "Image.h"			// ì»´íŒŒì¼ ê´€ê³„ê°€ ë³µì¡, ì»´íŒŒì¼ ì‹œê°„ì´ ì˜¤ë˜ ê±¸ë¦¼
 
-class Image;					// Æ÷ÇÔ°ü°è
-class Iori : public GameObject  // »ó¼Ó°ü°è
+class Image;					// í¬í•¨ê´€ê³„
+class Iori : public GameObject  // ìƒì†ê´€ê³„
 {
 
 private:
@@ -31,7 +31,6 @@ private:
 	bool isAttack;
 	bool isHit;
 	MoveDir moveDir;
-
 	bool isDie=false;
 
 public:

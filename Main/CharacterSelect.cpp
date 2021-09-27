@@ -19,31 +19,31 @@ void CharacterSelect::Init()
 	playerSelect1->Init("Image/CharSelect/PlayerSelect/PlayerSelect1.bmp", 91 / 4, 130 / 4, 1, 1, true, RGB(255, 0, 255));
 	playerSelect2 = new Image;
 	playerSelect2->Init("Image/CharSelect/PlayerSelect/PlayerSelect2.bmp", 94 / 4, 127 / 4, 1, 1, true, RGB(255, 0, 255));
-	// ¼±ÅÃ Ç¥½Ã
+	// ì„ íƒ í‘œì‹œ
 
 	playerIori1 = new Image;
 	playerIori1->Init("Image/CharSelect/PlayerSelect/PlayerIori1.bmp", 680 / 2.1, 489 / 2.0, 1, 1, true, RGB(255, 0, 255));
 	playerIori2 = new Image;
 	playerIori2->Init("Image/CharSelect/PlayerSelect/PlayerIori2.bmp", 680 / 2.1, 489 / 2.0, 1, 1, true, RGB(255, 0, 255));
-	// ÀÌ¿À¸®
+	// ì´ì˜¤ë¦¬
 
 	playerMay1 = new Image;
 	playerMay1->Init("Image/CharSelect/PlayerSelect/PlayerMay1.bmp", 680 / 2.1, 489 / 2.0, 1, 1, true, RGB(255, 0, 255));
 	playerMay2 = new Image;
 	playerMay2->Init("Image/CharSelect/PlayerSelect/PlayerMay2.bmp", 680 / 2.1, 489 / 2.0, 1, 1, true, RGB(255, 0, 255));
-	// ¸ÞÀÌ ¸®
+	// ë©”ì´ ë¦¬
 
 	playerKyo1 = new Image;
 	playerKyo1->Init("Image/CharSelect/PlayerSelect/PlayerKyo1.bmp", 680 / 2.1, 489 / 2.0, 1, 1, true, RGB(255, 0, 255));
 	playerKyo2 = new Image;
 	playerKyo2->Init("Image/CharSelect/PlayerSelect/PlayerKyo2.bmp", 680 / 2.1, 489 / 2.0, 1, 1, true, RGB(255, 0, 255));
-	// Äì
+	// ì¿„
 
 	playerKim1 = new Image;
 	playerKim1->Init("Image/CharSelect/PlayerSelect/PlayerKim1.bmp", 680 / 2.1, 489 / 2.0, 1, 1, true, RGB(255, 0, 255));
 	playerKim2 = new Image;
 	playerKim2->Init("Image/CharSelect/PlayerSelect/PlayerKim2.bmp", 680 / 2.1, 489 / 2.0, 1, 1, true, RGB(255, 0, 255));
-	// ±è°©È¯
+	// ê¹€ê°‘í™˜
 
 	backGroundPos.x = WIN_SIZE_Y / 1.5;
 	backGroundPos.y = WIN_SIZE_Y / 2;
@@ -145,9 +145,11 @@ void CharacterSelect::Update()
 	}
 	if ((SceneManager::GetSingleton()->GetPlayerChar(true) != "Empty") && (SceneManager::GetSingleton()->GetPlayerChar(false) != "Empty")) 
 	{
+
 		UIManager::GetSingleton()->Init();
 		UIManager::GetSingleton()->SetPlayerImage();
 		BattleManager::GetSingleton()->Init();
+
 		SceneManager::GetSingleton()->SetIsSceneState("Battle");
 	}
 	

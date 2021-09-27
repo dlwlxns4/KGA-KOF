@@ -1,7 +1,10 @@
 #include "BackGround.h"
 #include "Image.h"
+#include "BattleManager.h"
+using namespace std;
 void BackGround::Init()
 {
+
 	elpasedCount = 0;
 	frame = 0;
 
@@ -15,7 +18,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		bulGukSa[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// ºÒ±¹»ç ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// ë¶ˆêµ­ì‚¬ ì´ë¯¸ì§€ ì´ˆê¸°í™”
 	
 	for (int i = 0; i < 8; i++)
 	{
@@ -27,7 +30,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		desert[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// »ç¸· ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// ì‚¬ë§‰ ì´ë¯¸ì§€ ì´ˆê¸°í™”
 
 	for (int i = 0; i < 29; i++)
 	{
@@ -39,7 +42,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		garden[i]->Init(cha, 768, 248, 1, 1, false, RGB(255, 0, 255));
 	}
-	// Á¤¿ø ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// ì •ì› ì´ë¯¸ì§€ ì´ˆê¸°í™”
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -51,7 +54,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		harbor1[i]->Init(cha, 750 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// Ç×±¸1 ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// í•­êµ¬1 ì´ë¯¸ì§€ ì´ˆê¸°í™”
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -63,7 +66,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		harbor2[i]->Init(cha, 750 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// Ç×±¸2 ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// í•­êµ¬2 ì´ë¯¸ì§€ ì´ˆê¸°í™”
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -75,7 +78,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		hwaHongMun[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// È­È«¹® ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// í™”í™ë¬¸ ì´ë¯¸ì§€ ì´ˆê¸°í™”
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -87,7 +90,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		racing[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// ·¹ÀÌ½Ì ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// ë ˆì´ì‹± ì´ë¯¸ì§€ ì´ˆê¸°í™”
 
 	for (int i = 0; i < 16; i++)
 	{
@@ -99,7 +102,7 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		street[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// °Å¸® ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// ê±°ë¦¬ ì´ë¯¸ì§€ ì´ˆê¸°í™”
 
 	for (int i = 0; i < 16; i++)
 	{
@@ -111,7 +114,12 @@ void BackGround::Init()
 		strcpy_s(cha, str.c_str());
 		underBridge[i]->Init(cha, 752 * 1.1, 224 * 1.1, 1, 1, false, RGB(255, 0, 255));
 	}
-	// ´Ù¸®¹Ø ÀÌ¹ÌÁö ÃÊ±âÈ­
+	// ë‹¤ë¦¬ë°‘ ì´ë¯¸ì§€ ì´ˆê¸°í™”
+
+	backGroundPos = WIN_SIZE_X / 2;
+	elpasedCount = 0;
+	frame = 0;
+
 
 	ui = new Image;
 	char cha[100];
@@ -119,6 +127,7 @@ void BackGround::Init()
 	str += ".bmp";
 	strcpy_s(cha, str.c_str());
 	ui->Init(cha, 640/2, 114/1.5, 1, 1, false, RGB(255, 0, 255));
+
 
 	for(int i=0; i<11; i++)
 	{
@@ -135,49 +144,81 @@ void BackGround::Init()
 	switch (rand() % 9) {
 	case 0:
 		isBackGround = IsBackGround::BulGukSa;
+
+		backGroundPrint = 250;
 		break;
 	case 1:
 		isBackGround = IsBackGround::Desert;
+		backGroundPrint = 250;
 		break;
 	case 2:
 		isBackGround = IsBackGround::Garden;
+		backGroundPrint = 230;
 		break;
 	case 3:
 		isBackGround = IsBackGround::Harbor1;
+		backGroundPrint = 250;
 		break;
 	case 4:
 		isBackGround = IsBackGround::Harbor2;
+		backGroundPrint = 250;
 		break;
 	case 5:
 		isBackGround = IsBackGround::HwaHongMun;
+		backGroundPrint = 250;
 		break;
 	case 6:
 		isBackGround = IsBackGround::Racing;
+		backGroundPrint = 250;
 		break;
 	case 7:
 		isBackGround = IsBackGround::Street;
+		backGroundPrint = 250;
 		break;
 	case 8:
 		isBackGround = IsBackGround::UnderBridge;
+		backGroundPrint = 250;
+
 		break;
 
 	}
-	// ¹è°æ ·£´ı¼³Á¤
+	// ë°°ê²½ ëœë¤ì„¤ì •
 
 }
 
 void BackGround::Update()
 {
+	BattleManager::GetSingleton()->backGroundMove = 0;
+	player1Pos = BattleManager::GetSingleton()->playerPos1.x;
+	player2Pos = BattleManager::GetSingleton()->playerPos2.x;
+	cout << player1Pos << " " << player2Pos << endl;
+	if (!((player1Pos >= 40 && player1Pos <= 280) && (player2Pos >= 40 && player2Pos <= 280))) {
+		if ((player1Pos <= 40 || player2Pos <= 40) && (player1Pos >= 280 || player2Pos >= 280)) {
+		} else if ((player1Pos <= 40 && BattleManager::GetSingleton()->player1MoveCheck == 1)||
+			(player2Pos <= 40 && BattleManager::GetSingleton()->player2MoveCheck == 1)) {
+			if (backGroundPos < 160 + backGroundPrint) {
+				BattleManager::GetSingleton()->backGroundMove = 1;
+				backGroundPos += 3;
+			}
+		} else if ((player1Pos >= 280 && BattleManager::GetSingleton()->player1MoveCheck == 2) ||
+			(player2Pos >= 280 && BattleManager::GetSingleton()->player2MoveCheck == 2)) {
+			if (backGroundPos > 160 - backGroundPrint) {
+				BattleManager::GetSingleton()->backGroundMove = 2;
+				backGroundPos -= 3;
+
+			}
+		}
+	}
+
 }
 
 void BackGround::Render(HDC hdc)
 {
 
-	
-
 	switch (isBackGround) {
 	case IsBackGround::BulGukSa:
-		bulGukSa[frame]->Render(hdc, 0, 120, 0, 0);
+		bulGukSa[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 
 		if (elpasedCount == 5)
@@ -188,7 +229,8 @@ void BackGround::Render(HDC hdc)
 		}
 		break;
 	case IsBackGround::Desert:
-		desert[frame]->Render(hdc, 0, 120, 0, 0);
+		desert[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -198,7 +240,8 @@ void BackGround::Render(HDC hdc)
 		}
 		break;
 	case IsBackGround::Garden:
-		garden[frame]->Render(hdc, 0, 120, 0, 0);
+		garden[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -208,7 +251,8 @@ void BackGround::Render(HDC hdc)
 		}
 		break;
 	case IsBackGround::Harbor1:
-		harbor1[frame]->Render(hdc, 0, 120, 0, 0);
+		harbor1[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -218,7 +262,8 @@ void BackGround::Render(HDC hdc)
 		}
 		break;
 	case IsBackGround::Harbor2:
-		harbor2[frame]->Render(hdc, 0, 120, 0, 0);
+		harbor2[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -228,7 +273,8 @@ void BackGround::Render(HDC hdc)
 		}
 		break;
 	case IsBackGround::HwaHongMun:
-		hwaHongMun[frame]->Render(hdc, 0, 120, 0, 0);
+		hwaHongMun[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -238,7 +284,8 @@ void BackGround::Render(HDC hdc)
 		}
 		break;
 	case IsBackGround::Racing:
-		racing[frame]->Render(hdc, 0, 120, 0, 0);
+		racing[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -248,7 +295,8 @@ void BackGround::Render(HDC hdc)
 		}
 		break;
 	case IsBackGround::Street:
-		street[frame]->Render(hdc, 0, 120, 0, 0);
+		street[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -258,7 +306,8 @@ void BackGround::Render(HDC hdc)
 		}
 		break;
 	case IsBackGround::UnderBridge:
-		underBridge[frame]->Render(hdc, 0, 120, 0, 0);
+		underBridge[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
+
 		elpasedCount++;
 		if (elpasedCount == 5)
 		{
@@ -272,6 +321,7 @@ void BackGround::Render(HDC hdc)
 
 	//ui->Render(hdc, WIN_SIZE_X / 2, 0);
 }
+
 
 void BackGround::sceneTransformRender(HDC hdc)
 {

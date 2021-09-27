@@ -21,6 +21,7 @@ void Kyo::Init(bool isPlayer1)
 		strongLeg->Init("Image/Character/Kyo/Kyo_strongLeg.bmp", 1680, 116, 15, 1, true, RGB(240, 0, 240));
 		attacked = new Image;
 		attacked->Init("Image/Character/Kyo/Kyo_attacked.bmp", 560, 116, 5, 1, true, RGB(240, 0, 240));
+
 		die = new Image;
 		die->Init("Image/Character/Kyo/Kyo_die.bmp", 640, 100, 5, 1, true, RGB(240, 0, 240));
 
@@ -66,6 +67,7 @@ void Kyo::Init(bool isPlayer1)
 		this->pos.y = WIN_SIZE_Y / 1.3;
 	}
 
+
 	for (int i = 0; i < 4; i++)
 	{
 		attackCollider[i].init();
@@ -93,7 +95,6 @@ void Kyo::Update()
 			moveDir = MoveDir::Right;
 			isAttack = false;
 			elapsedCount = 0;
-
 		}
 		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_LEFT_KEY) && state == State::IDLE)
 		{
@@ -111,7 +112,7 @@ void Kyo::Update()
 			state = State::IDLE;
 		}
 
-		// A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack)
 		{
 			frameX = 0;
@@ -119,7 +120,7 @@ void Kyo::Update()
 			state = State::LegWeak;
 			elapsedCount = 0;
 		}
-		// A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_KICK) && !isAttack)
 		{
 			frameX = 0;
@@ -127,7 +128,7 @@ void Kyo::Update()
 			state = State::LegStrong;
 			elapsedCount = 0;
 		}
-		// A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack)
 		{
 			frameX = 0;
@@ -135,7 +136,7 @@ void Kyo::Update()
 			state = State::PunchWeak;
 			elapsedCount = 0;
 		}
-		// A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack)
 		{
 			frameX = 0;
@@ -161,7 +162,6 @@ void Kyo::Update()
 			moveDir = MoveDir::Right;
 			isAttack = false;
 			elapsedCount = 0;
-
 		}
 		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_LEFT_KEY) && state == State::IDLE)
 		{
@@ -178,7 +178,7 @@ void Kyo::Update()
 			state = State::IDLE;
 		}
 
-		// A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_KICK) && !isAttack)
 		{
 			frameX = 0;
@@ -186,7 +186,7 @@ void Kyo::Update()
 			state = State::LegWeak;
 			elapsedCount = 0;
 		}
-		// A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_KICK) && !isAttack)
 		{
 			frameX = 0;
@@ -194,7 +194,7 @@ void Kyo::Update()
 			state = State::LegStrong;
 			elapsedCount = 0;
 		}
-		// A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_PUNCH) && !isAttack)
 		{
 			frameX = 0;
@@ -202,7 +202,7 @@ void Kyo::Update()
 			state = State::PunchWeak;
 			elapsedCount = 0;
 		}
-		// A´©¸£°í °ø°İÁßÀÌ ¾Æ´Ò¶§¸¸ °¡´É
+		// Aëˆ„ë¥´ê³  ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œë§Œ ê°€ëŠ¥
 		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_PUNCH) && !isAttack)
 		{
 			frameX = 0;
@@ -219,7 +219,7 @@ void Kyo::Update()
 		}
 	}
 
-	//Collider °ü¸® ÆÄÆ® 
+	//Collider ê´€ë¦¬ íŒŒíŠ¸ 
 	if (isAttack && state == State::PunchWeak)
 	{
 		cout << frameX << endl;
@@ -231,7 +231,7 @@ void Kyo::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[0].collider, true) && !isHit)
 				{
 					isHit = true;
-					elapsedCount = -5; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elapsedCount = -5; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 
 			}
@@ -241,7 +241,7 @@ void Kyo::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, false) && !isHit)
 				{
 					isHit = true;
-					elapsedCount = -5; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elapsedCount = -5; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 
 			}
@@ -270,7 +270,7 @@ void Kyo::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[1].collider, true) && !isHit)
 				{
 					isHit = true;
-					elapsedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elapsedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 			}
 			else
@@ -280,7 +280,7 @@ void Kyo::Update()
 				{
 					cout << "attackCollider2 : " << BattleManager::GetSingleton()->attackCollider2[1].isAttack << endl;
 					isHit = true;
-					elapsedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elapsedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 			}
 		}
@@ -308,7 +308,7 @@ void Kyo::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[2].collider, true) && !isHit)
 				{
 					isHit = true;
-					elapsedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elapsedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 			}
 			else
@@ -317,7 +317,7 @@ void Kyo::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[2].collider, false) && !isHit)
 				{
 					isHit = true;
-					elapsedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elapsedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 			}
 		}
@@ -345,7 +345,7 @@ void Kyo::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[3].collider, true) && !isHit)
 				{
 					isHit = true;
-					elapsedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elapsedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 			}
 			else
@@ -354,7 +354,7 @@ void Kyo::Update()
 				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[3].collider, false) && !isHit)
 				{
 					isHit = true;
-					elapsedCount = -3; // HitÇßÀ» ¶§ °æÁ÷µµ
+					elapsedCount = -3; // Hití–ˆì„ ë•Œ ê²½ì§ë„
 				}
 			}
 		}
@@ -373,7 +373,7 @@ void Kyo::Update()
 		}
 	}
 
-	//0927¼öÁ¤
+	//0927ìˆ˜ì •
 	if (BattleManager::GetSingleton()->CheckDamaged(isPlayer1))
 	{
 		if (BattleManager::GetSingleton()->player1Hp <= 0)
@@ -481,6 +481,7 @@ void Kyo::Render(HDC hdc)
 					frameX = 0;
 				}
 				break;
+
 			case State::Damaged:
 				attacked->Render(hdc, pos.x, pos.y, frameX, frameY);
 				elapsedCount++;
@@ -547,6 +548,7 @@ void Kyo::Render(HDC hdc)
 	}
 	else
 	{
+
 	//cout << "frameX" << frameX << endl;
 		if (mirroringIdle)
 		{
@@ -555,6 +557,7 @@ void Kyo::Render(HDC hdc)
 			switch (state)
 			{
 			case State::IDLE:
+
 				mirroringIdle->Render(hdc, pos.x, pos.y, frameX, frameY);
 				elapsedCount++;
 				if (elapsedCount == 5)
@@ -566,6 +569,7 @@ void Kyo::Render(HDC hdc)
 				{
 					frameX = 0;
 				}
+
 				//cout << "0" << endl;
 				break;
 			case State::LegWeak:
@@ -582,6 +586,7 @@ void Kyo::Render(HDC hdc)
 					state = State::IDLE;
 					frameX = 0;
 				}
+
 				//cout << "1" << endl;
 				break;
 			case State::LegStrong:
@@ -598,6 +603,7 @@ void Kyo::Render(HDC hdc)
 					state = State::IDLE;
 					frameX = 0;
 				}
+
 				//cout << "2" << endl;
 				break;
 			case State::PunchWeak:
@@ -614,6 +620,7 @@ void Kyo::Render(HDC hdc)
 					state = State::IDLE;
 					frameX = 0;
 				}
+
 				//cout << "3" << endl;
 				break;
 			case State::PunchStrong:
@@ -630,6 +637,7 @@ void Kyo::Render(HDC hdc)
 					state = State::IDLE;
 					frameX = 0;
 				}
+
 				//cout << "4" << endl;
 				break;
 			case State::Damaged:
@@ -644,7 +652,7 @@ void Kyo::Render(HDC hdc)
 				}
 				if (frameX >= 5)
 				{
-					//cout << "¹Ù²ñ" <<endl;
+					//cout << "ë°”ë€œ" <<endl;
 					isAttack = false;
 					state = State::IDLE;
 					frameX = 0;
@@ -695,6 +703,7 @@ void Kyo::Render(HDC hdc)
 					}
 					pos.x -= moveSpeed / 3;
 				}
+
 				//cout << "walk" << endl;
 				break;
 			}
