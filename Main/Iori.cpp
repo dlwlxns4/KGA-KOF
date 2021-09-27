@@ -55,12 +55,6 @@ void Iori::Init(bool isPlayer1)
 		this->pos.y = WIN_SIZE_Y / 1.3;
 	}
 
-	for (int i = 0; i < 4; i++)
-	{
-		attackCollider[i].init();
-	}
-	damagedCollider[0].init(pos.x - 25, pos.x + 25, pos.y - 40, pos.y + 50);
-
 	this->isPlayer1 = isPlayer1;
 	isHit = false;
 }
@@ -501,40 +495,6 @@ void Iori::Render(HDC hdc)
 				BattleManager::GetSingleton()->SetDie();
 			}
 
-			break;
-		case State::Walk:
-			if (isPlayer1) {
-				img->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}else {
-				MirroringImg->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			elpasedCount++;
-			if (moveDir == MoveDir::Right) {
-				if (elpasedCount == 5)
-				{
-
-					elpasedCount = 0;
-					frameX++;
-				}
-				if (frameX >= 8)
-				{
-					frameX = 0;
-				}
-				pos.x += moveSpeed / 3;
-			}
-			else {
-				if (elpasedCount == 5)
-				{
-					elpasedCount = 0;
-					frameX--;
-				}
-				if (frameX <= 0)
-				{
-					frameX = 8;
-				}
-				pos.x -= moveSpeed / 3;
-
-			}
 			break;
 		}
 	}

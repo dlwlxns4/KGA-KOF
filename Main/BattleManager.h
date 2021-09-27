@@ -42,7 +42,9 @@ public:
 	void Init();
 	void Render(HDC hdc);
 	bool CheckCollision(RECT* rect, bool isPlayer1);
-	bool CheckDamaged(bool isPlayer1);	void KORender(HDC hdc);
+	bool CheckDamaged(bool isPlayer1);
+	void SetColliderPos(string player, bool isPlayer1, POINTFLOAT pos);
+	void KORender(HDC hdc);
 	inline void SetDie() { gameState = State::Die; };
 	string GetState();
 
