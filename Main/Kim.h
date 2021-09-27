@@ -14,13 +14,21 @@ private:
 	Image* weakLeg;
 	Image* strongLeg;
 	Image* weakPunch;
+	Image* strongPunch;
+	Image* hit1;
+	Image* hit2;
+	Image* hit3;
 
 	Image* mirroringIdle;
 	Image* mirroringFrontWalk;
 	Image* mirroringBackWalk;
 	Image* mirroringWeakLeg;
+	Image* mirroringStrongPunch;
 	Image* mirroringStrongLeg;
 	Image* mirroringWeakPunch;
+	Image* mirroringHit1;
+	Image* mirroringHit2;
+	Image* mirroringHit3;
 
 	int frameX, frameY;
 	int elpasedCount;

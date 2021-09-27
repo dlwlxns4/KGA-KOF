@@ -17,6 +17,7 @@ private:
 	Image* weakPunch;
 	Image* strongPunch;
 	Image* damaged;
+	Image* die;
 
 	Image* MirroringImg;
 	Image* MirroringIdle;
@@ -34,8 +35,6 @@ private:
 public:
 	//RECT collider[3]; 
 	State state;
-	Collider attackCollider[4];
-	Collider damagedCollider[6];
 	bool isPlayer1;
 
 

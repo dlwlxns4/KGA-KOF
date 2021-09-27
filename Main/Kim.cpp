@@ -25,7 +25,7 @@ void Kim::Collision(int frameX, int frameMin, int frameMax, int colliderNum,int&
 		if (this->isPlayer1)
 		{
 			BattleManager::GetSingleton()->attackCollider[colliderNum].isAttack = true;
-			if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[0].collider, true) && !isHit)
+			if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[colliderNum].collider, true) && !isHit)
 			{
 				isHit = true;
 				elpasedCount = -5; // Hit했을 때 경직도
@@ -34,7 +34,7 @@ void Kim::Collision(int frameX, int frameMin, int frameMax, int colliderNum,int&
 		else
 		{
 			BattleManager::GetSingleton()->attackCollider2[colliderNum].isAttack = true;
-			if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, false) && !isHit)
+			if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[colliderNum].collider, false) && !isHit)
 			{
 				isHit = true;
 				elpasedCount = -5; // Hit했을 때 경직도
@@ -46,11 +46,17 @@ void Kim::Collision(int frameX, int frameMin, int frameMax, int colliderNum,int&
 	{
 		if (this->isPlayer1)
 		{
+			if ((colliderNum == 4 && frameX <=7) || (colliderNum == 1 && frameX > 7)) {
+				return;
+			}
 			BattleManager::GetSingleton()->attackCollider[colliderNum].isAttack = false;
 			BattleManager::GetSingleton()->isPlayer2Damaged = false;
 		}
 		else
 		{
+			if ((colliderNum == 4 && frameX <= 7) || (colliderNum == 1 && frameX > 7)) {
+				return;
+			}
 			BattleManager::GetSingleton()->attackCollider2[colliderNum].isAttack = false;
 			BattleManager::GetSingleton()->isPlayer1Damaged = false;
 		}
@@ -67,10 +73,18 @@ void Kim::Init(bool isPlayer1)
 	backWalk->Init("Image/Character/kim/kim_BackWalk.bmp", 348, 120, 6, 1, true, RGB(255, 0, 255));
 	weakPunch = new Image;	// 약주먹
 	weakPunch->Init("Image/Character/kim/kim_WeakPunch.bmp", 590, 120, 5, 1, true, RGB(255, 0, 255));
+	strongPunch = new Image; // 강주먹
+	strongPunch->Init("Image/Character/kim/kim_StrongPunch.bmp", 1656, 132, 18, 1, true, RGB(255, 0, 255));
 	weakLeg = new Image;	// 약발차기
 	weakLeg->Init("Image/Character/kim/kim_WeakKick.bmp", 909, 120, 9, 1, true, RGB(255, 0, 255));
 	strongLeg = new Image;	// 강발차기
 	strongLeg->Init("Image/Character/kim/kim_StrongKick.bmp", 1287, 120, 11, 1, true, RGB(255, 0, 255));
+	hit1 = new Image;
+	hit1->Init("Image/Character/kim/kim_Hit1.bmp", 162, 120, 2, 1, true, RGB(255, 0, 255));;
+	hit2 = new Image;
+	hit2->Init("Image/Character/kim/kim_Hit2.bmp", 264, 120, 4, 1, true, RGB(255, 0, 255));;
+	hit3 = new Image;
+	hit3->Init("Image/Character/kim/kim_Hit3.bmp", 480, 120, 5, 1, true, RGB(255, 0, 255));;
 
 	mirroringIdle = new Image;	// 대기
 	mirroringIdle->Init("Image/Character/kim/kim_Idle_mirroring.bmp", 682, 120, 11, 1, true, RGB(255, 0, 255));
@@ -80,10 +94,19 @@ void Kim::Init(bool isPlayer1)
 	mirroringBackWalk->Init("Image/Character/kim/kim_BackWalk_mirroring.bmp", 348, 120, 6, 1, true, RGB(255, 0, 255));
 	mirroringWeakPunch = new Image;	// 약주먹
 	mirroringWeakPunch->Init("Image/Character/kim/kim_WeakPunch_mirroring.bmp", 590, 120, 5, 1, true, RGB(255, 0, 255));
+	mirroringStrongPunch = new Image; // 강주먹
+	mirroringStrongPunch->Init("Image/Character/kim/kim_StrongPunch_mirroring.bmp", 1656, 132, 18, 1, true, RGB(255, 0, 255));
 	mirroringWeakLeg = new Image;	// 약발차기
 	mirroringWeakLeg->Init("Image/Character/kim/kim_WeakKick_mirroring.bmp", 909, 120, 9, 1, true, RGB(255, 0, 255));
 	mirroringStrongLeg = new Image;	// 강발차기
 	mirroringStrongLeg->Init("Image/Character/kim/kim_StrongKick_mirroring.bmp", 1287, 120, 11, 1, true, RGB(255, 0, 255));
+	mirroringHit1 = new Image;
+	mirroringHit1->Init("Image/Character/kim/kim_Hit1_mirroring.bmp", 162, 120, 2, 1, true, RGB(255, 0, 255));;
+	mirroringHit2 = new Image;
+	mirroringHit2->Init("Image/Character/kim/kim_Hit2_mirroring.bmp", 264, 120, 4, 1, true, RGB(255, 0, 255));;
+	mirroringHit3 = new Image;
+	mirroringHit3->Init("Image/Character/kim/kim_Hit3_mirroring.bmp", 480, 120, 5, 1, true, RGB(255, 0, 255));;
+
 
 	moveDir = MoveDir::Right;
 
@@ -145,6 +168,12 @@ void Kim::Update()
 			frameX = 0;
 			isAttack = true;
 			state = State::PunchWeak;
+		}
+		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
+		{
+			frameX = 0;
+			isAttack = true;
+			state = State::PunchStrong;
 		}
 		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
 		{
@@ -218,7 +247,8 @@ void Kim::Update()
 	if (isAttack && state == State::PunchWeak) {
 		Collision(frameX, 1, 3, 0, elpasedCount, isHit);
 	} else if (isAttack && state == State::PunchStrong) {
-		Collision(frameX, 1, 3, 1, elpasedCount, isHit);
+		Collision(frameX, 3, 5, 1, elpasedCount, isHit);
+		Collision(frameX, 10, 13, 4, elpasedCount, isHit);
 	} else if (isAttack && state == State::LegWeak) {
 		Collision(frameX, 2, 4, 2, elpasedCount, isHit);
 	} else if (isAttack && state == State::LegStrong) {
@@ -296,6 +326,32 @@ void Kim::Render(HDC hdc)
 				isHit = false;
 			}
 			break;
+		case State::PunchStrong:
+			if (!originCheck) {
+				originCheck = true;
+				originPos = pos.x;
+			}
+
+			if (isPlayer1) {
+				if (frameX == 0 && elpasedCount == 0)this->pos.x += 25;
+				strongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+			else {
+				if (frameX == 0 && elpasedCount == 0)this->pos.x -= 25;
+				mirroringStrongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+			elpasedCount = ElpasedCount(fps, frameX, true);
+			if (frameX >= 18)
+			{
+				originCheck = false;
+				pos.x = originPos;
+				isAttack = false;
+				state = State::IDLE;
+				frameX = 0;
+				isHit = false;
+			}
+			break;
+			break;
 		case State::LegWeak:
 			if (!originCheck) {
 				originCheck = true;
@@ -340,12 +396,7 @@ void Kim::Render(HDC hdc)
 			}
 
 			elpasedCount = ElpasedCount(fps, frameX, true);
-			/*if (frameX >= 11)
-			{
-				isAttack = false;
-				state = State::IDLE;
-				frameX = 0;
-			}*/
+
 			if (frameX >= 11)
 			{
 				originCheck = false;
@@ -354,6 +405,34 @@ void Kim::Render(HDC hdc)
 				state = State::IDLE;
 				frameX = 0;
 				isHit = false;
+			}
+			break;
+
+		case State::Damaged:
+			static bool check = true;
+			if (check) {
+				frameX = 0;
+				check = false;
+			}
+			if (isPlayer1) {
+				hit2->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+			else {
+				mirroringHit2->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+
+			elpasedCount++;
+			if (elpasedCount == 3)
+			{
+				elpasedCount = 0;
+				frameX++;
+			}
+			if (frameX >= 4)
+			{
+				check = true;
+				isAttack = false;
+				state = State::IDLE;
+				frameX = 0;
 			}
 			break;
 		}
