@@ -41,10 +41,8 @@ private:
 protected:
 	RECT rect;
 	State state;
-
 	bool isPlayer1;
 
-	bool isMeet;
 
 public:
 
