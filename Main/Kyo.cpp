@@ -1,6 +1,7 @@
 #include "Kyo.h"
 #include "Image.h"
 #include "KeyManager.h"
+#include "BattleManager.h"
 
 void Kyo::Init(bool isPlayer1)
 {
@@ -63,7 +64,15 @@ void Kyo::Init(bool isPlayer1)
 		this->pos.y = WIN_SIZE_Y / 1.3;
 	}
 
+	for (int i = 0; i < 4; i++)
+	{
+		attackCollider[i].init();
+	}
+	damagedCollider[0].init(pos.x - 25, pos.x + 25, pos.y - 40, pos.y + 50);
+
 	this->isPlayer1 = isPlayer1;
+
+	isHit = false;
 }
 
 void Kyo::Init(int posX, int posY, bool isMoveRight)
@@ -192,6 +201,166 @@ void Kyo::Update()
 			state = State::IDLE;
 		}
 	}
+
+	//Collider 관리 파트 
+	if (isAttack && state == State::PunchWeak)
+	{
+		cout << frameX << endl;
+		if (frameX > 0 && frameX < 2)
+		{
+			if (this->isPlayer1)
+			{
+				BattleManager::GetSingleton()->attackCollider[0].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[0].collider, true) && !isHit)
+				{
+					isHit = true;
+					elapsedCount = -5; // Hit했을 때 경직도
+				}
+
+			}
+			else
+			{
+				BattleManager::GetSingleton()->attackCollider2[0].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, false) && !isHit)
+				{
+					isHit = true;
+					elapsedCount = -5; // Hit했을 때 경직도
+				}
+
+			}
+		}
+		else if (frameX == 2)
+		{
+			if (this->isPlayer1)
+			{
+				BattleManager::GetSingleton()->attackCollider[0].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer2Damaged = false;
+			}
+			else
+			{
+				BattleManager::GetSingleton()->attackCollider2[0].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer1Damaged = false;
+			}
+		}
+	}
+	else if (isAttack && state == State::PunchStrong)
+	{
+		if (frameX > 6 && frameX < 11)
+		{
+			if (this->isPlayer1)
+			{
+				BattleManager::GetSingleton()->attackCollider[1].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[1].collider, true) && !isHit)
+				{
+					isHit = true;
+					elapsedCount = -3; // Hit했을 때 경직도
+				}
+			}
+			else
+			{
+				BattleManager::GetSingleton()->attackCollider2[1].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[1].collider, false) && !isHit)
+				{
+					cout << "attackCollider2 : " << BattleManager::GetSingleton()->attackCollider2[1].isAttack << endl;
+					isHit = true;
+					elapsedCount = -3; // Hit했을 때 경직도
+				}
+			}
+		}
+		else
+		{
+			if (this->isPlayer1)
+			{
+				BattleManager::GetSingleton()->attackCollider[1].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer2Damaged = false;
+			}
+			else
+			{
+				BattleManager::GetSingleton()->attackCollider2[1].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer1Damaged = false;
+			}
+		}
+	}
+	else if (isAttack && state == State::LegWeak)
+	{
+		if (frameX > 2 && frameX < 5)
+		{
+			if (this->isPlayer1)
+			{
+				BattleManager::GetSingleton()->attackCollider[2].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[2].collider, true) && !isHit)
+				{
+					isHit = true;
+					elapsedCount = -3; // Hit했을 때 경직도
+				}
+			}
+			else
+			{
+				BattleManager::GetSingleton()->attackCollider2[2].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[2].collider, false) && !isHit)
+				{
+					isHit = true;
+					elapsedCount = -3; // Hit했을 때 경직도
+				}
+			}
+		}
+		else
+		{
+			if (this->isPlayer1)
+			{
+				BattleManager::GetSingleton()->attackCollider[2].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer2Damaged = false;
+			}
+			else
+			{
+				BattleManager::GetSingleton()->attackCollider2[2].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer1Damaged = false;
+			}
+		}
+	}
+	else if (isAttack && state == State::LegStrong)
+	{
+		if (frameX > 3 && frameX < 8)
+		{
+			if (this->isPlayer1)
+			{
+				BattleManager::GetSingleton()->attackCollider[3].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[3].collider, true) && !isHit)
+				{
+					isHit = true;
+					elapsedCount = -3; // Hit했을 때 경직도
+				}
+			}
+			else
+			{
+				BattleManager::GetSingleton()->attackCollider2[3].isAttack = true;
+				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[3].collider, false) && !isHit)
+				{
+					isHit = true;
+					elapsedCount = -3; // Hit했을 때 경직도
+				}
+			}
+		}
+		else
+		{
+			if (this->isPlayer1)
+			{
+				BattleManager::GetSingleton()->attackCollider[3].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer2Damaged = false;
+			}
+			else
+			{
+				BattleManager::GetSingleton()->attackCollider2[3].isAttack = false;
+				BattleManager::GetSingleton()->isPlayer1Damaged = false;
+			}
+		}
+	}
+
+	if (BattleManager::GetSingleton()->CheckDamaged(isPlayer1))
+	{
+		state = State::Damaged;
+	}
+
 }
 
 void Kyo::Render(HDC hdc)
@@ -273,6 +442,23 @@ void Kyo::Render(HDC hdc)
 					frameX++;
 				}
 				if (frameX == 18)
+				{
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				break;
+			case State::Damaged:
+				if (isPlayer1) {
+					attacked->Render(hdc, pos.x, pos.y, frameX, frameY);
+				}
+				elapsedCount++;
+				if (elapsedCount == 3)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX == 4)
 				{
 					isAttack = false;
 					state = State::IDLE;
@@ -387,6 +573,23 @@ void Kyo::Render(HDC hdc)
 					frameX++;
 				}
 				if (frameX == 18)
+				{
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				break;
+			case State::Damaged:
+				if (isPlayer1) {
+					MirroringAttacked->Render(hdc, pos.x, pos.y, frameX, frameY);
+				}
+				elapsedCount++;
+				if (elapsedCount == 3)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX == 4)
 				{
 					isAttack = false;
 					state = State::IDLE;

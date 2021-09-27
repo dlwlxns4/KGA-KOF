@@ -37,6 +37,8 @@ public:
 
 	bool isPlayer1;
 
+	bool isHit;
+
 
 public:
 	void Init(bool isPlayer1);
