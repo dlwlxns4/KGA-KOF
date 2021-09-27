@@ -139,16 +139,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="BattleManager.cpp" />
+    <ClCompile Include="CharacterSelect.cpp" />
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Iori.cpp" />
     <ClCompile Include="KeyManager.cpp" />
+    <ClCompile Include="Kim.cpp" />
+    <ClCompile Include="Kyo.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="MainTitle.cpp" />
+    <ClCompile Include="MayLee.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackGround.h" />
+    <ClInclude Include="BattleManager.h" />
+    <ClInclude Include="CharacterSelect.h" />
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="CommonFunction.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="GameEntity.h" />
@@ -156,9 +169,14 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="Iori.h" />
     <ClInclude Include="KeyManager.h" />
+    <ClInclude Include="Kim.h" />
+    <ClInclude Include="Kyo.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="MainTitle.h" />
+    <ClInclude Include="MayLee.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="UIManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

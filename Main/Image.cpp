@@ -17,10 +17,6 @@ HRESULT Image::Init(int width, int height)
 
 	ReleaseDC(g_hWnd, hdc);
 
-	//if (SUCCEEDED(E_FAIL))
-	//{
-
-	//}
 
 	if (imageInfo->hBitmap == NULL)	// 비트맵 생성에 실패했을 때
 	{
@@ -147,7 +143,7 @@ void Image::Render(HDC hdc, int destX, int destY, int frameX, int frameY)
 		);
 	}
 	else {
-		BitBlt(hdc,				// 복사 목적지 DC
+			BitBlt(hdc,				// 복사 목적지 DC
 			destX - (imageInfo->width / 2),				// 복사될 비트맵의 시작 위치 x
 			destY - (imageInfo->height / 2),				// 복사될 비트맵의 시작 위치 y
 			imageInfo->width,	// 원본 복사할 가로 크기
@@ -161,7 +157,6 @@ void Image::Render(HDC hdc, int destX, int destY, int frameX, int frameY)
 
 void Image::Render(HDC hdc, int destX, int destY)
 {
-	COLORREF color = RGB(255, 0, 255);
 
 	if (isTransparent) {
 		GdiTransparentBlt(hdc,
@@ -186,4 +181,35 @@ void Image::Render(HDC hdc, int destX, int destY)
 			SRCCOPY);			// 복사 옵션
 	}
 }
+
+void Image::Render(HDC hdc, int destX, int destY, int hp, bool isPlayer1)
+{
+
+	if (isPlayer1) {
+		GdiTransparentBlt(hdc,
+			destX - (imageInfo->width / 2),				// 복사될 비트맵의 시작 위치 x
+			destY - (imageInfo->height / 2),				// 복사될 비트맵의 시작 위치 y
+			imageInfo->width - ((106 * (100 - hp) / 100)), imageInfo->height,
+			imageInfo->hMemDc,
+			0, 0,
+			(imageInfo->width), imageInfo->height,
+			transColor
+		);
+
+
+	}
+	else {
+		GdiTransparentBlt(hdc,
+			destX - (imageInfo->width / 2) + ((106 * (100 - hp) / 100)),				// 복사될 비트맵의 시작 위치 x
+			destY - (imageInfo->height / 2),				// 복사될 비트맵의 시작 위치 y
+			imageInfo->width - ((106 * (100 - hp) / 100)), imageInfo->height,
+			imageInfo->hMemDc,
+			0, 0,
+			(imageInfo->width), imageInfo->height,
+			transColor
+		);
+
+	}
+}
+
 
