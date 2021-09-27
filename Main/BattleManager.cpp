@@ -15,6 +15,10 @@ void BattleManager::Init()
 	}
 }
 
+void BattleManager::Update()
+{
+}
+
 void BattleManager::SetColliderPos(string player, bool isPlayer1, POINTFLOAT pos)
 {
 	if (isPlayer1) //플레이어 1일 때

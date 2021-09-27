@@ -15,14 +15,16 @@ private:
 	Image* weakLeg;
 	Image* strongLeg;
 	Image* attacked;
+	Image* die;
 
-	Image* MirroringIdle;
-	Image* MirroringWalk;
-	Image* MirroringWeakPunch;
-	Image* MirroringStrongPunch;
-	Image* MirroringWeakLeg;
-	Image* MirroringStrongLeg;
-	Image* MirroringAttacked;
+	Image* mirroringIdle;
+	Image* mirroringWalk;
+	Image* mirroringWeakPunch;
+	Image* mirroringStrongPunch;
+	Image* mirroringWeakLeg;
+	Image* mirroringStrongLeg;
+	Image* mirroringAttacked;
+	Image* mirroringDie;
 
 	int frameX, frameY;
 	int elapsedCount;

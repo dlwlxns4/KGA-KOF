@@ -21,25 +21,28 @@ void Kyo::Init(bool isPlayer1)
 		strongLeg->Init("Image/Character/Kyo/Kyo_strongLeg.bmp", 1680, 116, 15, 1, true, RGB(240, 0, 240));
 		attacked = new Image;
 		attacked->Init("Image/Character/Kyo/Kyo_attacked.bmp", 560, 116, 5, 1, true, RGB(240, 0, 240));
+		die = new Image;
+		die->Init("Image/Character/Kyo/Kyo_die.bmp", 640, 100, 5, 1, true, RGB(240, 0, 240));
 
 	}
 	else
 	{
-		MirroringIdle = new Image;
-		MirroringIdle->Init("Image/Character/Kyo/Kyo_idle_mirroring.bmp", 1120, 116, 10, 1, true, RGB(240, 0, 240));
-		MirroringWalk = new Image;
-		MirroringWalk->Init("Image/Character/Kyo/Kyo_walk_mirroring.bmp", 1344, 116, 12, 1, true, RGB(240, 0, 240));
-		MirroringWeakPunch = new Image;
-		MirroringWeakPunch->Init("Image/Character/Kyo/Kyo_smallPunch_mirroring.bmp", 336, 116, 3, 1, true, RGB(240, 0, 240));
-		MirroringStrongPunch = new Image;
-		MirroringStrongPunch->Init("Image/Character/Kyo/Kyo_strongPunch_mirroring.bmp", 2016, 116, 18, 1, true, RGB(240, 0, 240));
-		MirroringWeakLeg = new Image;
-		MirroringWeakLeg->Init("Image/Character/Kyo/Kyo_weakLeg_mirroring.bmp", 1008, 116, 9, 1, true, RGB(240, 0, 240));
-		MirroringStrongLeg = new Image;
-		MirroringStrongLeg->Init("Image/Character/Kyo/Kyo_strongLeg_mirroring.bmp", 1680, 116, 15, 1, true, RGB(240, 0, 240));
-		MirroringAttacked = new Image;
-		MirroringAttacked->Init("Image/Character/Kyo/Kyo_attacked_mirroring.bmp", 560, 116, 5, 1, true, RGB(240, 0, 240));
-
+		mirroringIdle = new Image;
+		mirroringIdle->Init("Image/Character/Kyo/Kyo_idle_mirroring.bmp", 1120, 116, 10, 1, true, RGB(240, 0, 240));
+		mirroringWalk = new Image;
+		mirroringWalk->Init("Image/Character/Kyo/Kyo_walk_mirroring.bmp", 1344, 116, 12, 1, true, RGB(240, 0, 240));
+		mirroringWeakPunch = new Image;
+		mirroringWeakPunch->Init("Image/Character/Kyo/Kyo_smallPunch_mirroring.bmp", 336, 116, 3, 1, true, RGB(240, 0, 240));
+		mirroringStrongPunch = new Image;
+		mirroringStrongPunch->Init("Image/Character/Kyo/Kyo_strongPunch_mirroring.bmp", 2016, 116, 18, 1, true, RGB(240, 0, 240));
+		mirroringWeakLeg = new Image;
+		mirroringWeakLeg->Init("Image/Character/Kyo/Kyo_weakLeg_mirroring.bmp", 1008, 116, 9, 1, true, RGB(240, 0, 240));
+		mirroringStrongLeg = new Image;
+		mirroringStrongLeg->Init("Image/Character/Kyo/Kyo_strongLeg_mirroring.bmp", 1680, 116, 15, 1, true, RGB(240, 0, 240));
+		mirroringAttacked = new Image;
+		mirroringAttacked->Init("Image/Character/Kyo/Kyo_attacked_mirroring.bmp", 560, 116, 5, 1, true, RGB(240, 0, 240));
+		mirroringDie = new Image;
+		mirroringDie->Init("Image/Character/Kyo/Kyo_die_mirroring.bmp", 640, 100, 5, 1, true, RGB(240, 0, 240));
 	}
 
 	frameX = frameY = 0;
@@ -370,13 +373,27 @@ void Kyo::Update()
 		}
 	}
 
+	//0927¼öÁ¤
 	if (BattleManager::GetSingleton()->CheckDamaged(isPlayer1))
 	{
-		frameX = 0;
-		state = State::Damaged;
+		if (BattleManager::GetSingleton()->player1Hp <= 0)
+		{
+			frameX = 0;
+			state = State::Die;
+		}
+		else if (BattleManager::GetSingleton()->player2Hp <= 0)
+		{
+			//cout << "damaged" << endl;
+			frameX = 0;
+			state = State::Die;
+
+		}
+		else
+		{
+			state = State::Damaged;
+		}
 	}
 
-	 
 }
 
 void Kyo::Render(HDC hdc)
@@ -481,6 +498,20 @@ void Kyo::Render(HDC hdc)
 					frameX = 0;
 				}
 				break;
+			case State::Die:
+				die->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elapsedCount++;
+				if (elapsedCount >= 12)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX >= 4)
+				{
+					frameX = 4;
+					BattleManager::GetSingleton()->SetDie();
+				}
+				break;
 			case State::Walk:
 				walk->Render(hdc, pos.x, pos.y, frameX, frameY);
 				elapsedCount++;
@@ -516,15 +547,15 @@ void Kyo::Render(HDC hdc)
 	}
 	else
 	{
-	cout << "frameX" << frameX << endl;
-		if (MirroringIdle)
+	//cout << "frameX" << frameX << endl;
+		if (mirroringIdle)
 		{
 			Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
 
 			switch (state)
 			{
 			case State::IDLE:
-				MirroringIdle->Render(hdc, pos.x, pos.y, frameX, frameY);
+				mirroringIdle->Render(hdc, pos.x, pos.y, frameX, frameY);
 				elapsedCount++;
 				if (elapsedCount == 5)
 				{
@@ -535,10 +566,10 @@ void Kyo::Render(HDC hdc)
 				{
 					frameX = 0;
 				}
-				cout << "0" << endl;
+				//cout << "0" << endl;
 				break;
 			case State::LegWeak:
-				MirroringWeakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
+				mirroringWeakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
 				elapsedCount++;
 				if (elapsedCount == 5)
 				{
@@ -551,10 +582,10 @@ void Kyo::Render(HDC hdc)
 					state = State::IDLE;
 					frameX = 0;
 				}
-				cout << "1" << endl;
+				//cout << "1" << endl;
 				break;
 			case State::LegStrong:
-				MirroringStrongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
+				mirroringStrongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
 				elapsedCount++;
 				if (elapsedCount == 5)
 				{
@@ -567,10 +598,10 @@ void Kyo::Render(HDC hdc)
 					state = State::IDLE;
 					frameX = 0;
 				}
-				cout << "2" << endl;
+				//cout << "2" << endl;
 				break;
 			case State::PunchWeak:
-				MirroringWeakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
+				mirroringWeakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 				elapsedCount++;
 				if (elapsedCount == 5)
 				{
@@ -583,10 +614,10 @@ void Kyo::Render(HDC hdc)
 					state = State::IDLE;
 					frameX = 0;
 				}
-				cout << "3" << endl;
+				//cout << "3" << endl;
 				break;
 			case State::PunchStrong:
-				MirroringStrongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
+				mirroringStrongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 				elapsedCount++;
 				if (elapsedCount == 5)
 				{
@@ -599,11 +630,11 @@ void Kyo::Render(HDC hdc)
 					state = State::IDLE;
 					frameX = 0;
 				}
-				cout << "4" << endl;
+				//cout << "4" << endl;
 				break;
 			case State::Damaged:
 
-				MirroringAttacked->Render(hdc, pos.x, pos.y, frameX, frameY);
+				mirroringAttacked->Render(hdc, pos.x, pos.y, frameX, frameY);
 				
 				elapsedCount++;
 				if (elapsedCount >= 3)
@@ -613,15 +644,30 @@ void Kyo::Render(HDC hdc)
 				}
 				if (frameX >= 5)
 				{
-					cout << "¹Ù²ñ" <<endl;
+					//cout << "¹Ù²ñ" <<endl;
 					isAttack = false;
 					state = State::IDLE;
 					frameX = 0;
 				}
-				cout << "Damaged" << endl;
+				//cout << "Damaged" << endl;
+				break;
+			case State::Die:
+				cout << frameX << endl;
+				mirroringDie->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elapsedCount++;
+				if (elapsedCount >= 12)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX >= 4)
+				{
+					frameX = 4;
+					BattleManager::GetSingleton()->SetDie();
+				}
 				break;
 			case State::Walk:
-				MirroringWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
+				mirroringWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 				elapsedCount++;
 				if (moveDir == MoveDir::Right)
 				{
@@ -649,7 +695,7 @@ void Kyo::Render(HDC hdc)
 					}
 					pos.x -= moveSpeed / 3;
 				}
-				cout << "walk" << endl;
+				//cout << "walk" << endl;
 				break;
 			}
 		}
@@ -663,6 +709,13 @@ void Kyo::Release()
 	SAFE_RELEASE(weakLeg);
 	SAFE_RELEASE(weakPunch);
 	SAFE_RELEASE(strongPunch);
+	SAFE_RELEASE(die);
+	SAFE_RELEASE(mirroringIdle);
+	SAFE_RELEASE(mirroringWalk);
+	SAFE_RELEASE(mirroringWeakLeg);
+	SAFE_RELEASE(mirroringWeakPunch);
+	SAFE_RELEASE(mirroringStrongPunch);
+	SAFE_RELEASE(mirroringDie);
 }
 
 void Kyo::IsCollision()

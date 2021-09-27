@@ -33,6 +33,7 @@ public:
 	int maxFrame = 21;
 
 	void Init();
+	void Update();
 	void SetColliderPos(string player, bool isPlayer1, POINTFLOAT pos);
 	void Render(HDC hdc);
 	bool CheckCollision(RECT* rect, bool isPlayer1);
