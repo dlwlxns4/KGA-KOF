@@ -271,6 +271,18 @@ bool BattleManager::SceneTransform(HDC hdc)
 	}
 }
 
+bool BattleManager::CheckMeet()
+{
+	RECT a;
+	if (IntersectRect(&a, &damagedCollider[0].collider, &damagedCollider2[0].collider))
+	{
+		cout << "meet" << endl;
+		return true;
+	}
+	return false;
+}
+
+
 void BattleManager::GameInit()
 {
 	player1Hp = 10;
