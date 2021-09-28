@@ -740,8 +740,10 @@ void MayLee::Render(HDC hdc)
 					elpasedCount = 0;
 					frameX++;
 				}
-				if (frameX >= 8)
+				if (frameX >= 8) frameX = 8;
+				if (frameX >= 8 && !isDie)
 				{
+					isDie = true;
 					frameX = 8;
 					BattleManager::GetSingleton()->SetDie();
 				}

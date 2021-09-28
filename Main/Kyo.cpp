@@ -587,27 +587,22 @@ void Kyo::Render(HDC hdc)
 			if (isPlayer1)
 			{
 				die->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			else
-			{
-				mirroringDie->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			elapsedCount++;
-			if (elapsedCount >= 12)
-			{
-				elapsedCount = 0;
-				frameX++;
-			}
-			if (frameX >= 4 && !isDie)
-			{
-				frameX = 4;
-				isDie = true;
-				BattleManager::GetSingleton()->SetDie();
-			}
-			break;
-		case State::Walk:
-			if (isPlayer1)
-			{
+				elapsedCount++;
+				if (elapsedCount >= 12)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX >= 4) frameX = 4;
+				if (frameX >= 4 && !isDie)
+				{
+					frameX = 4;
+					isDie = true;
+					BattleManager::GetSingleton()->SetDie();
+				}
+				break;
+			case State::Walk:
+
 				walk->Render(hdc, pos.x, pos.y, frameX, frameY);
 				elapsedCount++;
 				if (moveDir == MoveDir::Right)
@@ -644,6 +639,128 @@ void Kyo::Render(HDC hdc)
 			}
 			else
 			{
+			case State::IDLE:
+
+				mirroringIdle->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elapsedCount++;
+				if (elapsedCount == 5)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX == 10)
+				{
+					frameX = 0;
+				}
+
+				//cout << "0" << endl;
+				break;
+			case State::LegWeak:
+				mirroringWeakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elapsedCount++;
+				if (elapsedCount == 5)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX == 9)
+				{
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+
+				//cout << "1" << endl;
+				break;
+			case State::LegStrong:
+				mirroringStrongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elapsedCount++;
+				if (elapsedCount == 5)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX == 15)
+				{
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+
+				//cout << "2" << endl;
+				break;
+			case State::PunchWeak:
+				mirroringWeakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elapsedCount++;
+				if (elapsedCount == 5)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX == 3)
+				{
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+
+				//cout << "3" << endl;
+				break;
+			case State::PunchStrong:
+				mirroringStrongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elapsedCount++;
+				if (elapsedCount == 5)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX == 18)
+				{
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+
+				//cout << "4" << endl;
+				break;
+			case State::Damaged:
+
+				mirroringAttacked->Render(hdc, pos.x, pos.y, frameX, frameY);
+				
+				elapsedCount++;
+				if (elapsedCount >= 3)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX >= 5)
+				{
+					//cout << "바뀜" <<endl;
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				//cout << "Damaged" << endl;
+				break;
+			case State::Die:
+				cout << frameX << endl;
+				mirroringDie->Render(hdc, pos.x, pos.y, frameX, frameY);
+				elapsedCount++;
+				if (elapsedCount >= 12)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX >= 4) frameX = 4;
+				if (frameX >= 4 && !isDie)
+				{
+					isDie = 4;
+					frameX = 4;
+					BattleManager::GetSingleton()->SetDie();
+				}
+				break;
+			case State::Walk:
+
 				mirroringWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 				elapsedCount++;
 				if (moveDir == MoveDir::Right)
