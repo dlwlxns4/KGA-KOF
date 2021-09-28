@@ -449,143 +449,115 @@ void Kyo::Update()
 
 void Kyo::Render(HDC hdc)
 {
-	if (idle || mirroringIdle)
+	static bool check = true;
+	static bool idelCheck = true;
+	if (isPlayer1) {
+		BattleManager::GetSingleton()->player1MoveCheck = 0;
+	}
+	else {
+		BattleManager::GetSingleton()->player2MoveCheck = 0;
+	}
+
+	if (isPlayer1)
 	{
-		switch (state)
+		if (idle)
 		{
-		case State::IDLE:
-			if (isPlayer1)
+			Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
+
+			switch (state)
 			{
+			case State::IDLE:
 				idle->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			else
-			{
-				mirroringIdle->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			elapsedCount++;
-			if (elapsedCount == 5)
-			{
-				elapsedCount = 0;
-				frameX++;
-			}
-			if (frameX == 10)
-			{
-				frameX = 0;
-			}
-			break;
-		case State::LegWeak:
-			if (isPlayer1)
-			{
+				elapsedCount++;
+				if (elapsedCount == 5)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX == 10)
+				{
+					frameX = 0;
+				}
+				break;
+			case State::LegWeak:
 				weakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			else
-			{
-				mirroringWeakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			elapsedCount++;
-			if (elapsedCount == 5)
-			{
-				elapsedCount = 0;
-				frameX++;
-			}
-			if (frameX == 9)
-			{
-				isAttack = false;
-				state = State::IDLE;
-				frameX = 0;
-			}
-			break;
-		case State::LegStrong:
-			if (isPlayer1)
-			{
+				elapsedCount++;
+				if (elapsedCount == 5)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX == 9)
+				{
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				break;
+			case State::LegStrong:
 				strongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			else
-			{
-				mirroringStrongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			elapsedCount++;
-			if (elapsedCount == 5)
-			{
-				elapsedCount = 0;
-				frameX++;
-			}
-			if (frameX == 15)
-			{
-				isAttack = false;
-				state = State::IDLE;
-				frameX = 0;
-			}
-			break;
-		case State::PunchWeak:
-			if (isPlayer1)
-			{
+				elapsedCount++;
+				if (elapsedCount == 5)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX == 15)
+				{
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				break;
+			case State::PunchWeak:
 				weakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			else
-			{
-				mirroringWeakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			elapsedCount++;
-			if (elapsedCount == 5)
-			{
-				elapsedCount = 0;
-				frameX++;
-			}
-			if (frameX == 3)
-			{
-				isAttack = false;
-				state = State::IDLE;
-				frameX = 0;
-			}
-			break;
-		case State::PunchStrong:
-			if (isPlayer1)
-			{
+				elapsedCount++;
+				if (elapsedCount == 5)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX == 3)
+				{
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				break;
+			case State::PunchStrong:
 				strongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			else
-			{
-				mirroringStrongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			elapsedCount++;
-			if (elapsedCount == 5)
-			{
-				elapsedCount = 0;
-				frameX++;
-			}
-			if (frameX == 18)
-			{
-				isAttack = false;
-				state = State::IDLE;
-				frameX = 0;
-			}
-			break;
-		case State::Damaged:
-			if (isPlayer1)
-			{
+				elapsedCount++;
+				if (elapsedCount == 5)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX == 18)
+				{
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				break;
+
+			case State::Damaged:
 				attacked->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			else
-			{
-				mirroringAttacked->Render(hdc, pos.x, pos.y, frameX, frameY);
-			}
-			elapsedCount++;
-			if (elapsedCount >= 3)
-			{
-				elapsedCount = 0;
-				frameX++;
-			}
-			if (frameX >= 4)
-			{
-				isAttack = false;
-				state = State::IDLE;
-				frameX = 0;
-			}
-			break;
-		case State::Die:
-			if (isPlayer1)
-			{
+				elapsedCount++;
+
+
+				if (elapsedCount >= 3)
+				{
+					elapsedCount = 0;
+					frameX++;
+				}
+				if (frameX >= 4)
+				{
+					isAttack = false;
+					state = State::IDLE;
+					frameX = 0;
+				}
+				break;
+			case State::Die:
 				die->Render(hdc, pos.x, pos.y, frameX, frameY);
 				elapsedCount++;
 				if (elapsedCount >= 12)
@@ -602,7 +574,6 @@ void Kyo::Render(HDC hdc)
 				}
 				break;
 			case State::Walk:
-
 				walk->Render(hdc, pos.x, pos.y, frameX, frameY);
 				elapsedCount++;
 				if (moveDir == MoveDir::Right)
@@ -636,8 +607,19 @@ void Kyo::Render(HDC hdc)
 					BattleManager::GetSingleton()->player1MoveCheck = 1;
 					if (pos.x >= 40) pos.x -= moveSpeed / 3;
 				}
+				break;
 			}
-			else
+		}
+	}
+	else
+	{
+
+	//cout << "frameX" << frameX << endl;
+		if (mirroringIdle)
+		{
+			Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
+
+			switch (state)
 			{
 			case State::IDLE:
 
@@ -760,7 +742,6 @@ void Kyo::Render(HDC hdc)
 				}
 				break;
 			case State::Walk:
-
 				mirroringWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 				elapsedCount++;
 				if (moveDir == MoveDir::Right)
@@ -794,11 +775,12 @@ void Kyo::Render(HDC hdc)
 						if (pos.x >= 40) pos.x -= moveSpeed / 3;
 					}
 				}
+
+				//cout << "walk" << endl;
+				break;
 			}
-			break;
 		}
 	}
-
 }
 
 void Kyo::Release()

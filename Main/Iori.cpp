@@ -389,7 +389,7 @@ void Iori::Update()
 
 void Iori::Render(HDC hdc)
 {
-	if (idle || mirroringIdle)
+	if (img && mirroringIdle)
 	{
 		if (isPlayer1) {
 			BattleManager::GetSingleton()->player1MoveCheck = 0;
