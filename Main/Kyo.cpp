@@ -416,7 +416,6 @@ void Kyo::Update()
 				BattleManager::GetSingleton()->attackCollider[1].isAttack = false;
 				BattleManager::GetSingleton()->attackCollider[2].isAttack = false;
 				BattleManager::GetSingleton()->attackCollider[3].isAttack = false;
-				BattleManager::GetSingleton()->attackCollider[4].isAttack = false;
 				BattleManager::GetSingleton()->isPlayer2Damaged = false;
 
 			}
@@ -426,7 +425,6 @@ void Kyo::Update()
 				BattleManager::GetSingleton()->attackCollider2[1].isAttack = false;
 				BattleManager::GetSingleton()->attackCollider2[2].isAttack = false;
 				BattleManager::GetSingleton()->attackCollider2[3].isAttack = false;
-				BattleManager::GetSingleton()->attackCollider2[4].isAttack = false;
 				BattleManager::GetSingleton()->isPlayer1Damaged = false;
 
 			}
