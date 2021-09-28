@@ -367,7 +367,27 @@ void Kim::Update()
 			state = State::Damaged;
 		}
 	}
+	if (state == State::Damaged)
+	{
+		if (isPlayer1)
+		{
+			BattleManager::GetSingleton()->attackCollider[0].isAttack = false;
+			BattleManager::GetSingleton()->attackCollider[1].isAttack = false;
+			BattleManager::GetSingleton()->attackCollider[2].isAttack = false;
+			BattleManager::GetSingleton()->attackCollider[3].isAttack = false;
+			BattleManager::GetSingleton()->isPlayer2Damaged = false;
 
+		}
+		else
+		{
+			BattleManager::GetSingleton()->attackCollider2[0].isAttack = false;
+			BattleManager::GetSingleton()->attackCollider2[1].isAttack = false;
+			BattleManager::GetSingleton()->attackCollider2[2].isAttack = false;
+			BattleManager::GetSingleton()->attackCollider2[3].isAttack = false;
+			BattleManager::GetSingleton()->isPlayer1Damaged = false;
+
+		}
+	}
 }
 
 void Kim::Render(HDC hdc)
