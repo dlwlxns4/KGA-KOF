@@ -79,6 +79,11 @@ void Iori::Init(int posX, int posY, bool isMoveRight)
 
 void Iori::Update()
 {
+
+	if (BattleManager::GetSingleton()->player1Hp <= 0 || BattleManager::GetSingleton()->player2Hp <= 0)
+		isLive = false;
+
+
 	if (isPlayer1) {
 		if (BattleManager::GetSingleton()->player1Hp <= 0) {
 			state = State::Die;
@@ -90,19 +95,78 @@ void Iori::Update()
 		}
 	}
 
+	if (isLive)
+	{
 
-	if (BattleManager::GetSingleton()->CheckMeet())
-	{
-		isMeet = true;
-	}
-	else
-	{
-		isMeet = false;
-	}
-	if (isPlayer1) {
-		if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_RIGHT_KEY) && state == State::IDLE)
+		if (BattleManager::GetSingleton()->CheckMeet())
 		{
-			if (!isMeet)
+			isMeet = true;
+		}
+		else
+		{
+			isMeet = false;
+		}
+		if (isPlayer1) {
+			if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_RIGHT_KEY) && state == State::IDLE)
+			{
+				if (!isMeet)
+				{
+					frameX = 0;
+					pos.x += moveSpeed;
+					state = State::Walk;
+					moveDir = MoveDir::Right;
+					isAttack = false;
+					elpasedCount = 0;
+				}
+
+			}
+			else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_LEFT_KEY) && state == State::IDLE)
+			{
+
+				frameX = 0;
+				state = State::Walk;
+				moveDir = MoveDir::Left;
+				isAttack = false;
+				elpasedCount = 0;
+			}
+			if (state == State::IDLE)
+			{
+				isAttack = false;
+				state = State::IDLE;
+			}
+
+			if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
+			{
+				frameX = 0;
+				isAttack = true;
+				state = State::LegWeak;
+				elpasedCount = 0;
+			}
+			else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
+			{
+				frameX = 0;
+				isAttack = true;
+				state = State::PunchWeak;
+				elpasedCount = 0;
+			}
+			else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
+			{
+				frameX = 0;
+				isAttack = true;
+				state = State::PunchStrong;
+				elpasedCount = 0;
+			}
+
+			if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY)) && !isAttack && state != State::Damaged)
+			{
+				frameX = 0;
+				state = State::IDLE;
+				elpasedCount = 0;
+			}
+		}
+		else
+		{
+			if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_RIGHT_KEY) && state == State::IDLE)
 			{
 				frameX = 0;
 				pos.x += moveSpeed;
@@ -110,233 +174,206 @@ void Iori::Update()
 				moveDir = MoveDir::Right;
 				isAttack = false;
 				elpasedCount = 0;
+
+			}
+			else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_LEFT_KEY) && state == State::IDLE)
+			{
+				if (!isMeet)
+				{
+					frameX = 0;
+					state = State::Walk;
+					moveDir = MoveDir::Left;
+					isAttack = false;
+					elpasedCount = 0;
+				}
 			}
 
-		}
-		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_LEFT_KEY) && state == State::IDLE)
-		{
+			if (state == State::IDLE)
+			{
+				isAttack = false;
+				state = State::IDLE;
+			}
 
-			frameX = 0;
-			state = State::Walk;
-			moveDir = MoveDir::Left;
-			isAttack = false;
-			elpasedCount = 0;
-		}
-		if (state == State::IDLE)
-		{
-			isAttack = false;
-			state = State::IDLE;
-		}
-
-		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
-		{
-			frameX = 0;
-			isAttack = true;
-			state = State::LegWeak;
-			elpasedCount = 0;
-		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
-		{
-			frameX = 0;
-			isAttack = true;
-			state = State::PunchWeak;
-			elpasedCount = 0;
-		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
-		{
-			frameX = 0;
-			isAttack = true;
-			state = State::PunchStrong;
-			elpasedCount = 0;
-		}
-
-		if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY)) && !isAttack)
-		{
-			frameX = 0;
-			state = State::IDLE;
-			elpasedCount = 0;
-		}
-	}
-	else
-	{
-		if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_RIGHT_KEY) && state == State::IDLE)
-		{
-			frameX = 0;
-			pos.x += moveSpeed;
-			state = State::Walk;
-			moveDir = MoveDir::Right;
-			isAttack = false;
-			elpasedCount = 0;
-
-		}
-		else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_LEFT_KEY) && state == State::IDLE)
-		{
-			if (!isMeet)
+			if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
 			{
 				frameX = 0;
-				state = State::Walk;
-				moveDir = MoveDir::Left;
-				isAttack = false;
+				isAttack = true;
+				state = State::LegWeak;
+				elpasedCount = 0;
+			}
+			else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
+			{
+				frameX = 0;
+				isAttack = true;
+				state = State::PunchWeak;
+				elpasedCount = 0;
+			}
+			else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
+			{
+				frameX = 0;
+				isAttack = true;
+				state = State::PunchStrong;
+				elpasedCount = 0;
+			}
+
+			if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_LEFT_KEY)) && !isAttack && state != State::Damaged)
+			{
+				frameX = 0;
+				state = State::IDLE;
 				elpasedCount = 0;
 			}
 		}
 
-		if (state == State::IDLE)
-		{
-			isAttack = false;
-			state = State::IDLE;
-		}
 
-		if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_KICK) && !isAttack) // A누르고 공격중이 아닐때만 가능
-		{
-			frameX = 0;
-			isAttack = true;
-			state = State::LegWeak;
-			elpasedCount = 0;
-		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
-		{
-			frameX = 0;
-			isAttack = true;
-			state = State::PunchWeak;
-			elpasedCount = 0;
-		}
-		else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
-		{
-			frameX = 0;
-			isAttack = true;
-			state = State::PunchStrong;
-			elpasedCount = 0;
-		}
+		//Collider 관리 파트 
 
-		if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_LEFT_KEY)) && !isAttack)
+		if (isAttack && state == State::PunchWeak)
 		{
-			frameX = 0;
-			state = State::IDLE;
-			elpasedCount = 0;
-		}
-	}
-
-
-	//Collider 관리 파트 
-
-	if (isAttack && state == State::PunchWeak)
-	{
-		if (frameX > 1 && frameX < 3)
-		{
-			if (this->isPlayer1)
+			if (frameX > 1 && frameX < 3)
 			{
-				BattleManager::GetSingleton()->attackCollider[0].isAttack = true;
-				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[0].collider, true) && !isHit)
+				if (this->isPlayer1)
 				{
-					isHit = true;
-					elpasedCount = -5; // Hit했을 때 경직도
+					BattleManager::GetSingleton()->attackCollider[0].isAttack = true;
+					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[0].collider, true) && !isHit)
+					{
+						isHit = true;
+						elpasedCount = -5; // Hit했을 때 경직도
+					}
+
 				}
-
-			}
-			else
-			{
-				BattleManager::GetSingleton()->attackCollider2[0].isAttack = true;
-				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, false) && !isHit)
+				else
 				{
-					isHit = true;
-					elpasedCount = -5; // Hit했을 때 경직도
+					BattleManager::GetSingleton()->attackCollider2[0].isAttack = true;
+					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, false) && !isHit)
+					{
+						isHit = true;
+						elpasedCount = -5; // Hit했을 때 경직도
+					}
+
 				}
-
 			}
-		}
-		else if (frameX > 3)
-		{
-			if (this->isPlayer1)
+			else if (frameX > 3)
 			{
-				BattleManager::GetSingleton()->attackCollider[0].isAttack = false;
-				BattleManager::GetSingleton()->isPlayer2Damaged = false;
-			}
-			else
-			{
-				BattleManager::GetSingleton()->attackCollider2[0].isAttack = false;
-				BattleManager::GetSingleton()->isPlayer1Damaged = false;
-			}
-		}
-	}
-	else if (isAttack && state == State::PunchStrong)
-	{
-		if (frameX > 2 && frameX < 5)
-		{
-			if (this->isPlayer1)
-			{
-				BattleManager::GetSingleton()->attackCollider[1].isAttack = true;
-				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[1].collider, true) && !isHit)
+				if (this->isPlayer1)
 				{
-					isHit = true;
-					elpasedCount = -3; // Hit했을 때 경직도
+					BattleManager::GetSingleton()->attackCollider[0].isAttack = false;
+					BattleManager::GetSingleton()->isPlayer2Damaged = false;
+				}
+				else
+				{
+					BattleManager::GetSingleton()->attackCollider2[0].isAttack = false;
+					BattleManager::GetSingleton()->isPlayer1Damaged = false;
+				}
+			}
+		}
+		else if (isAttack && state == State::PunchStrong)
+		{
+			if (frameX > 2 && frameX < 5)
+			{
+				if (this->isPlayer1)
+				{
+					BattleManager::GetSingleton()->attackCollider[1].isAttack = true;
+					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[1].collider, true) && !isHit)
+					{
+						isHit = true;
+						elpasedCount = -3; // Hit했을 때 경직도
+					}
+				}
+				else
+				{
+					BattleManager::GetSingleton()->attackCollider2[1].isAttack = true;
+					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[1].collider, false) && !isHit)
+					{
+						isHit = true;
+						elpasedCount = -3; // Hit했을 때 경직도
+					}
 				}
 			}
 			else
 			{
-				BattleManager::GetSingleton()->attackCollider2[1].isAttack = true;
-				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[1].collider, false) && !isHit)
+				if (this->isPlayer1)
 				{
-					isHit = true;
-					elpasedCount = -3; // Hit했을 때 경직도
+					BattleManager::GetSingleton()->attackCollider[1].isAttack = false;
+					BattleManager::GetSingleton()->isPlayer2Damaged = false;
+				}
+				else
+				{
+					BattleManager::GetSingleton()->attackCollider2[1].isAttack = false;
+					BattleManager::GetSingleton()->isPlayer1Damaged = false;
 				}
 			}
 		}
-		else
+		else if (isAttack && state == State::LegWeak)
 		{
-			if (this->isPlayer1)
-			{
-				BattleManager::GetSingleton()->attackCollider[1].isAttack = false;
-				BattleManager::GetSingleton()->isPlayer2Damaged = false;
-			}
-			else
-			{
-				BattleManager::GetSingleton()->attackCollider2[1].isAttack = false;
-				BattleManager::GetSingleton()->isPlayer1Damaged = false;
-			}
-		}
-	}
-	else if (isAttack && state == State::LegWeak)
-	{
-		if (frameX > 2 && frameX < 5)
+			if (frameX > 2 && frameX < 5)
 
-		{
-			if (this->isPlayer1)
 			{
-				BattleManager::GetSingleton()->attackCollider[2].isAttack = true;
-				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[2].collider, true) && !isHit)
+				if (this->isPlayer1)
 				{
-					isHit = true;
-					elpasedCount = -3; // Hit했을 때 경직도
+					BattleManager::GetSingleton()->attackCollider[2].isAttack = true;
+					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[2].collider, true) && !isHit)
+					{
+						isHit = true;
+						elpasedCount = -3; // Hit했을 때 경직도
+					}
+				}
+				else
+				{
+					BattleManager::GetSingleton()->attackCollider2[2].isAttack = true;
+					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[2].collider, false) && !isHit)
+					{
+						isHit = true;
+						elpasedCount = -3; // Hit했을 때 경직도
+					}
 				}
 			}
+
 			else
 			{
-				BattleManager::GetSingleton()->attackCollider2[2].isAttack = true;
-				if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[2].collider, false) && !isHit)
+				if (this->isPlayer1)
+
 				{
-					isHit = true;
-					elpasedCount = -3; // Hit했을 때 경직도
+					BattleManager::GetSingleton()->attackCollider[2].isAttack = false;
+					BattleManager::GetSingleton()->isPlayer2Damaged = false;
+				}
+				else
+				{
+					BattleManager::GetSingleton()->attackCollider2[2].isAttack = false;
+					BattleManager::GetSingleton()->isPlayer1Damaged = false;
 				}
 			}
 		}
 
-		else
-		{
-			if (this->isPlayer1)
 
-			{
-				BattleManager::GetSingleton()->attackCollider[2].isAttack = false;
-				BattleManager::GetSingleton()->isPlayer2Damaged = false;
+
+		// 배경 카메라 처리
+		if (isPlayer1) {
+			if (BattleManager::GetSingleton()->player2MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
+				&& BattleManager::GetSingleton()->playerPos2.x <= 40) {
+				if (!(pos.x >= 280)) {
+					pos.x += moveSpeed / 3;
+				}
 			}
-			else
-			{
-				BattleManager::GetSingleton()->attackCollider2[2].isAttack = false;
-				BattleManager::GetSingleton()->isPlayer1Damaged = false;
+			if (BattleManager::GetSingleton()->player2MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
+				&& BattleManager::GetSingleton()->playerPos2.x >= 280) {
+				if (!(pos.x <= 40)) {
+					pos.x -= moveSpeed / 3;
+				}
+			}
+		}
+		else {
+			if (BattleManager::GetSingleton()->player1MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
+				&& BattleManager::GetSingleton()->playerPos1.x <= 40) {
+				if (!(pos.x >= 280)) {
+					pos.x += moveSpeed / 3;
+				}
+			}
+			if (BattleManager::GetSingleton()->player1MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
+				&& BattleManager::GetSingleton()->playerPos1.x >= 280) {
+				if (!(pos.x <= 40)) pos.x -= moveSpeed / 3;
 			}
 		}
 	}
-
 	//0927수정
 	if (BattleManager::GetSingleton()->CheckDamaged(isPlayer1))
 	{
@@ -352,34 +389,6 @@ void Iori::Update()
 		else
 		{
 			state = State::Damaged;
-		}
-	}
-
-	// 배경 카메라 처리
-	if (isPlayer1) {
-		if (BattleManager::GetSingleton()->player2MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
-			&& BattleManager::GetSingleton()->playerPos2.x <= 40) {
-			if (!(pos.x >= 280)) {
-				pos.x += moveSpeed / 3;
-			}
-		}
-		if (BattleManager::GetSingleton()->player2MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
-			&& BattleManager::GetSingleton()->playerPos2.x >= 280) {
-			if (!(pos.x <= 40)) {
-				pos.x -= moveSpeed / 3;
-			}
-		}
-	}
-	else {
-		if (BattleManager::GetSingleton()->player1MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
-			&& BattleManager::GetSingleton()->playerPos1.x <= 40) {
-			if (!(pos.x >= 280)) {
-				pos.x += moveSpeed / 3;
-			}
-		}
-		if (BattleManager::GetSingleton()->player1MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
-			&& BattleManager::GetSingleton()->playerPos1.x >= 280) {
-			if (!(pos.x <= 40)) pos.x -= moveSpeed / 3;
 		}
 	}
 }

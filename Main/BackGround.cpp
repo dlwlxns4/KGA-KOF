@@ -191,7 +191,6 @@ void BackGround::Update()
 	BattleManager::GetSingleton()->backGroundMove = 0;
 	player1Pos = BattleManager::GetSingleton()->playerPos1.x;
 	player2Pos = BattleManager::GetSingleton()->playerPos2.x;
-	cout << player1Pos << " " << player2Pos << endl;
 	if (!((player1Pos >= 40 && player1Pos <= 280) && (player2Pos >= 40 && player2Pos <= 280))) {
 		if ((player1Pos <= 40 || player2Pos <= 40) && (player1Pos >= 280 || player2Pos >= 280)) {
 		} else if ((player1Pos <= 40 && BattleManager::GetSingleton()->player1MoveCheck == 1)||
@@ -332,7 +331,6 @@ void BackGround::sceneTransformRender(HDC hdc)
 		if (transformElpasedCount == 2)
 		{
 
-			cout << transformFrame;
 			transformElpasedCount = 0;
 			transformFrame++;
 			if (transformFrame >= 11)

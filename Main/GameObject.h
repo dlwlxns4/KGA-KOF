@@ -26,6 +26,7 @@ protected:	// 상속된 클래스에 노출시킨다.
 	int bodySize;
 	int moveCheck;
 
+	bool isLive = true;
 
 	enum MoveDir { Left, Right, Up, Down };
 	enum class State { IDLE, LegWeak, LegStrong, PunchWeak, PunchStrong, Walk, Damaged, Die };

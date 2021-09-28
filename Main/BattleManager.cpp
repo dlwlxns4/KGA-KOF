@@ -139,6 +139,7 @@ void BattleManager::Render(HDC hdc)
 	{
 		if (gameState != State::KO && gameState != State::END)
 		{
+			
 			if( gameState == State::Die && gameState != State::END)
 			{ 
 				elpasedCount++;
@@ -216,7 +217,6 @@ bool BattleManager::CheckDamaged(bool isPlayer1)
 				if (IntersectRect(&a, &damagedCollider[j].collider, &attackCollider2[i].collider) && attackCollider2[i].isAttack && !isPlayer1Damaged) { // 해당콜라이더가 공격 상태인 경우
 					player1Hp -= attackCollider2[i].damage;
 					isPlayer1Damaged = true;
-					cout << "player1Hp : " << player1Hp << endl;
 					return true;
 				}
 			}
@@ -231,7 +231,6 @@ bool BattleManager::CheckDamaged(bool isPlayer1)
 				if (IntersectRect(&a, &damagedCollider2[j].collider, &attackCollider[i].collider) && attackCollider[i].isAttack && !isPlayer2Damaged) {
 					player2Hp -= attackCollider[i].damage;
 					isPlayer2Damaged = true;
-					cout << "player2Hp : " << player2Hp << endl;
 					return true;
 				}
 			}
@@ -275,7 +274,6 @@ bool BattleManager::SceneTransform(HDC hdc)
 			if (frame >= maxFrame)
 			{
 				SceneManager::GetSingleton()->SetIsSceneState("MainTitle");
-				cout << "Go Maintitle!" << endl;
 				return true;
 
 			}
@@ -289,7 +287,6 @@ bool BattleManager::CheckMeet()
 	RECT a;
 	if (IntersectRect(&a, &damagedCollider[0].collider, &damagedCollider2[0].collider))
 	{
-		cout << "meet" << endl;
 		return true;
 	}
 	return false;

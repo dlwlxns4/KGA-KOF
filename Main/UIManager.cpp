@@ -108,7 +108,6 @@ void UIManager::SetPlayerImage()
 }
 void UIManager::Render(HDC hdc)
 {
-	cout << !timeOut;
 	
 	backGroundUI->Render(hdc, WIN_SIZE_Y / 1.5 , WIN_SIZE_Y / 2);
 	player1->Render(hdc, WIN_SIZE_Y / 1.5, WIN_SIZE_Y / 2);
@@ -138,7 +137,7 @@ void UIManager::Render(HDC hdc)
 
 void UIManager::Update()
 {
-	if (!timeOut)
+	if (!timeOut && (BattleManager::GetSingleton()->player1Hp >0 && (BattleManager::GetSingleton()->player2Hp > 0)))
 	{
 		
 		
@@ -162,7 +161,6 @@ void UIManager::Update()
 				timeNum1 -= 6;
 			}
 		}
-		cout << timeNum10 << endl;
 
 		if (time1Check && num == 0) {
 			timeNum1++;
