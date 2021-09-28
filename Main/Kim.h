@@ -18,6 +18,7 @@ private:
 	Image* hit1;
 	Image* hit2;
 	Image* hit3;
+	Image* die;
 
 	Image* mirroringIdle;
 	Image* mirroringFrontWalk;
@@ -29,6 +30,8 @@ private:
 	Image* mirroringHit1;
 	Image* mirroringHit2;
 	Image* mirroringHit3;
+	Image* mirroringDie;
+
 
 	int frameX, frameY;
 	int elpasedCount;
@@ -37,6 +40,7 @@ private:
 	bool originCheck;
 	bool isAttack;
 	bool isHit;
+	bool isDie;
 	MoveDir moveDir;
 protected:
 	RECT rect;

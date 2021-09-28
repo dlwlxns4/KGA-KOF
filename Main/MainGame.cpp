@@ -99,6 +99,7 @@ void MainGame::Update()
 			GameInit();
 			gameInit = false;
 			BattleManager::GetSingleton()->GameInit();
+			UIManager::GetSingleton()->TimeInit();
 		}
 	}else if (SceneManager::GetSingleton()->GetIsSceneState() == "Loading") {
 		mainTitle->Update();

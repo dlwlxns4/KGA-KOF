@@ -85,6 +85,8 @@ void Kim::Init(bool isPlayer1)
 	hit2->Init("Image/Character/kim/kim_Hit2.bmp", 264, 120, 4, 1, true, RGB(255, 0, 255));;
 	hit3 = new Image;
 	hit3->Init("Image/Character/kim/kim_Hit3.bmp", 480, 120, 5, 1, true, RGB(255, 0, 255));;
+	die = new Image;
+	die->Init("Image/Character/kim/kim_Die.bmp", 1170, 120, 10, 1, true, RGB(255, 0, 255));
 
 	mirroringIdle = new Image;	// 대기
 	mirroringIdle->Init("Image/Character/kim/kim_Idle_mirroring.bmp", 682, 120, 11, 1, true, RGB(255, 0, 255));
@@ -106,7 +108,8 @@ void Kim::Init(bool isPlayer1)
 	mirroringHit2->Init("Image/Character/kim/kim_Hit2_mirroring.bmp", 264, 120, 4, 1, true, RGB(255, 0, 255));;
 	mirroringHit3 = new Image;
 	mirroringHit3->Init("Image/Character/kim/kim_Hit3_mirroring.bmp", 480, 120, 5, 1, true, RGB(255, 0, 255));;
-
+	mirroringDie = new Image;
+	mirroringDie->Init("Image/Character/kim/kim_Die_mirroring.bmp", 1170, 120, 10, 1, true, RGB(255, 0, 255));
 
 	moveDir = MoveDir::Right;
 
@@ -135,12 +138,23 @@ void Kim::Init(bool isPlayer1)
 	damagedCollider[0].init(pos.x - 25, pos.x + 25, pos.y - 40, pos.y + 50);
 	this->isPlayer1 = isPlayer1;
 	isHit = false;
-
+	isDie = false;
 	isMeet = false;
 }
 
 void Kim::Update()
 {
+	if (isPlayer1) {
+		if (BattleManager::GetSingleton()->player1Hp <= 0) {
+			state = State::Die;
+		}
+	}
+	else {
+		if (BattleManager::GetSingleton()->player2Hp <= 0) {
+			state = State::Die;
+		}
+	}
+
 	if (BattleManager::GetSingleton()->CheckMeet())
 	{
 		isMeet = true;
@@ -320,7 +334,7 @@ void Kim::Render(HDC hdc)
 	if (idle && mirroringIdle)
 	{
 		Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
-		if (isPlayer1) {
+		if (isPlayer1 && (state != State::Die)) {
 			BattleManager::GetSingleton()->player1MoveCheck = 0;
 		}
 		else {
@@ -483,6 +497,7 @@ void Kim::Render(HDC hdc)
 			break;
 
 		case State::Damaged:
+		{
 			static bool check = true;
 			if (check) {
 				frameX = 0;
@@ -494,7 +509,7 @@ void Kim::Render(HDC hdc)
 			else {
 				mirroringHit2->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-
+			//elpasedCount = ElpasedCount(fps, frameX, true);
 			elpasedCount++;
 			if (elpasedCount == 3)
 			{
@@ -507,6 +522,37 @@ void Kim::Render(HDC hdc)
 				isAttack = false;
 				state = State::IDLE;
 				frameX = 0;
+			}
+		}
+			break;
+		case State::Die:
+			if (isPlayer1) {
+				die->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+			else {
+				mirroringDie->Render(hdc, pos.x, pos.y, frameX, frameY);
+			}
+			elpasedCount++;
+			if (elpasedCount >= 10)
+			{
+				elpasedCount = 0;
+				frameX++;
+				if (isPlayer1)
+				{
+					if (pos.x >= 40 && (frameX < 9)) pos.x -= 10;
+				}
+				else 
+				{
+					if (pos.x <= 280 && (frameX < 9)) pos.x += 10;
+				}
+
+			}
+			if (frameX >= 9) frameX = 9;
+			if (frameX >= 9 && !isDie)
+			{
+				frameX = 9;
+				isDie = true;
+				BattleManager::GetSingleton()->SetDie();
 			}
 			break;
 		}

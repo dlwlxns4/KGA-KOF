@@ -19,6 +19,10 @@ public:
 	int timeNum10;
 	int timeNum1;
 	bool timeOut;
+	bool timeOutDead;
+	int num = 0;
+	bool time1Check = true;
+	bool time10Check = true;
 
 	void Init();
 	void Init2();
@@ -26,5 +30,6 @@ public:
 	void Render(HDC hdc);
 	void Update();
 	void Release();
+	void TimeInit();
 };
 

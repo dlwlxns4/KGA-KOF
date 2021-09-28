@@ -79,6 +79,18 @@ void Iori::Init(int posX, int posY, bool isMoveRight)
 
 void Iori::Update()
 {
+	if (isPlayer1) {
+		if (BattleManager::GetSingleton()->player1Hp <= 0) {
+			state = State::Die;
+		}
+	}
+	else {
+		if (BattleManager::GetSingleton()->player2Hp <= 0) {
+			state = State::Die;
+		}
+	}
+
+
 	if (BattleManager::GetSingleton()->CheckMeet())
 	{
 		isMeet = true;
@@ -584,7 +596,6 @@ void Iori::Render(HDC hdc)
 				isDie = true;
 				BattleManager::GetSingleton()->SetDie();
 			}
-
 			break;
 		}
 	}
