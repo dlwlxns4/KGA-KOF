@@ -61,6 +61,10 @@ void UIManager::Init2()
 	timeNum10 = 18;
 	timeNum1 = 0;
 	timeOut = false;
+	timeOutDead = false;
+	num = 0;
+	time1Check = true;
+	time10Check = true;
 }
 void UIManager::SetPlayerImage()
 {
@@ -120,6 +124,15 @@ void UIManager::Render(HDC hdc)
 		timeLoading[0]->Render(hdc, WIN_SIZE_X / 2, WIN_SIZE_Y / 2);
 		time1[2]->Render(hdc, WIN_SIZE_X / 2, WIN_SIZE_Y / 2);
 		time10[2]->Render(hdc, WIN_SIZE_X / 2 - 14, WIN_SIZE_Y / 2);
+		if (!timeOutDead) {
+			timeOutDead = true;
+			if (BattleManager::GetSingleton()->player1Hp <
+				BattleManager::GetSingleton()->player2Hp) {
+				BattleManager::GetSingleton()->player1Hp = -5;
+			} else {
+				BattleManager::GetSingleton()->player2Hp = -5;
+			}
+		}
 	}
 }
 
@@ -127,9 +140,9 @@ void UIManager::Update()
 {
 	if (!timeOut)
 	{
-		static int num = 0;
-		static bool time1Check = true;
-		static bool time10Check = true;
+		
+		
+		
 		num++;
 		if (num == 3) {
 			num = 0;
@@ -165,4 +178,16 @@ void UIManager::Update()
 
 void UIManager::Release()
 {
+}
+
+void UIManager::TimeInit()
+{
+	timeLoadingNum = 0;
+	timeNum10 = 18;
+	timeNum1 = 0;
+	timeOut = false;
+	timeOutDead = false;
+	num = 0;
+	time1Check = true;
+	time10Check = true;
 }

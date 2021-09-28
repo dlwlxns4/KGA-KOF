@@ -98,6 +98,16 @@ void MayLee::Init(bool isPlayer1)
 
 void MayLee::Update()
 {
+	if (isPlayer1) {
+		if (BattleManager::GetSingleton()->player1Hp <= 0) {
+			state = State::Die;
+		}
+	}
+	else {
+		if (BattleManager::GetSingleton()->player2Hp <= 0) {
+			state = State::Die;
+		}
+	}
 	if (BattleManager::GetSingleton()->CheckMeet())
 	{
 		isMeet = true;
@@ -563,10 +573,10 @@ void MayLee::Render(HDC hdc)
 			case State::Die:
 				cout << frameX << endl;
 				if (isPlayer1) {
-					//die->Render(hdc, pos.x, pos.y, frameX, frameY);
+					die->Render(hdc, pos.x, pos.y, frameX, frameY);
 				}
 				else {
-					//mirroringDie->Render(hdc, pos.x, pos.y, frameX, frameY);
+					mirroringDie->Render(hdc, pos.x, pos.y, frameX, frameY);
 				}
 				elpasedCount++;
 				if (elpasedCount == 12)
