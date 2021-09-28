@@ -17,8 +17,8 @@ public:
 	POINTFLOAT playerPos1;
 	POINTFLOAT playerPos2;
 
-	int player1Hp = 10;
-	int player2Hp = 10;
+	int player1Hp = 100;
+	int player2Hp = 100;
 
 	int player1MoveCheck = 0;
 	int player2MoveCheck = 0;

@@ -340,14 +340,13 @@ void Iori::Update()
 	//0927수정
 	if (BattleManager::GetSingleton()->CheckDamaged(isPlayer1))
 	{
+		frameX = 0;
 		if (BattleManager::GetSingleton()->player1Hp <= 0)
 		{
-			frameX = 0;
 			state = State::Die;
 		}
 		else if (BattleManager::GetSingleton()->player2Hp <= 0)
 		{
-			frameX = 0;
 			state = State::Die;
 		}
 		else
@@ -490,7 +489,7 @@ void Iori::Render(HDC hdc)
 			}
 
 			elpasedCount++;
-			if (elpasedCount == 3)
+			if (elpasedCount >= 3)
 			{
 				elpasedCount = 0;
 				frameX++;
