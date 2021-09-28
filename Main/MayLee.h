@@ -35,15 +35,14 @@ private:
 	bool originCheck;
 	bool isAttack;
 	bool isHit;
+	bool isMeet;
 	MoveDir moveDir;
 
 protected:
 	RECT rect;
 	State state;
-
 	bool isPlayer1;
 
-	bool isMeet;
 
 public:
 

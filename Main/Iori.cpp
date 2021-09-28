@@ -343,6 +343,34 @@ void Iori::Update()
 			state = State::Damaged;
 		}
 	}
+
+	// 배경 카메라 처리
+	if (isPlayer1) {
+		if (BattleManager::GetSingleton()->player2MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
+			&& BattleManager::GetSingleton()->playerPos2.x <= 40) {
+			if (!(pos.x >= 280)) {
+				pos.x += moveSpeed / 3;
+			}
+		}
+		if (BattleManager::GetSingleton()->player2MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
+			&& BattleManager::GetSingleton()->playerPos2.x >= 280) {
+			if (!(pos.x <= 40)) {
+				pos.x -= moveSpeed / 3;
+			}
+		}
+	}
+	else {
+		if (BattleManager::GetSingleton()->player1MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
+			&& BattleManager::GetSingleton()->playerPos1.x <= 40) {
+			if (!(pos.x >= 280)) {
+				pos.x += moveSpeed / 3;
+			}
+		}
+		if (BattleManager::GetSingleton()->player1MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
+			&& BattleManager::GetSingleton()->playerPos1.x >= 280) {
+			if (!(pos.x <= 40)) pos.x -= moveSpeed / 3;
+		}
+	}
 }
 
 
@@ -351,6 +379,12 @@ void Iori::Render(HDC hdc)
 {
 	if (img && mirroringIdle)
 	{
+		if (isPlayer1) {
+			BattleManager::GetSingleton()->player1MoveCheck = 0;
+		}
+		else {
+			BattleManager::GetSingleton()->player2MoveCheck = 0;
+		}
 		switch (state)
 		{
 		case State::IDLE:
@@ -473,7 +507,8 @@ void Iori::Render(HDC hdc)
 					}
 					if (!isMeet)
 					{
-						pos.x += moveSpeed / 3;
+						BattleManager::GetSingleton()->player1MoveCheck = 2;
+						if (pos.x <= 281) pos.x += moveSpeed / 3;
 					}
 				}
 				else {
@@ -487,7 +522,8 @@ void Iori::Render(HDC hdc)
 					{
 						frameX = 8;
 					}
-					pos.x -= moveSpeed / 3;
+					BattleManager::GetSingleton()->player1MoveCheck = 1;
+					if (pos.x >= 40)pos.x -= moveSpeed / 3;
 
 				}
 			}
@@ -505,7 +541,8 @@ void Iori::Render(HDC hdc)
 					{
 						frameX = 0;
 					}
-					pos.x += moveSpeed / 3;
+					BattleManager::GetSingleton()->player2MoveCheck = 2;
+					if (pos.x <= 281) pos.x += moveSpeed / 3;
 				}
 				else {
 					if (elpasedCount == 5)
@@ -520,7 +557,8 @@ void Iori::Render(HDC hdc)
 					}
 					if (!isMeet)
 					{
-						pos.x -= moveSpeed / 3;
+						BattleManager::GetSingleton()->player2MoveCheck = 1;
+						if (pos.x >= 40)pos.x -= moveSpeed / 3;
 					}
 				}
 			}

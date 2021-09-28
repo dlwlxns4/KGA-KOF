@@ -298,7 +298,7 @@ void BackGround::Render(HDC hdc)
 		street[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
 
 		elpasedCount++;
-		if (elpasedCount == 5)
+		if (elpasedCount == 3)
 		{
 			elpasedCount = 0;
 			frame++;
@@ -309,7 +309,7 @@ void BackGround::Render(HDC hdc)
 		underBridge[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
 
 		elpasedCount++;
-		if (elpasedCount == 5)
+		if (elpasedCount == 3)
 		{
 			elpasedCount = 0;
 			frame++;
