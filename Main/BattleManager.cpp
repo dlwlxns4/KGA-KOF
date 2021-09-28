@@ -167,7 +167,7 @@ void BattleManager::Render(HDC hdc)
 
 				if (frame >= maxFrame )
 				{
-					maxElpasedCount = 3;
+					maxElpasedCount = 1;
 					frame = 0; maxFrame = 20;
 					gameState = State::END;
 				}

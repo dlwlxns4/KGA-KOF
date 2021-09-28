@@ -36,6 +36,7 @@ private:
 	bool isAttack;
 	bool isHit;
 	bool isMeet;
+	bool isDie;
 	MoveDir moveDir;
 
 protected:
