@@ -89,14 +89,18 @@ void Kyo::Update()
 	if (BattleManager::GetSingleton()->player1Hp <= 0 || BattleManager::GetSingleton()->player2Hp <= 0)
 		isLive = false;
 
-	if (isPlayer1) {
-		if (BattleManager::GetSingleton()->player1Hp <= 0) {
+	if (isPlayer1)
+	{
+		if (BattleManager::GetSingleton()->player1Hp <= 0)
+		{
 			isLive = false;
 			state = State::Die;
 		}
 	}
-	else {
-		if (BattleManager::GetSingleton()->player2Hp <= 0) {
+	else 
+	{
+		if (BattleManager::GetSingleton()->player2Hp <= 0) 
+		{
 			isLive = false;
 			state = State::Die;
 		}
@@ -406,29 +410,37 @@ void Kyo::Update()
 
 
 		// 배경 카메라 움직임 관련
-		if (isPlayer1) {
+		if (isPlayer1) 
+		{
 			if (BattleManager::GetSingleton()->player2MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
-				&& BattleManager::GetSingleton()->playerPos2.x <= 40) {
-				if (!(pos.x >= 280)) {
+				&& BattleManager::GetSingleton()->playerPos2.x <= 40)
+			{
+				if (!(pos.x >= 280)) 
+				{
 					pos.x += moveSpeed / 3;
 				}
 			}
 			if (BattleManager::GetSingleton()->player2MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
-				&& BattleManager::GetSingleton()->playerPos2.x >= 280) {
-				if (!(pos.x <= 40)) {
+				&& BattleManager::GetSingleton()->playerPos2.x >= 280)
+			{
+				if (!(pos.x <= 40))
+				{
 					pos.x -= moveSpeed / 3;
 				}
 			}
 		}
 		else {
 			if (BattleManager::GetSingleton()->player1MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
-				&& BattleManager::GetSingleton()->playerPos1.x <= 40) {
-				if (!(pos.x >= 280)) {
+				&& BattleManager::GetSingleton()->playerPos1.x <= 40) 
+			{
+				if (!(pos.x >= 280))
+				{
 					pos.x += moveSpeed / 3;
 				}
 			}
 			if (BattleManager::GetSingleton()->player1MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
-				&& BattleManager::GetSingleton()->playerPos1.x >= 280) {
+				&& BattleManager::GetSingleton()->playerPos1.x >= 280) 
+			{
 				if (!(pos.x <= 40)) pos.x -= moveSpeed / 3;
 			}
 		}
@@ -437,15 +449,14 @@ void Kyo::Update()
 	//0927수정
 	if (BattleManager::GetSingleton()->CheckDamaged(isPlayer1))
 	{
+		frameX = 0;
 		if (BattleManager::GetSingleton()->player1Hp <= 0)
 		{
-			frameX = 0;
 			state = State::Die;
 		}
 		else if (BattleManager::GetSingleton()->player2Hp <= 0)
 		{
 			//cout << "damaged" << endl;
-			frameX = 0;
 			state = State::Die;
 
 		}
@@ -458,10 +469,12 @@ void Kyo::Update()
 
 void Kyo::Render(HDC hdc)
 {
-	if (isPlayer1) {
+	if (isPlayer1)
+	{
 		BattleManager::GetSingleton()->player1MoveCheck = 0;
 	}
-	else {
+	else 
+	{
 		BattleManager::GetSingleton()->player2MoveCheck = 0;
 	}
 
@@ -578,6 +591,9 @@ void Kyo::Render(HDC hdc)
 			}
 			break;
 		case State::Damaged:
+			cout << "frameX : " << frameX << endl;
+			cout << "elapsedCount : " << elapsedCount << endl;
+
 			if (isPlayer1)
 			{
 				attacked->Render(hdc, pos.x, pos.y, frameX, frameY);
@@ -614,6 +630,7 @@ void Kyo::Render(HDC hdc)
 				elapsedCount = 0;
 				frameX++;
 			}
+			if (frameX >= 4) frameX = 4;
 			if (frameX >= 4 && !isDie)
 			{
 				frameX = 4;

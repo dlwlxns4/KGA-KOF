@@ -100,45 +100,60 @@ void MainGame::Update()
 			gameInit = false;
 			BattleManager::GetSingleton()->GameInit();
 			UIManager::GetSingleton()->TimeInit();
+			BattleManager::GetSingleton()->InitCollider();
 		}
-	}else if (SceneManager::GetSingleton()->GetIsSceneState() == "Loading") {
+	}
+	else if (SceneManager::GetSingleton()->GetIsSceneState() == "Loading") 
+	{
 		mainTitle->Update();
-	}else if (SceneManager::GetSingleton()->GetIsSceneState() == "CharacterSelect") {
+	}
+	else if (SceneManager::GetSingleton()->GetIsSceneState() == "CharacterSelect") 
+	{
 		characterSelect->Update();
-	}else if (SceneManager::GetSingleton()->GetIsSceneState() == "Battle") {
+	}
+	else if (SceneManager::GetSingleton()->GetIsSceneState() == "Battle") 
+	{
 		backGround->Update();
 		UIManager::GetSingleton()->Update();
-		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") 
+		{
 			kim->Update();
 			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(true), true, kim->GetPos());
 		}
-		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") 
+		{
 			iori->Update();
 			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(true), true, iori->GetPos());
 		}
-		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") 
+		{
 			kyo->Update();
 			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(true), true, kyo->GetPos());
 		}
-		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") {
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") 
+		{
 			may->Update();
 			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(true), true, may->GetPos());
 		}
 
 		//플레이어 2
-		if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kim") {
+		if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kim") 
+		{
 			kim2->Update();
 			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(false), false, kim2->GetPos());
 		}
-		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Iori") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Iori") 
+		{
 			iori2->Update();
 			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(false), false, iori2->GetPos());
 		}
-		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kyo") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kyo") 
+		{
 			kyo2->Update();
 			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(false), false, kyo2->GetPos());
 		}
-		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "May") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "May") 
+		{
 			may2->Update();
 			BattleManager::GetSingleton()->SetColliderPos(SceneManager::GetSingleton()->GetPlayerChar(false), false, may2->GetPos());
 		}
@@ -162,43 +177,56 @@ void MainGame::Update()
 void MainGame::Render(HDC hdc)
 {
 	HDC hBackBufferDC = backBuffer->GetMemDC();
-	if (SceneManager::GetSingleton()->GetIsSceneState() == "MainTitle") {
+	if (SceneManager::GetSingleton()->GetIsSceneState() == "MainTitle") 
+	{
 		mainTitle->Render(hBackBufferDC);
 	}
-	else if (SceneManager::GetSingleton()->GetIsSceneState() == "Loading") {
+	else if (SceneManager::GetSingleton()->GetIsSceneState() == "Loading") 
+	{
 		mainTitle->Render(hBackBufferDC);
 	}
-	else if (SceneManager::GetSingleton()->GetIsSceneState() == "CharacterSelect") {
+	else if (SceneManager::GetSingleton()->GetIsSceneState() == "CharacterSelect")
+	{
 		characterSelect->Render(hBackBufferDC);
 	}
-	else if (SceneManager::GetSingleton()->GetIsSceneState() == "Battle") {
+	else if (SceneManager::GetSingleton()->GetIsSceneState() == "Battle") 
+	{
 		backGround->Render(hBackBufferDC);
-		BattleManager::GetSingleton()->Render(hBackBufferDC);
+		if(showCollider)
+			BattleManager::GetSingleton()->Render(hBackBufferDC);
 		UIManager::GetSingleton()->Render(hBackBufferDC);
 
-		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim") {
+		if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kim")
+		{
 			kim->Render(hBackBufferDC);
 		}
-		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Iori")
+		{
 			iori->Render(hBackBufferDC);
 		}
-		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "Kyo")
+		{
 			kyo->Render(hBackBufferDC);
 		}
-		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(true) == "May") 
+		{
 			may->Render(hBackBufferDC);
 		}
 
-		if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kim") {
+		if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kim") 
+		{
 			kim2->Render(hBackBufferDC);
 		}
-		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Iori") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Iori")
+		{
 			iori2->Render(hBackBufferDC);
 		}
-		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kyo") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "Kyo")
+		{
 			kyo2->Render(hBackBufferDC);
 		}
-		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "May") {
+		else if (SceneManager::GetSingleton()->GetPlayerChar(false) == "May") 
+		{
 			may2->Render(hBackBufferDC);
 		}
 
@@ -256,6 +284,8 @@ LRESULT MainGame::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		switch (wParam)
 		{
 		case VK_SPACE:
+			if (showCollider) showCollider = false;
+			else showCollider = true;
 			break;
 		case VK_UP:
 			break;

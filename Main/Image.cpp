@@ -127,7 +127,8 @@ void Image::Render(HDC hdc, int destX, int destY, int frameX, int frameY)
 	// ... 반복
 	
 		
-	if (isTransparent) {
+	if (isTransparent) 
+	{
 		GdiTransparentBlt(hdc,
 			destX - (imageInfo->frameWidth / 2),				// 복사될 비트맵의 시작 위치 x
 			destY - (imageInfo->frameHeight / 2),				// 복사될 비트맵의 시작 위치 y
@@ -142,7 +143,8 @@ void Image::Render(HDC hdc, int destX, int destY, int frameX, int frameY)
 			transColor
 		);
 	}
-	else {
+	else 
+	{
 			BitBlt(hdc,				// 복사 목적지 DC
 			destX - (imageInfo->width / 2),				// 복사될 비트맵의 시작 위치 x
 			destY - (imageInfo->height / 2),				// 복사될 비트맵의 시작 위치 y
@@ -158,7 +160,8 @@ void Image::Render(HDC hdc, int destX, int destY, int frameX, int frameY)
 void Image::Render(HDC hdc, int destX, int destY)
 {
 
-	if (isTransparent) {
+	if (isTransparent) 
+	{
 		GdiTransparentBlt(hdc,
 			destX - (imageInfo->width / 2),				// 복사될 비트맵의 시작 위치 x
 			destY - (imageInfo->height / 2),				// 복사될 비트맵의 시작 위치 y
@@ -169,7 +172,8 @@ void Image::Render(HDC hdc, int destX, int destY)
 			transColor
 			);
 	}
-	else {
+	else
+	{
 		BitBlt(hdc,				// 복사 목적지 DC
 			destX- (imageInfo->width / 2),				// 복사될 비트맵의 시작 위치 x
 			destY- (imageInfo->height / 2),				// 복사될 비트맵의 시작 위치 y
@@ -185,7 +189,8 @@ void Image::Render(HDC hdc, int destX, int destY)
 void Image::Render(HDC hdc, int destX, int destY, int hp, bool isPlayer1)
 {
 
-	if (isPlayer1) {
+	if (isPlayer1) 
+	{
 		GdiTransparentBlt(hdc,
 			destX - (imageInfo->width / 2),				// 복사될 비트맵의 시작 위치 x
 			destY - (imageInfo->height / 2),				// 복사될 비트맵의 시작 위치 y
@@ -198,7 +203,8 @@ void Image::Render(HDC hdc, int destX, int destY, int hp, bool isPlayer1)
 
 
 	}
-	else {
+	else
+	{
 		GdiTransparentBlt(hdc,
 			destX - (imageInfo->width / 2) + ((106 * (100 - hp) / 100)),				// 복사될 비트맵의 시작 위치 x
 			destY - (imageInfo->height / 2),				// 복사될 비트맵의 시작 위치 y

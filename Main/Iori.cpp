@@ -44,15 +44,17 @@ void Iori::Init(bool isPlayer1)
 	isAttack = false;
 
 	frameX = frameY = 0;
-	elpasedCount = 0;
+	elapsedCount = 0;
 	moveSpeed = 10.0f;
 
 
-	if (isPlayer1) {
+	if (isPlayer1)
+	{
 		this->pos.x = WIN_SIZE_X / 4;
 		this->pos.y = WIN_SIZE_Y / 1.3;
 	}
-	else {
+	else 
+	{
 		this->pos.x = WIN_SIZE_X - WIN_SIZE_X / 4;
 		this->pos.y = WIN_SIZE_Y / 1.3;
 	}
@@ -71,7 +73,7 @@ void Iori::Init(int posX, int posY, bool isMoveRight)
 	//img->Init("Image/Iori_walk.bmp", 612, 104, 9, 1, true, RGB(255, 0, 255));
 
 	//frameX = frameY = 0;
-	//elpasedCount = 0;
+	//elapsedCount = 0;
 	//moveSpeed = 10.0f;
 
 	//isMoveRight ? moveDir = MoveDir::Right : moveDir = MoveDir::Left;
@@ -84,13 +86,16 @@ void Iori::Update()
 		isLive = false;
 
 
-	if (isPlayer1) {
-		if (BattleManager::GetSingleton()->player1Hp <= 0) {
+	if (isPlayer1) 
+	{
+		if (BattleManager::GetSingleton()->player1Hp <= 0)
+		{
 			state = State::Die;
 		}
 	}
 	else {
-		if (BattleManager::GetSingleton()->player2Hp <= 0) {
+		if (BattleManager::GetSingleton()->player2Hp <= 0)
+		{
 			state = State::Die;
 		}
 	}
@@ -106,7 +111,8 @@ void Iori::Update()
 		{
 			isMeet = false;
 		}
-		if (isPlayer1) {
+		if (isPlayer1) 
+		{
 			if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER1_RIGHT_KEY) && state == State::IDLE)
 			{
 				if (!isMeet)
@@ -116,7 +122,7 @@ void Iori::Update()
 					state = State::Walk;
 					moveDir = MoveDir::Right;
 					isAttack = false;
-					elpasedCount = 0;
+					elapsedCount = 0;
 				}
 
 			}
@@ -127,7 +133,7 @@ void Iori::Update()
 				state = State::Walk;
 				moveDir = MoveDir::Left;
 				isAttack = false;
-				elpasedCount = 0;
+				elapsedCount = 0;
 			}
 			if (state == State::IDLE)
 			{
@@ -140,28 +146,28 @@ void Iori::Update()
 				frameX = 0;
 				isAttack = true;
 				state = State::LegWeak;
-				elpasedCount = 0;
+				elapsedCount = 0;
 			}
 			else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_WEAK_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
 			{
 				frameX = 0;
 				isAttack = true;
 				state = State::PunchWeak;
-				elpasedCount = 0;
+				elapsedCount = 0;
 			}
 			else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER1_STRONG_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
 			{
 				frameX = 0;
 				isAttack = true;
 				state = State::PunchStrong;
-				elpasedCount = 0;
+				elapsedCount = 0;
 			}
 
 			if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY)) && !isAttack && state != State::Damaged)
 			{
 				frameX = 0;
 				state = State::IDLE;
-				elpasedCount = 0;
+				elapsedCount = 0;
 			}
 		}
 		else
@@ -173,7 +179,7 @@ void Iori::Update()
 				state = State::Walk;
 				moveDir = MoveDir::Right;
 				isAttack = false;
-				elpasedCount = 0;
+				elapsedCount = 0;
 
 			}
 			else if (KeyManager::GetSingleton()->IsStayKeyDown(PLAYER2_LEFT_KEY) && state == State::IDLE)
@@ -184,7 +190,7 @@ void Iori::Update()
 					state = State::Walk;
 					moveDir = MoveDir::Left;
 					isAttack = false;
-					elpasedCount = 0;
+					elapsedCount = 0;
 				}
 			}
 
@@ -199,28 +205,28 @@ void Iori::Update()
 				frameX = 0;
 				isAttack = true;
 				state = State::LegWeak;
-				elpasedCount = 0;
+				elapsedCount = 0;
 			}
 			else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_WEAK_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
 			{
 				frameX = 0;
 				isAttack = true;
 				state = State::PunchWeak;
-				elpasedCount = 0;
+				elapsedCount = 0;
 			}
 			else if (KeyManager::GetSingleton()->IsOnceKeyDown(PLAYER2_STRONG_PUNCH) && !isAttack) // A누르고 공격중이 아닐때만 가능
 			{
 				frameX = 0;
 				isAttack = true;
 				state = State::PunchStrong;
-				elpasedCount = 0;
+				elapsedCount = 0;
 			}
 
 			if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_LEFT_KEY)) && !isAttack && state != State::Damaged)
 			{
 				frameX = 0;
 				state = State::IDLE;
-				elpasedCount = 0;
+				elapsedCount = 0;
 			}
 		}
 
@@ -237,7 +243,7 @@ void Iori::Update()
 					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[0].collider, true) && !isHit)
 					{
 						isHit = true;
-						elpasedCount = -5; // Hit했을 때 경직도
+						elapsedCount = -5; // Hit했을 때 경직도
 					}
 
 				}
@@ -247,7 +253,7 @@ void Iori::Update()
 					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, false) && !isHit)
 					{
 						isHit = true;
-						elpasedCount = -5; // Hit했을 때 경직도
+						elapsedCount = -5; // Hit했을 때 경직도
 					}
 
 				}
@@ -276,7 +282,7 @@ void Iori::Update()
 					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[1].collider, true) && !isHit)
 					{
 						isHit = true;
-						elpasedCount = -3; // Hit했을 때 경직도
+						elapsedCount = -3; // Hit했을 때 경직도
 					}
 				}
 				else
@@ -285,7 +291,7 @@ void Iori::Update()
 					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[1].collider, false) && !isHit)
 					{
 						isHit = true;
-						elpasedCount = -3; // Hit했을 때 경직도
+						elapsedCount = -3; // Hit했을 때 경직도
 					}
 				}
 			}
@@ -314,7 +320,7 @@ void Iori::Update()
 					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[2].collider, true) && !isHit)
 					{
 						isHit = true;
-						elpasedCount = -3; // Hit했을 때 경직도
+						elapsedCount = -3; // Hit했을 때 경직도
 					}
 				}
 				else
@@ -323,7 +329,7 @@ void Iori::Update()
 					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[2].collider, false) && !isHit)
 					{
 						isHit = true;
-						elpasedCount = -3; // Hit했을 때 경직도
+						elapsedCount = -3; // Hit했을 때 경직도
 					}
 				}
 			}
@@ -414,10 +420,10 @@ void Iori::Render(HDC hdc)
 			else {
 				mirroringIdle->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			elpasedCount++;
-			if (elpasedCount == 5)
+			elapsedCount++;
+			if (elapsedCount == 5)
 			{
-				elpasedCount = 0;
+				elapsedCount = 0;
 				frameX++;
 			}
 			if (frameX == 8)
@@ -432,10 +438,10 @@ void Iori::Render(HDC hdc)
 			else {
 				mirroringWeakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			elpasedCount++;
-			if (elpasedCount == 3)
+			elapsedCount++;
+			if (elapsedCount == 3)
 			{
-				elpasedCount = 0;
+				elapsedCount = 0;
 				frameX++;
 			}
 			if (frameX == 8)
@@ -453,10 +459,10 @@ void Iori::Render(HDC hdc)
 			else {
 				mirroringWeakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			elpasedCount++;
-			if (elpasedCount == 3)
+			elapsedCount++;
+			if (elapsedCount == 3)
 			{
-				elpasedCount = 0;
+				elapsedCount = 0;
 				frameX++;
 			}
 			if (frameX == 5)
@@ -475,10 +481,10 @@ void Iori::Render(HDC hdc)
 				mirroringStrongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 
-			elpasedCount++;
-			if (elpasedCount == 3)
+			elapsedCount++;
+			if (elapsedCount == 3)
 			{
-				elpasedCount = 0;
+				elapsedCount = 0;
 				frameX++;
 			}
 			if (frameX == 7)
@@ -497,10 +503,10 @@ void Iori::Render(HDC hdc)
 				mirroringDamaged->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 
-			elpasedCount++;
-			if (elpasedCount >= 3)
+			elapsedCount++;
+			if (elapsedCount >= 3)
 			{
-				elpasedCount = 0;
+				elapsedCount = 0;
 				frameX++;
 			}
 			if (frameX == 6)
@@ -513,12 +519,12 @@ void Iori::Render(HDC hdc)
 		case State::Walk:
 			if (isPlayer1) {
 				img->Render(hdc, pos.x, pos.y, frameX, frameY);
-				elpasedCount++;
+				elapsedCount++;
 				if (moveDir == MoveDir::Right) {
-					if (elpasedCount == 5)
+					if (elapsedCount == 5)
 					{
 
-						elpasedCount = 0;
+						elapsedCount = 0;
 						frameX++;
 					}
 					if (frameX >= 8)
@@ -532,10 +538,10 @@ void Iori::Render(HDC hdc)
 					}
 				}
 				else {
-					if (elpasedCount == 5)
+					if (elapsedCount == 5)
 					{
 
-						elpasedCount = 0;
+						elapsedCount = 0;
 						frameX--;
 					}
 					if (frameX <= 0)
@@ -549,12 +555,12 @@ void Iori::Render(HDC hdc)
 			}
 			else {
 				mirroringImg->Render(hdc, pos.x, pos.y, frameX, frameY);
-				elpasedCount++;
+				elapsedCount++;
 				if (moveDir == MoveDir::Right) {
-					if (elpasedCount == 5)
+					if (elapsedCount == 5)
 					{
 
-						elpasedCount = 0;
+						elapsedCount = 0;
 						frameX++;
 					}
 					if (frameX >= 8)
@@ -565,10 +571,10 @@ void Iori::Render(HDC hdc)
 					if (pos.x <= 281) pos.x += moveSpeed / 3;
 				}
 				else {
-					if (elpasedCount == 5)
+					if (elapsedCount == 5)
 					{
 
-						elpasedCount = 0;
+						elapsedCount = 0;
 						frameX--;
 					}
 					if (frameX <= 0)
@@ -590,10 +596,10 @@ void Iori::Render(HDC hdc)
 			else {
 				mirroringDie->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			elpasedCount++;
-			if (elpasedCount == 12)
+			elapsedCount++;
+			if (elapsedCount == 12)
 			{
-				elpasedCount = 0;
+				elapsedCount = 0;
 				frameX++;
 			}
 

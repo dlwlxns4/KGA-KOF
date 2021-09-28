@@ -29,7 +29,7 @@ private:
 	Image* mirroringDie;
 
 	int frameX, frameY;
-	int elpasedCount;
+	int elapsedCount;
 	int fps;
 	float originPos;
 	bool originCheck;

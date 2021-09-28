@@ -17,8 +17,8 @@ public:
 	POINTFLOAT playerPos1;
 	POINTFLOAT playerPos2;
 
-	int player1Hp = 15;
-	int player2Hp = 15;
+	int player1Hp = 100;
+	int player2Hp = 100;
 
 	int player1MoveCheck = 0;
 	int player2MoveCheck = 0;
@@ -30,7 +30,7 @@ public:
   
 	State gameState;
 
-	int elpasedCount = 0;
+	int elapsedCount = 0;
 	int maxElpasedCount = 3;
 	int frame = 0;
 	int maxFrame = 21;
@@ -53,6 +53,7 @@ public:
 	void KORender(HDC hdc);
 	void WinRender(HDC hdc);
 	bool SceneTransform(HDC hdc);
+	void InitCollider();
 	inline void SetDie() { gameState = State::Die; };
 
 	void GameInit();

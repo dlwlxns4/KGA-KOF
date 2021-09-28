@@ -28,7 +28,7 @@ private:
 	Image* mirroringDie;
 	
 	int frameX, frameY;
-	int elpasedCount;
+	int elapsedCount;
 	bool isAttack;
 	bool isHit;
 	MoveDir moveDir;

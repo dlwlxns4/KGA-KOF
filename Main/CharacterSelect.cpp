@@ -57,7 +57,7 @@ void CharacterSelect::Init()
 	selectPos2[1].x = selectPos2[1].y = 0;
 	
 	Twinkle = true;
-	elpasedCount = 0;
+	elapsedCount = 0;
 	frame = 0;
 }
 
@@ -157,7 +157,7 @@ void CharacterSelect::Update()
 		selectPos2[1].x = selectPos2[1].y = 0;
 
 		Twinkle = true;
-		elpasedCount = 0;
+		elapsedCount = 0;
 		frame = 0;
 		SceneManager::GetSingleton()->SetIsSceneState("Battle");
 	}
@@ -177,7 +177,7 @@ void CharacterSelect::Update()
 
 void CharacterSelect::Render(HDC hdc)
 {
-	elpasedCount++;
+	elapsedCount++;
 	backGround[frame]->Render(hdc, backGroundPos.x, backGroundPos.y, 0, 0);
 	if (Twinkle) {
 		playerSelect1->Render(hdc, selectPos1[1].x, selectPos1[1].y, 0, 0);
@@ -216,9 +216,9 @@ void CharacterSelect::Render(HDC hdc)
 	}
 
 
-	if (elpasedCount >= 2) 
+	if (elapsedCount >= 2) 
 	{
-		elpasedCount = 0;
+		elapsedCount = 0;
 		frame++;
 		if (frame >= 14) frame = 0;
 	}

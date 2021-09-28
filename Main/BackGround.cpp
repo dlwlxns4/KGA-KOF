@@ -5,7 +5,7 @@ using namespace std;
 void BackGround::Init()
 {
 
-	elpasedCount = 0;
+	elapsedCount = 0;
 	frame = 0;
 
 	for (int i = 0; i < 8; i++)
@@ -117,7 +117,7 @@ void BackGround::Init()
 	// 다리밑 이미지 초기화
 
 	backGroundPos = WIN_SIZE_X / 2;
-	elpasedCount = 0;
+	elapsedCount = 0;
 	frame = 0;
 
 
@@ -218,11 +218,11 @@ void BackGround::Render(HDC hdc)
 	case IsBackGround::BulGukSa:
 		bulGukSa[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
 
-		elpasedCount++;
+		elapsedCount++;
 
-		if (elpasedCount == 5)
+		if (elapsedCount == 5)
 		{
-			elpasedCount = 0;
+			elapsedCount = 0;
 			frame++;
 			if (frame >= 8) frame = 0;
 		}
@@ -230,10 +230,10 @@ void BackGround::Render(HDC hdc)
 	case IsBackGround::Desert:
 		desert[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
 
-		elpasedCount++;
-		if (elpasedCount == 5)
+		elapsedCount++;
+		if (elapsedCount == 5)
 		{
-			elpasedCount = 0;
+			elapsedCount = 0;
 			frame++;
 			if (frame >= 8) frame = 0;
 		}
@@ -241,10 +241,10 @@ void BackGround::Render(HDC hdc)
 	case IsBackGround::Garden:
 		garden[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
 
-		elpasedCount++;
-		if (elpasedCount == 5)
+		elapsedCount++;
+		if (elapsedCount == 5)
 		{
-			elpasedCount = 0;
+			elapsedCount = 0;
 			frame++;
 			if (frame >= 29) frame = 0;
 		}
@@ -252,10 +252,10 @@ void BackGround::Render(HDC hdc)
 	case IsBackGround::Harbor1:
 		harbor1[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
 
-		elpasedCount++;
-		if (elpasedCount == 5)
+		elapsedCount++;
+		if (elapsedCount == 5)
 		{
-			elpasedCount = 0;
+			elapsedCount = 0;
 			frame++;
 			if (frame >= 8) frame = 0;
 		}
@@ -263,10 +263,10 @@ void BackGround::Render(HDC hdc)
 	case IsBackGround::Harbor2:
 		harbor2[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
 
-		elpasedCount++;
-		if (elpasedCount == 5)
+		elapsedCount++;
+		if (elapsedCount == 5)
 		{
-			elpasedCount = 0;
+			elapsedCount = 0;
 			frame++;
 			if (frame >= 8) frame = 0;
 		}
@@ -274,10 +274,10 @@ void BackGround::Render(HDC hdc)
 	case IsBackGround::HwaHongMun:
 		hwaHongMun[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
 
-		elpasedCount++;
-		if (elpasedCount == 5)
+		elapsedCount++;
+		if (elapsedCount == 5)
 		{
-			elpasedCount = 0;
+			elapsedCount = 0;
 			frame++;
 			if (frame >= 8) frame = 0;
 		}
@@ -285,10 +285,10 @@ void BackGround::Render(HDC hdc)
 	case IsBackGround::Racing:
 		racing[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
 
-		elpasedCount++;
-		if (elpasedCount == 5)
+		elapsedCount++;
+		if (elapsedCount == 5)
 		{
-			elpasedCount = 0;
+			elapsedCount = 0;
 			frame++;
 			if (frame >= 8) frame = 0;
 		}
@@ -296,10 +296,10 @@ void BackGround::Render(HDC hdc)
 	case IsBackGround::Street:
 		street[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
 
-		elpasedCount++;
-		if (elpasedCount == 3)
+		elapsedCount++;
+		if (elapsedCount == 3)
 		{
-			elpasedCount = 0;
+			elapsedCount = 0;
 			frame++;
 			if (frame >= 16) frame = 0;
 		}
@@ -307,10 +307,10 @@ void BackGround::Render(HDC hdc)
 	case IsBackGround::UnderBridge:
 		underBridge[frame]->Render(hdc, backGroundPos, WIN_SIZE_Y / 2, 0, 0);
 
-		elpasedCount++;
-		if (elpasedCount == 3)
+		elapsedCount++;
+		if (elapsedCount == 3)
 		{
-			elpasedCount = 0;
+			elapsedCount = 0;
 			frame++;
 			if (frame >= 16) frame = 0;
 		}

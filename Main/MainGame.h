@@ -37,6 +37,10 @@ private:
 	
 	bool gameInit=false;
 
+
+
+	bool showCollider = true;
+
 public:
 	void Init();
 	void GameInit();

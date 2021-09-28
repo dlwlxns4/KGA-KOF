@@ -34,7 +34,7 @@ private:
 
 
 	int frameX, frameY;
-	int elpasedCount;
+	int elapsedCount;
 	int fps;
 	float originPos;
 	bool originCheck;
@@ -55,7 +55,7 @@ public:
 	void Init(bool isPlayer1);
 	void Update();
 	int ElpasedCount(int fps, int& frameX, bool check);
-	void Collision(int frameX, int frameMin, int frameMax, int colliderNum, int& elpasedCount, bool& isHit);
+	void Collision(int frameX, int frameMin, int frameMax, int colliderNum, int& elapsedCount, bool& isHit);
 	void Render(HDC hdc);
 	void Release();
 };

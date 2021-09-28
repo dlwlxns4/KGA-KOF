@@ -32,7 +32,7 @@ void MainTitle::Init()
 
 	frame = 0;
 	maxFrame = 2;
-	elpasedCount = 0;
+	elapsedCount = 0;
 	maxElpasedCount = 20;
 
 	isLoading = false;
@@ -40,10 +40,10 @@ void MainTitle::Init()
 
 void MainTitle::Update()
 {
-	elpasedCount++;
-	if (elpasedCount >= maxElpasedCount)
+	elapsedCount++;
+	if (elapsedCount >= maxElpasedCount)
 	{
-		elpasedCount = 0;
+		elapsedCount = 0;
 		frame++;
 		if (frame == 41) 
 		{
@@ -56,7 +56,7 @@ void MainTitle::Update()
 	if (KeyManager::GetSingleton()->IsOnceKeyDown('A') && !isLoading) {
 		frame = 0;
 		maxFrame = 41;
-		elpasedCount = 0;
+		elapsedCount = 0;
 		maxElpasedCount = 2;
 		SceneManager::GetSingleton()->SetIsSceneState("Loading");
 		isLoading = true;

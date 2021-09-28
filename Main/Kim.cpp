@@ -3,23 +3,24 @@
 #include "KeyManager.h"
 #include "BattleManager.h"
 int Kim::ElpasedCount(int fps, int& frameX, bool check) {
-	static int elpasedCount = 0;
-	elpasedCount++;
-	if (elpasedCount == fps)
+	static int elapsedCount = 0;
+	elapsedCount++;
+	if (elapsedCount == fps)
 	{
-		elpasedCount = 0;
-		if (check) {
+		elapsedCount = 0;
+		if (check)
+		{
 			frameX++;
 		}
 		else 
 		{
 			frameX--;
 		}
-		return elpasedCount;
+		return elapsedCount;
 	}
 }
 
-void Kim::Collision(int frameX, int frameMin, int frameMax, int colliderNum,int& elpasedCount,bool& isHit) {
+void Kim::Collision(int frameX, int frameMin, int frameMax, int colliderNum,int& elapsedCount,bool& isHit) {
 	if (frameX > frameMin && frameX < frameMax)
 	{
 		if (this->isPlayer1)
@@ -28,7 +29,7 @@ void Kim::Collision(int frameX, int frameMin, int frameMax, int colliderNum,int&
 			if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[colliderNum].collider, true) && !isHit)
 			{
 				isHit = true;
-				elpasedCount = -5; // Hit했을 때 경직도
+				elapsedCount = -5; // Hit했을 때 경직도
 			}
 		}
 		else
@@ -37,7 +38,7 @@ void Kim::Collision(int frameX, int frameMin, int frameMax, int colliderNum,int&
 			if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[colliderNum].collider, false) && !isHit)
 			{
 				isHit = true;
-				elpasedCount = -5; // Hit했을 때 경직도
+				elapsedCount = -5; // Hit했을 때 경직도
 			}
 
 		}
@@ -119,14 +120,16 @@ void Kim::Init(bool isPlayer1)
 	originCheck = false;
 	fps = 3;
 	frameX = frameY = 0;
-	elpasedCount = 0;
+	elapsedCount = 0;
 	moveSpeed = 10.0f;
 
-	if (isPlayer1) {
+	if (isPlayer1)
+	{
 		this->pos.x = WIN_SIZE_X / 4;
 		this->pos.y = WIN_SIZE_Y / 1.3;
 	}
-	else {
+	else 
+	{
 		this->pos.x = WIN_SIZE_X - WIN_SIZE_X / 4;
 		this->pos.y = WIN_SIZE_Y / 1.3;
 	}
@@ -150,12 +153,14 @@ void Kim::Update()
 
 	if (isLive)
 	{
-		if (isPlayer1) {
+		if (isPlayer1)
+		{
 			if (BattleManager::GetSingleton()->player1Hp <= 0) {
 				state = State::Die;
 			}
 		}
-		else {
+		else 
+		{
 			if (BattleManager::GetSingleton()->player2Hp <= 0) {
 				state = State::Die;
 			}
@@ -281,34 +286,43 @@ void Kim::Update()
 			}
 		}
 
-		if (isAttack && state == State::PunchWeak) {
-			Collision(frameX, 1, 3, 0, elpasedCount, isHit);
+		if (isAttack && state == State::PunchWeak) 
+		{
+			Collision(frameX, 1, 3, 0, elapsedCount, isHit);
 		}
-		else if (isAttack && state == State::PunchStrong) {
-			Collision(frameX, 3, 5, 1, elpasedCount, isHit);
-			Collision(frameX, 10, 13, 4, elpasedCount, isHit);
+		else if (isAttack && state == State::PunchStrong)
+		{
+			Collision(frameX, 3, 5, 1, elapsedCount, isHit);
+			Collision(frameX, 10, 13, 4, elapsedCount, isHit);
 		}
-		else if (isAttack && state == State::LegWeak) {
-			Collision(frameX, 2, 4, 2, elpasedCount, isHit);
+		else if (isAttack && state == State::LegWeak)
+		{
+			Collision(frameX, 2, 4, 2, elapsedCount, isHit);
 		}
-		else if (isAttack && state == State::LegStrong) {
-			Collision(frameX, 3, 5, 3, elpasedCount, isHit);
+		else if (isAttack && state == State::LegStrong)
+		{
+			Collision(frameX, 3, 5, 3, elapsedCount, isHit);
 		}
 
 
 
 
-		if (isPlayer1) {
+		if (isPlayer1) 
+		{
 			if (BattleManager::GetSingleton()->player2MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
-				&& BattleManager::GetSingleton()->playerPos2.x <= 40) {
-				if (!(pos.x >= 280)) {
+				&& BattleManager::GetSingleton()->playerPos2.x <= 40) 
+			{
+				if (!(pos.x >= 280))
+				{
 					pos.x += moveSpeed / 3;
 					originPos += moveSpeed / 3;
 				}
 			}
 			if (BattleManager::GetSingleton()->player2MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
-				&& BattleManager::GetSingleton()->playerPos2.x >= 280) {
-				if (!(pos.x <= 40)) {
+				&& BattleManager::GetSingleton()->playerPos2.x >= 280)
+			{
+				if (!(pos.x <= 40)) 
+				{
 					pos.x -= moveSpeed / 3;
 					originPos -= moveSpeed / 3;
 				}
@@ -316,15 +330,19 @@ void Kim::Update()
 		}
 		else {
 			if (BattleManager::GetSingleton()->player1MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
-				&& BattleManager::GetSingleton()->playerPos1.x <= 40) {
-				if (!(pos.x >= 280)) {
+				&& BattleManager::GetSingleton()->playerPos1.x <= 40) 
+			{
+				if (!(pos.x >= 280))
+				{
 					pos.x += moveSpeed / 3;
 					originPos += moveSpeed / 3;
 				}
 			}
 			if (BattleManager::GetSingleton()->player1MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
-				&& BattleManager::GetSingleton()->playerPos1.x >= 280) {
-				if (!(pos.x <= 40)) {
+				&& BattleManager::GetSingleton()->playerPos1.x >= 280)
+			{
+				if (!(pos.x <= 40))
+				{
 					pos.x -= moveSpeed / 3;
 					originPos -= moveSpeed / 3;
 				}
@@ -358,10 +376,12 @@ void Kim::Render(HDC hdc)
 	if (idle && mirroringIdle)
 	{
 		Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
-		if (isPlayer1 && (state != State::Die)) {
+		if (isPlayer1 && (state != State::Die))
+		{
 			BattleManager::GetSingleton()->player1MoveCheck = 0;
 		}
-		else {
+		else
+		{
 			BattleManager::GetSingleton()->player2MoveCheck = 0;
 		}
 
@@ -369,25 +389,31 @@ void Kim::Render(HDC hdc)
 		switch (state)
 		{
 		case State::IDLE:
-			if (isPlayer1) {
+			if (isPlayer1) 
+			{
 				idle->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			else {
+			else 
+			{
 				mirroringIdle->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 			ElpasedCount(fps, frameX, true);
 			if (frameX >= 11) frameX = 0;
 			break;
 		case State::Walk:
-			if (moveDir == MoveDir::Right) {
-				if (isPlayer1) {
+			if (moveDir == MoveDir::Right)
+			{
+				if (isPlayer1) 
+				{
 					frontWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 					BattleManager::GetSingleton()->player1MoveCheck = 2;
 					if (pos.x <= 281)
 					{
 						if (!isMeet) pos.x += moveSpeed / 3;
 					}
-				} else {
+				} 
+				else 
+				{
 					mirroringBackWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 					BattleManager::GetSingleton()->player2MoveCheck = 2;
 					if (pos.x <= 281)pos.x += moveSpeed / 3;
@@ -396,13 +422,17 @@ void Kim::Render(HDC hdc)
 				if (frameX >= 6) frameX = 0;
 
 			}
-			else {
-				if (isPlayer1) {
+			else
+			{
+				if (isPlayer1)
+				{
 					backWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 					BattleManager::GetSingleton()->player1MoveCheck = 1;
 					if (pos.x >= 40)pos.x -= moveSpeed / 3;
 
-				} else {
+				} 
+				else
+				{
 					mirroringFrontWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 					BattleManager::GetSingleton()->player2MoveCheck = 1;
 					if (pos.x >= 40)
@@ -416,18 +446,22 @@ void Kim::Render(HDC hdc)
 			}
 			break;
 		case State::PunchWeak:
-			if (!originCheck) {
+			if (!originCheck) 
+			{
 				originCheck = true;
 				originPos = pos.x;
 			}
-			if (isPlayer1) {
-				if (frameX == 0 && elpasedCount == 0) pos.x += 25;
+			if (isPlayer1)
+			{
+				if (frameX == 0 && elapsedCount == 0) pos.x += 25;
 				weakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
-			} else {
-				if (frameX == 0 && elpasedCount == 0) pos.x -= 25;
+			}
+			else 
+			{
+				if (frameX == 0 && elapsedCount == 0) pos.x -= 25;
 				mirroringWeakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			elpasedCount = ElpasedCount(fps, frameX, true);
+			elapsedCount = ElpasedCount(fps, frameX, true);
 
 			if (frameX >= 5)
 			{
@@ -440,20 +474,23 @@ void Kim::Render(HDC hdc)
 			}
 			break;
 		case State::PunchStrong:
-			if (!originCheck) {
+			if (!originCheck) 
+			{
 				originCheck = true;
 				originPos = pos.x;
 			}
 
-			if (isPlayer1) {
-				if (frameX == 0 && elpasedCount == 0)this->pos.x += 25;
+			if (isPlayer1) 
+			{
+				if (frameX == 0 && elapsedCount == 0)this->pos.x += 25;
 				strongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			else {
-				if (frameX == 0 && elpasedCount == 0)this->pos.x -= 25;
+			else
+			{
+				if (frameX == 0 && elapsedCount == 0)this->pos.x -= 25;
 				mirroringStrongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			elpasedCount = ElpasedCount(fps, frameX, true);
+			elapsedCount = ElpasedCount(fps, frameX, true);
 			if (frameX >= 18)
 			{
 				originCheck = false;
@@ -465,20 +502,23 @@ void Kim::Render(HDC hdc)
 			}
 			break;
 		case State::LegWeak:
-			if (!originCheck) {
+			if (!originCheck) 
+			{
 				originCheck = true;
 				originPos = pos.x;
 			}
 			
-			if (isPlayer1) {
-				if (frameX == 0 && elpasedCount == 0)this->pos.x += 25;
+			if (isPlayer1) 
+			{
+				if (frameX == 0 && elapsedCount == 0)this->pos.x += 25;
 				weakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			else {
-				if (frameX == 0 && elpasedCount == 0)this->pos.x -= 25;
+			else 
+			{
+				if (frameX == 0 && elapsedCount == 0)this->pos.x -= 25;
 				mirroringWeakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			elpasedCount = ElpasedCount(fps, frameX, true);
+			elapsedCount = ElpasedCount(fps, frameX, true);
 			if (frameX >= 9)
 			{
 				originCheck = false;
@@ -490,24 +530,28 @@ void Kim::Render(HDC hdc)
 			}
 			break;
 		case State::LegStrong:
-			if (!originCheck) {
+			if (!originCheck)
+			{
 				originCheck = true;
 				originPos = pos.x;
 			}
 
-			if (isPlayer1) {
-				if (frameX == 0 && elpasedCount == 0)this->pos.x += 25;
-				if (frameX == 1 && elpasedCount == 0)this->pos.x -= 15;
-				if (frameX == 3 && elpasedCount == 0)this->pos.x += 10;
+			if (isPlayer1) 
+			{
+				if (frameX == 0 && elapsedCount == 0)this->pos.x += 25;
+				if (frameX == 1 && elapsedCount == 0)this->pos.x -= 15;
+				if (frameX == 3 && elapsedCount == 0)this->pos.x += 10;
 				strongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
-			} else {
-				if (frameX == 0 && elpasedCount == 0)this->pos.x -= 25;
-				if (frameX == 1 && elpasedCount == 0)this->pos.x += 15;
-				if (frameX == 3 && elpasedCount == 0)this->pos.x -= 10;
+			} 
+			else
+			{
+				if (frameX == 0 && elapsedCount == 0)this->pos.x -= 25;
+				if (frameX == 1 && elapsedCount == 0)this->pos.x += 15;
+				if (frameX == 3 && elapsedCount == 0)this->pos.x -= 10;
 				mirroringStrongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 
-			elpasedCount = ElpasedCount(fps, frameX, true);
+			elapsedCount = ElpasedCount(fps, frameX, true);
 
 			if (frameX >= 11)
 			{
@@ -523,21 +567,24 @@ void Kim::Render(HDC hdc)
 		case State::Damaged:
 		{
 			static bool check = true;
-			if (check) {
+			if (check)
+			{
 				frameX = 0;
 				check = false;
 			}
-			if (isPlayer1) {
+			if (isPlayer1) 
+			{
 				hit2->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			else {
+			else
+			{
 				mirroringHit2->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			//elpasedCount = ElpasedCount(fps, frameX, true);
-			elpasedCount++;
-			if (elpasedCount == 3)
+			//elapsedCount = ElpasedCount(fps, frameX, true);
+			elapsedCount++;
+			if (elapsedCount >= 3)
 			{
-				elpasedCount = 0;
+				elapsedCount = 0;
 				frameX++;
 			}
 			if (frameX >= 4)
@@ -550,16 +597,18 @@ void Kim::Render(HDC hdc)
 		}
 			break;
 		case State::Die:
-			if (isPlayer1) {
+			if (isPlayer1)
+			{
 				die->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			else {
+			else
+			{
 				mirroringDie->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			elpasedCount++;
-			if (elpasedCount >= 10)
+			elapsedCount++;
+			if (elapsedCount >= 10)
 			{
-				elpasedCount = 0;
+				elapsedCount = 0;
 				frameX++;
 				if (isPlayer1)
 				{

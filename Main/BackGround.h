@@ -29,7 +29,7 @@ protected:
 	int transformFrame=0;
 	int transformElpasedCount = 0;
 
-	int elpasedCount;
+	int elapsedCount;
 	int frame;
 
 public:

@@ -25,7 +25,7 @@ private:
 	Image* playerKim1;
 	Image* playerKim2;
 	
-	int elpasedCount;
+	int elapsedCount;
 	int frame;
 	bool Twinkle;
 protected:

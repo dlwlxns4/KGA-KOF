@@ -119,16 +119,21 @@ void UIManager::Render(HDC hdc)
 		timeLoading[timeLoadingNum]->Render(hdc, WIN_SIZE_X / 2, WIN_SIZE_Y / 2);
 		time1[timeNum1]->Render(hdc, WIN_SIZE_X / 2, WIN_SIZE_Y / 2);
 		time10[timeNum10]->Render(hdc, WIN_SIZE_X / 2 - 14, WIN_SIZE_Y / 2);
-	} else {
+	} 
+	else 
+	{
 		timeLoading[0]->Render(hdc, WIN_SIZE_X / 2, WIN_SIZE_Y / 2);
 		time1[2]->Render(hdc, WIN_SIZE_X / 2, WIN_SIZE_Y / 2);
 		time10[2]->Render(hdc, WIN_SIZE_X / 2 - 14, WIN_SIZE_Y / 2);
-		if (!timeOutDead) {
+		if (!timeOutDead) 
+		{
 			timeOutDead = true;
 			if (BattleManager::GetSingleton()->player1Hp <
 				BattleManager::GetSingleton()->player2Hp) {
 				BattleManager::GetSingleton()->player1Hp = -5;
-			} else {
+			} 
+			else
+			{
 				BattleManager::GetSingleton()->player2Hp = -5;
 			}
 		}
@@ -143,15 +148,18 @@ void UIManager::Update()
 		
 		
 		num++;
-		if (num == 3) {
+		if (num == 3) 
+		{
 			num = 0;
 			timeLoadingNum++;
 		}
 
-		if (timeLoadingNum == 13) {
+		if (timeLoadingNum == 13)
+		{
 			timeLoadingNum = 0;
 			time1Check = true;
-			if (timeNum1 == 2) {
+			if (timeNum1 == 2) 
+			{
 				timeNum1 = 27;
 				if (timeNum10 == 2) timeOut = true;
 				timeNum10 -= 6;
@@ -162,11 +170,13 @@ void UIManager::Update()
 			}
 		}
 
-		if (time1Check && num == 0) {
+		if (time1Check && num == 0)
+		{
 			timeNum1++;
 			if ((timeNum1 + 1) % 3 == 0) time1Check = false;
 		}
-		if (time10Check && num == 0) {
+		if (time10Check && num == 0)
+		{
 			timeNum10++;
 			if ((timeNum10 + 1) % 3 == 0) time10Check = false;
 

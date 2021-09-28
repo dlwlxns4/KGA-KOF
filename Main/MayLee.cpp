@@ -4,11 +4,11 @@
 #include "BattleManager.h"
 
 int MayLee::ElpasedCount(int fps, int& frameX, bool check) {
-	static int elpasedCount = 0;
-	elpasedCount++;
-	if (elpasedCount == fps)
+	static int elapsedCount = 0;
+	elapsedCount++;
+	if (elapsedCount == fps)
 	{
-		elpasedCount = 0;
+		elapsedCount = 0;
 		if (check) {
 			frameX++;
 		}
@@ -17,7 +17,7 @@ int MayLee::ElpasedCount(int fps, int& frameX, bool check) {
 			frameX--;
 		}
 	}
-	return elpasedCount;
+	return elapsedCount;
 }
 
 
@@ -74,14 +74,16 @@ void MayLee::Init(bool isPlayer1)
 	originCheck = false;
 	fps = 3;
 	frameX = frameY = 0;
-	elpasedCount = 0;
+	elapsedCount = 0;
 	moveSpeed = 10.0f;
 
-	if (isPlayer1) {
+	if (isPlayer1)
+	{
 		this->pos.x = WIN_SIZE_X / 4;
 		this->pos.y = WIN_SIZE_Y / 1.3;
 	}
-	else {
+	else 
+	{
 		this->pos.x = WIN_SIZE_X - WIN_SIZE_X / 4;
 		this->pos.y = WIN_SIZE_Y / 1.3;
 	}
@@ -107,13 +109,17 @@ void MayLee::Update()
 	{
 
 
-		if (isPlayer1) {
-			if (BattleManager::GetSingleton()->player1Hp <= 0) {
+		if (isPlayer1)
+		{
+			if (BattleManager::GetSingleton()->player1Hp <= 0) 
+			{
 				state = State::Die;
 			}
 		}
-		else {
-			if (BattleManager::GetSingleton()->player2Hp <= 0) {
+		else 
+		{
+			if (BattleManager::GetSingleton()->player2Hp <= 0)
+			{
 				state = State::Die;
 			}
 		}
@@ -176,7 +182,7 @@ void MayLee::Update()
 				state = State::LegStrong;
 			}
 
-			if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER2_LEFT_KEY)) && !isAttack && state != State::Damaged)
+			if ((KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_RIGHT_KEY) || KeyManager::GetSingleton()->IsOnceKeyUp(PLAYER1_LEFT_KEY)) && !isAttack && state != State::Damaged)
 			{
 				frameX = 0;
 				state = State::IDLE;
@@ -254,7 +260,7 @@ void MayLee::Update()
 					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[0].collider, true) && !isHit)
 					{
 						isHit = true;
-						elpasedCount = -5; // Hit했을 때 경직도
+						elapsedCount = -5; // Hit했을 때 경직도
 					}
 
 				}
@@ -264,7 +270,7 @@ void MayLee::Update()
 					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[0].collider, false) && !isHit)
 					{
 						isHit = true;
-						elpasedCount = -5; // Hit했을 때 경직도
+						elapsedCount = -5; // Hit했을 때 경직도
 					}
 
 				}
@@ -293,7 +299,7 @@ void MayLee::Update()
 					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[1].collider, true) && !isHit)
 					{
 						isHit = true;
-						elpasedCount = -3; // Hit했을 때 경직도
+						elapsedCount = -3; // Hit했을 때 경직도
 					}
 				}
 				else
@@ -302,7 +308,7 @@ void MayLee::Update()
 					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[1].collider, false) && !isHit)
 					{
 						isHit = true;
-						elpasedCount = -3; // Hit했을 때 경직도
+						elapsedCount = -3; // Hit했을 때 경직도
 					}
 				}
 			}
@@ -330,7 +336,7 @@ void MayLee::Update()
 					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[2].collider, true) && !isHit)
 					{
 						isHit = true;
-						elpasedCount = -3; // Hit했을 때 경직도
+						elapsedCount = -3; // Hit했을 때 경직도
 					}
 				}
 				else
@@ -339,7 +345,7 @@ void MayLee::Update()
 					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[2].collider, false) && !isHit)
 					{
 						isHit = true;
-						elpasedCount = -3; // Hit했을 때 경직도
+						elapsedCount = -3; // Hit했을 때 경직도
 					}
 				}
 			}
@@ -367,7 +373,7 @@ void MayLee::Update()
 					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider[2].collider, true) && !isHit)
 					{
 						isHit = true;
-						elpasedCount = -3; // Hit했을 때 경직도
+						elapsedCount = -3; // Hit했을 때 경직도
 					}
 				}
 				else
@@ -376,7 +382,7 @@ void MayLee::Update()
 					if (BattleManager::GetSingleton()->CheckCollision(&BattleManager::GetSingleton()->attackCollider2[2].collider, false) && !isHit)
 					{
 						isHit = true;
-						elpasedCount = -3; // Hit했을 때 경직도
+						elapsedCount = -3; // Hit했을 때 경직도
 					}
 				}
 			}
@@ -398,29 +404,35 @@ void MayLee::Update()
 
 
 		// 배경 카메라 움직임 관련
-		if (isPlayer1) {
+		if (isPlayer1) 
+		{
 			if (BattleManager::GetSingleton()->player2MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
 				&& BattleManager::GetSingleton()->playerPos2.x <= 40) {
-				if (!(pos.x >= 280)) {
+				if (!(pos.x >= 280)) 
+				{
 					pos.x += moveSpeed / 3;
 				}
 			}
 			if (BattleManager::GetSingleton()->player2MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
 				&& BattleManager::GetSingleton()->playerPos2.x >= 280) {
-				if (!(pos.x <= 40)) {
+				if (!(pos.x <= 40)) 
+				{
 					pos.x -= moveSpeed / 3;
 				}
 			}
 		}
-		else {
+		else 
+		{
 			if (BattleManager::GetSingleton()->player1MoveCheck == 1 && BattleManager::GetSingleton()->backGroundMove == 1
 				&& BattleManager::GetSingleton()->playerPos1.x <= 40) {
-				if (!(pos.x >= 280)) {
+				if (!(pos.x >= 280)) 
+				{
 					pos.x += moveSpeed / 3;
 				}
 			}
 			if (BattleManager::GetSingleton()->player1MoveCheck == 2 && BattleManager::GetSingleton()->backGroundMove == 2
-				&& BattleManager::GetSingleton()->playerPos1.x >= 280) {
+				&& BattleManager::GetSingleton()->playerPos1.x >= 280)
+			{
 				if (!(pos.x <= 40)) pos.x -= moveSpeed / 3;
 			}
 		}
@@ -462,17 +474,20 @@ void MayLee::Render(HDC hdc)
 				if (frameX >= 8) frameX = 0;
 				break;
 			case State::Walk:
-				if (moveDir == MoveDir::Right) {
+				if (moveDir == MoveDir::Right)
+				{
 					frontWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 					ElpasedCount(fps, frameX, true);
 					if (frameX >= 5) frameX = 0;
-					if (!isMeet) {
+					if (!isMeet) 
+					{
 						BattleManager::GetSingleton()->player1MoveCheck = 2;
 						if (pos.x <= 281) pos.x += moveSpeed / 3;
 
 					}
 				}
-				else {
+				else 
+				{
 					backWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 					ElpasedCount(fps, frameX, true);
 					if (frameX >= 5) frameX = 0;
@@ -481,13 +496,14 @@ void MayLee::Render(HDC hdc)
 				}
 				break;
 			case State::PunchWeak:
-				if (!originCheck) {
+				if (!originCheck)
+				{
 					originCheck = true;
 					originPos = pos.x;
 				}
-				if (frameX == 0 && elpasedCount == 0)pos.x += 0;
+				if (frameX == 0 && elapsedCount == 0)pos.x += 0;
 				weakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
-				elpasedCount = ElpasedCount(fps, frameX, true);
+				elapsedCount = ElpasedCount(fps, frameX, true);
 				if (frameX >= 4)
 				{
 					originCheck = false;
@@ -498,13 +514,14 @@ void MayLee::Render(HDC hdc)
 				}
 				break;
 			case State::PunchStrong:
-				if (!originCheck) {
+				if (!originCheck) 
+				{
 					originCheck = true;
 					originPos = pos.x;
 				}
-				if (frameX == 0 && elpasedCount == 0)pos.x += 15;
+				if (frameX == 0 && elapsedCount == 0)pos.x += 15;
 				strongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
-				elpasedCount = ElpasedCount(fps, frameX, true);
+				elapsedCount = ElpasedCount(fps, frameX, true);
 				if (frameX >= 8)
 				{
 					originCheck = false;
@@ -515,13 +532,14 @@ void MayLee::Render(HDC hdc)
 				}
 				break;
 			case State::LegWeak:
-				if (!originCheck) {
+				if (!originCheck) 
+				{
 					originCheck = true;
 					originPos = pos.x;
 				}
-				if (frameX == 0 && elpasedCount == 0)pos.x += 25;
+				if (frameX == 0 && elapsedCount == 0)pos.x += 25;
 				weakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
-				elpasedCount = ElpasedCount(fps, frameX, true);
+				elapsedCount = ElpasedCount(fps, frameX, true);
 				if (frameX >= 10)
 				{
 					originCheck = false;
@@ -532,15 +550,16 @@ void MayLee::Render(HDC hdc)
 				}
 				break;
 			case State::LegStrong:
-				if (!originCheck) {
+				if (!originCheck) 
+				{
 					originCheck = true;
 					originPos = pos.x;
 				}
-				if (frameX == 0 && elpasedCount == 0)pos.x += 40;
-				if (frameX == 1 && elpasedCount == 0)pos.x -= 15;
-				if (frameX == 3 && elpasedCount == 0)pos.x -= 10;
+				if (frameX == 0 && elapsedCount == 0)pos.x += 40;
+				if (frameX == 1 && elapsedCount == 0)pos.x -= 15;
+				if (frameX == 3 && elapsedCount == 0)pos.x -= 10;
 				strongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
-				elpasedCount = ElpasedCount(fps, frameX, true);
+				elapsedCount = ElpasedCount(fps, frameX, true);
 
 				if (frameX >= 13)
 				{
@@ -552,48 +571,56 @@ void MayLee::Render(HDC hdc)
 				}
 				break;
 			case State::Damaged:
-				{static bool check = true;
-				if (check) {
-					frameX = 0;
-					check = false;
-				}
-				if (isPlayer1) {
-					hit->Render(hdc, pos.x, pos.y, frameX, frameY);
-				}
-				else {
-					mirroringHit->Render(hdc, pos.x, pos.y, frameX, frameY);
-				}
+				{
+					static bool check = true;
+					if (check) 
+					{
+						frameX = 0;
+						check = false;
+					}
+					if (isPlayer1) 
+					{
+						hit->Render(hdc, pos.x, pos.y, frameX, frameY);
+					}
+					else 
+					{
+						mirroringHit->Render(hdc, pos.x, pos.y, frameX, frameY);
+					}
 
-				elpasedCount++;
-				if (elpasedCount == 3)
-				{
-					elpasedCount = 0;
-					frameX++;
-				}
-				if (frameX >= 4)
-				{
-					check = true;
-					isAttack = false;
-					state = State::IDLE;
-					frameX = 0;
-				}
+					elapsedCount++;
+					if (elapsedCount == 3)
+					{
+						elapsedCount = 0;
+						frameX++;
+					}
+					if (frameX >= 4)
+					{
+						check = true;
+						isAttack = false;
+						state = State::IDLE;
+						frameX = 0;
+					}
 				}
 					break;
 			case State::Die:
-				if (isPlayer1) {
+				if (isPlayer1) 
+				{
 					die->Render(hdc, pos.x, pos.y, frameX, frameY);
 				}
-				else {
+				else 
+				{
 					mirroringDie->Render(hdc, pos.x, pos.y, frameX, frameY);
 				}
-				elpasedCount++;
-				if (elpasedCount == 12)
+				elapsedCount++;
+				if (elapsedCount == 12)
 				{
-					elpasedCount = 0;
+					elapsedCount = 0;
 					frameX++;
 				}
-				if (frameX >= 8)
+				if (frameX >= 8) frameX = 8;
+				if(frameX >= 8 && !isDie)
 				{
+					isDie = true;
 					frameX = 8;
 					BattleManager::GetSingleton()->SetDie();
 				}
@@ -618,18 +645,21 @@ void MayLee::Render(HDC hdc)
 				if (frameX >= 8) frameX = 0;
 				break;
 			case State::Walk:
-				if (moveDir == MoveDir::Right) {
+				if (moveDir == MoveDir::Right)
+				{
 					mirroringFrontWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 					ElpasedCount(fps, frameX, true);
 					if (frameX >= 5) frameX = 0;
 					BattleManager::GetSingleton()->player2MoveCheck = 2;
 					if (pos.x <= 281) pos.x += moveSpeed / 3;
 				}
-				else {
+				else
+				{
 					mirroringBackWalk->Render(hdc, pos.x, pos.y, frameX, frameY);
 					ElpasedCount(fps, frameX, true);
 					if (frameX >= 5) frameX = 0;
-					if (!isMeet) {
+					if (!isMeet)
+					{
 						BattleManager::GetSingleton()->player2MoveCheck = 1;
 						if (pos.x >= 40)pos.x -= moveSpeed / 3;
 
@@ -637,13 +667,14 @@ void MayLee::Render(HDC hdc)
 				}
 				break;
 			case State::PunchWeak:
-				if (!originCheck) {
+				if (!originCheck)
+				{
 					originCheck = true;
 					originPos = pos.x;
 				}
-				if (frameX == 0 && elpasedCount == 0)pos.x += 0;
+				if (frameX == 0 && elapsedCount == 0)pos.x += 0;
 				mirroringWeakPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
-				elpasedCount = ElpasedCount(fps, frameX, true);
+				elapsedCount = ElpasedCount(fps, frameX, true);
 				if (frameX >= 4)
 				{
 					originCheck = false;
@@ -654,13 +685,14 @@ void MayLee::Render(HDC hdc)
 				}
 				break;
 			case State::PunchStrong:
-				if (!originCheck) {
+				if (!originCheck) 
+				{
 					originCheck = true;
 					originPos = pos.x;
 				}
-				if (frameX == 0 && elpasedCount == 0)pos.x += 15;
+				if (frameX == 0 && elapsedCount == 0)pos.x += 15;
 				mirroringStrongPunch->Render(hdc, pos.x, pos.y, frameX, frameY);
-				elpasedCount = ElpasedCount(fps, frameX, true);
+				elapsedCount = ElpasedCount(fps, frameX, true);
 				if (frameX >= 8)
 				{
 					originCheck = false;
@@ -671,13 +703,14 @@ void MayLee::Render(HDC hdc)
 				}
 				break;
 			case State::LegWeak:
-				if (!originCheck) {
+				if (!originCheck)
+				{
 					originCheck = true;
 					originPos = pos.x;
 				}
-				if (frameX == 0 && elpasedCount == 0)pos.x += 25;
+				if (frameX == 0 && elapsedCount == 0)pos.x += 25;
 				mirroringWeakLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
-				elpasedCount = ElpasedCount(fps, frameX, true);
+				elapsedCount = ElpasedCount(fps, frameX, true);
 				if (frameX >= 10)
 				{
 					originCheck = false;
@@ -692,11 +725,11 @@ void MayLee::Render(HDC hdc)
 					originCheck = true;
 					originPos = pos.x;
 				}
-				if (frameX == 0 && elpasedCount == 0)pos.x += 40;
-				if (frameX == 1 && elpasedCount == 0)pos.x -= 15;
-				if (frameX == 3 && elpasedCount == 0)pos.x -= 10;
+				if (frameX == 0 && elapsedCount == 0)pos.x += 40;
+				if (frameX == 1 && elapsedCount == 0)pos.x -= 15;
+				if (frameX == 3 && elapsedCount == 0)pos.x -= 10;
 				mirroringstrongLeg->Render(hdc, pos.x, pos.y, frameX, frameY);
-				elpasedCount = ElpasedCount(fps, frameX, true);
+				elapsedCount = ElpasedCount(fps, frameX, true);
 	
 				if (frameX >= 13)
 				{
@@ -709,21 +742,24 @@ void MayLee::Render(HDC hdc)
 				break;
 			case State::Damaged:
 			{static bool check = true;
-			if (check) {
+			if (check) 
+			{
 				frameX = 0;
 				check = false;
 			}
-			if (isPlayer1) {
+			if (isPlayer1)
+			{
 				hit->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
-			else {
+			else
+			{
 				mirroringHit->Render(hdc, pos.x, pos.y, frameX, frameY);
 			}
 
-			elpasedCount++;
-			if (elpasedCount == 3)
+			elapsedCount++;
+			if (elapsedCount == 3)
 			{
-				elpasedCount = 0;
+				elapsedCount = 0;
 				frameX++;
 			}
 			if (frameX >= 4)
@@ -736,16 +772,18 @@ void MayLee::Render(HDC hdc)
 			}
 				break;
 			case State::Die:
-				if (isPlayer1) {
+				if (isPlayer1)
+				{
 					die->Render(hdc, pos.x, pos.y, frameX, frameY);
 				}
-				else {
+				else
+				{
 					mirroringDie->Render(hdc, pos.x, pos.y, frameX, frameY);
 				}
-				elpasedCount++;
-				if (elpasedCount == 12)
+				elapsedCount++;
+				if (elapsedCount == 12)
 				{
-					elpasedCount = 0;
+					elapsedCount = 0;
 					frameX++;
 				}
 				if (frameX >= 8) frameX = 8;

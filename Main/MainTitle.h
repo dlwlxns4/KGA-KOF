@@ -9,7 +9,7 @@ private:
 	Image* loading[41];
 	POINTFLOAT backGroundPos;		// ¹è°æÁÂÇ¥
 
-	int elpasedCount;
+	int elapsedCount;
 	int maxElpasedCount;
 	int frame;
 	int maxFrame;
